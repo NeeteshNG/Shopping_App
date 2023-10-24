@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* CSS for Navigation Bar */
-.body-navbar{
-  position: fixed;
-}
 
 .nav-links{
   display: flex;
@@ -13,6 +10,7 @@
   background: #007bff;
   padding: 20px 15px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  position: fixed;
 }
 .nav-links li{
   list-style: none;
@@ -62,6 +60,17 @@
 .nav-links li.forward .nav-buttons:hover:before{
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.left-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+.right-buttons{
+  margin-left: 950px;
+  display: flex;
+  flex-direction: row;
 }
 
 /* CSS Style for Home Page*/
