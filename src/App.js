@@ -2,6 +2,7 @@ import './App.css';
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Products from './Components/Products';
 
 function App() {
     return (
@@ -10,7 +11,7 @@ function App() {
               <Navbar/>
               <Routes>
                 <Route path='/' exact Component={Home}/>
-                <Route path='/products'/>
+                <Route path='/products' Component={Products}/>
                 <Route path='/cart'/>
                 <Route path='/wishlist'/>
               </Routes>
