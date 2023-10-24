@@ -6,16 +6,16 @@ function Navbar() {
     <div className="body-navbar">
       <ul class="nav-links">
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/' className="nav-buttons">Home</Link>
         </li>
         <li class="center">
-          <Link to='/products'>Products</Link>
+          <Link to='/products' className="nav-buttons">Products</Link>
         </li>
         <li class="upward">
-          <Link to='/cart'>Cart</Link>
+          <Link to='/cart' className="nav-buttons">Cart</Link>
         </li>
         <li class="forward">
-          <Link to='/wishlist'>Wishlist</Link>
+          <Link to='/wishlist' className="nav-buttons">Wishlist</Link>
         </li>
       </ul>
 
