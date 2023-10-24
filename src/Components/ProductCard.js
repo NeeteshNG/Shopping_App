@@ -9,8 +9,8 @@ function ProductCard({ product }) {
             <h2>{name}</h2>
             <p>{description}</p>
             <p>Price : {price}</p>
-            <button>Add to Card</button>
-            <button>Add to Wishlist</button>
+            <button><i class="fa fa-shopping-cart"></i></button>
+            <button><i class="fa fa-heart-o"></i></button>
         </div>
     )
 }
