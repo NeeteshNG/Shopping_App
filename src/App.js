@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Products from './Components/Products';
 import Cart from './Components/Cart';
+import Wishlist from './Components/Wishlist';
 
 function App() {
     return (
@@ -14,7 +15,7 @@ function App() {
                 <Route path='/' exact Component={Home}/>
                 <Route path='/products' Component={Products}/>
                 <Route path='/cart' Component={Cart}/>
-                <Route path='/wishlist'/>
+                <Route path='/wishlist' Component={Wishlist}/>
               </Routes>
               {/* <Footer/> */}
             </div>
