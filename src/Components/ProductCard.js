@@ -4,7 +4,7 @@ import { addToCart, addToWishlist } from '../Redux/listSlice';
 
 function ProductCard({ product }) {
     const { name, price, description, image } = product;
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
 
     const handleAddToCart = () => {
         dispatch(addToCart(product));

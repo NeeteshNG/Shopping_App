@@ -1,25 +1,17 @@
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.App{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 /* CSS for Navigation Bar */
 .body-navbar{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
+  position: fixed;
 }
+
 .nav-links{
   display: flex;
   align-items: center;
+  width: 1250px;
   background: #007bff;
   padding: 20px 15px;
-  border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 .nav-links li{
@@ -132,6 +124,11 @@
       0% 100%
     );
   }
+}
+
+.body-cards{
+  display: flex;
+  justify-content: center;
 }
 
 .grid-container{
