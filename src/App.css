@@ -438,6 +438,7 @@ h2 {
  /* CSS for ProductDescriptionModal.js */
 .product-modal {
   position: fixed;
+  margin-top: 30px;
   top: 0;
   left: 0;
   width: 100%;

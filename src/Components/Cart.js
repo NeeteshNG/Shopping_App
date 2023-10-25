@@ -1,10 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../Redux/listSlice";
+import { useState } from "react";
+import ProductDetails from "./ProductDetails"
 
 function Cart() {
   const cart = useSelector((state) => state.list.cart);
   const dispatch = useDispatch();
+
+  const [showModal, setShowModal] = useState(false)
+  const [selected, setSelected] = useState(null)
+
+  const handleToggle = (product) => {
+    setSelected(product);
+    setShowModal(!showModal);
+  }
 
   const removeItem = (product) => {
     dispatch(removeFromCart(product));
@@ -16,7 +26,7 @@ function Cart() {
       <div className="cart-container">
         <h1>CART</h1>
         {cart.map((product) => (
-          <div key={product.id} className="cart-item">
+          <div key={product.id} className="cart-item" onClick={() => handleToggle(product)}>
             <img
               src={product.image}
               alt={product.name}
@@ -35,6 +45,7 @@ function Cart() {
             </button>
           </div>
         ))}
+        {showModal && <ProductDetails product={selected} onClose={() => handleToggle(null)}/>}
         <h2 className="total-amount">Total: {totalAmount}/-</h2>
         <button className="checkout-button">Checkout</button>
       </div>
