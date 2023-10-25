@@ -46,7 +46,7 @@ function Wishlist() {
                   onClick={() => removeItem(product)}
                   className="wishlist-item-remove-button"
                 >
-                  <i class="gg-remove"></i>
+                  <i className="gg-remove"></i>
                 </button>
               </div>
             ))}

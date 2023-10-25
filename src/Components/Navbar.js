@@ -23,19 +23,19 @@ function Navbar() {
         </div>
         <div className="right-buttons">
           <div className="nav-icon">
-            <li>
+            <li style={{position:'relative'}}>
               <Link to="/cart" className="nav-buttons">
-                <i class="fa fa-shopping-cart"></i>
+                <i className="fa fa-shopping-cart"></i>
               </Link>
-              <div className="dot">{cartNotification}</div>
+              <div className="cart-dot">{cartNotification}</div>
             </li>
           </div>
           <div className="nav-icon">
-            <li>
+            <li style={{position:'relative'}}>
               <Link to="/wishlist" className="nav-buttons">
-                <i class="fa fa-heart-o"></i>
+                <i className="fa fa-heart-o"></i>
               </Link>
-              <div className="dot">{wishlistNotification}</div>
+              <div className="wishlist-dot">{wishlistNotification}</div>
             </li>
           </div>
         </div>

@@ -26,9 +26,9 @@ function ProductCard({ product }) {
             <h2>{name}</h2>
             <p>{description.slice(0,40)}...</p>
             <p>Price : {price} /-</p>
-            <button onClick={handleAddToCart}><i class="fa fa-cart-plus"></i></button>
-            <button onClick={handleAddToWishlist}><i class="fa fa-heart-o"></i></button>
-            <button onClick={handleToggle}><i class="fa fa-info-circle"></i></button>
+            <button onClick={handleAddToCart}><i className="fa fa-cart-plus"></i></button>
+            <button onClick={handleAddToWishlist}><i className="fa fa-heart-o"></i></button>
+            <button onClick={handleToggle}><i className="fa fa-info-circle"></i></button>
             {showModal && <ProductDetails product={product} onClose={handleToggle}/>}
         </div>
     )

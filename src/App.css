@@ -80,21 +80,33 @@
   flex-direction: row;
 }
 
-.dot {
+.cart-dot {
   background-color: #ff6347;
   color: white;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
   text-align: center;
   font-size: 10px;
-  line-height: 20px;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  left: 12px;
+  bottom: 15px;
+  padding: 0.2rem;
 }
 
-.dot {
-  display: inline-block;
+.wishlist-dot {
+  background-color: #ff6347;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 10px;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  left: 12px;
+  bottom: 15px;
+  padding: 0.2rem;
 }
-
 
 /* CSS Style for Home Page*/
 .home-container{
