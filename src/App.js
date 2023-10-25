@@ -6,6 +6,7 @@ import Products from "./Components/Products";
 import Cart from "./Components/Cart";
 import Wishlist from "./Components/Wishlist";
 import ProductPage from "./Components/ProductPage";
+import Footer from "./Components/Footer";
 
 const products = [
   {
@@ -151,7 +152,7 @@ function App() {
             element={<ProductPage products={products}/>}
           />
         </Routes>
-        {/* <Footer/> */}
+        <Footer/>
       </div>
     </Router>
   );
