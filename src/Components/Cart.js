@@ -24,7 +24,7 @@ function Cart() {
             />
             <div className="cart-item-details">
               <h2 className="cart-item-name">{product.name}</h2>
-              <p className="cart-item-description">{product.description}</p>
+              <p className="cart-item-description">{product.description.slice(0,60)}</p>
               <p className="cart-item-price">Price: {product.price}/-</p>
             </div>
             <button

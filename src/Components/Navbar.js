@@ -1,25 +1,43 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 
 function Navbar() {
+  const cartNotification = useSelector((state) => state.list.cartNotification)
+  const wishlistNotification = useSelector((state) => state.list.wishlistNotification)
+
   return (
     <div className="body-navbar">
       <ul className="nav-links">
         <div className="left-buttons">
           <li>
-            <Link to='/' className="nav-buttons">Home</Link>
+            <Link to="/" className="nav-buttons">
+              Home
+            </Link>
           </li>
           <li className="center">
-            <Link to='/products' className="nav-buttons">Products</Link>
+            <Link to="/products" className="nav-buttons">
+              Products
+            </Link>
           </li>
         </div>
         <div className="right-buttons">
-          <li className="upward">
-            <Link to='/cart' className="nav-buttons"><i class="fa fa-shopping-cart"></i></Link>
-          </li>
-          <li className="forward">
-            <Link to='/wishlist' className="nav-buttons"><i class="fa fa-heart-o"></i></Link>
-          </li>
+          <div className="nav-icon">
+            <li>
+              <Link to="/cart" className="nav-buttons">
+                <i class="fa fa-shopping-cart"></i>
+              </Link>
+              <div className="dot">{cartNotification}</div>
+            </li>
+          </div>
+          <div className="nav-icon">
+            <li>
+              <Link to="/wishlist" className="nav-buttons">
+                <i class="fa fa-heart-o"></i>
+              </Link>
+              <div className="dot">{wishlistNotification}</div>
+            </li>
+          </div>
         </div>
       </ul>
 

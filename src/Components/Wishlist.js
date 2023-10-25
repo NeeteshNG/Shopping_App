@@ -26,7 +26,7 @@ function Wishlist() {
                 <div className="wishlist-item-details">
                   <h2 className="wishlist-item-name">{product.name}</h2>
                   <p className="wishlist-item-description">
-                    {product.description}
+                    {product.description.slice(0,60)}
                   </p>
                   <p className="wishlist-item-price">
                     Price: {product.price}/-

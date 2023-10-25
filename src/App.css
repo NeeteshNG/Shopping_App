@@ -80,6 +80,22 @@
   flex-direction: row;
 }
 
+.dot {
+  background-color: #ff6347;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 20px;
+}
+
+.dot {
+  display: inline-block;
+}
+
+
 /* CSS Style for Home Page*/
 .home-container{
   display: flex;
