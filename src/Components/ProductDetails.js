@@ -5,7 +5,7 @@ function ProductDetails({ product, onClose }) {
         <div className="product-modal">
         <div className="product-modal-content">
             <h2>{product.name}</h2>
-            <img src={product.image} />
+            <img src={product.images} />
             <h3>Desciption :</h3>
             <p>{product.description}</p>
             <p>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../Redux/listSlice";
 import { useState } from "react";
 import ProductDetails from "./ProductDetails";
+import { Link } from "react-router-dom";
 
 function Wishlist() {
   const wishlist = useSelector((state) => state.list.wishlist);
@@ -27,14 +28,21 @@ function Wishlist() {
         {wishlist.length > 0 ? (
           <div className="wishlist-items">
             {wishlist.map((product) => (
-              <div key={product.id} className="wishlist-item" onClick={() => handleToggle(product)}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="wishlist-item-image"
-                />
+              <div key={product.id} className="wishlist-item">
+                <Link to={`/products/${product.id}`}>
+                  <img
+                    src={product.images}
+                    alt={product.name}
+                    className="wishlist-item-image"
+                  />
+                </Link>
                 <div className="wishlist-item-details">
-                  <h2 className="wishlist-item-name">{product.name}</h2>
+                  <h2
+                    className="wishlist-item-name"
+                    onClick={() => handleToggle(product)}
+                  >
+                    {product.name}
+                  </h2>
                   <p className="wishlist-item-description">
                     {product.description.slice(0, 60)}
                   </p>
