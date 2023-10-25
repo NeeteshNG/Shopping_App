@@ -33,8 +33,10 @@ const products = [
     shippingDetails : "Free Shipping", 
     images : [
       "https://images.pexels.com/photos/8839887/pexels-photo-8839887.jpeg?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/8839887/pexels-photo-8839887.jpeg?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/8839887/pexels-photo-8839887.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/11638635/pexels-photo-11638635.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/9830093/pexels-photo-9830093.png?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/1151440/pexels-photo-1151440.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/1136589/pexels-photo-1136589.jpeg?auto=compress&cs=tinysrgb&w=400"
     ]
   },
   {
@@ -46,8 +48,10 @@ const products = [
     shippingDetails : "Free Shipping", 
     images : [
       "https://images.pexels.com/photos/11287048/pexels-photo-11287048.jpeg?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/11287048/pexels-photo-11287048.jpeg?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/11287048/pexels-photo-11287048.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/15124722/pexels-photo-15124722/free-photo-of-leopard-lily-in-a-meadow.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/7336018/pexels-photo-7336018.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/5144485/pexels-photo-5144485.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/5754097/pexels-photo-5754097.jpeg?auto=compress&cs=tinysrgb&w=400"
     ]
   },
   {
@@ -59,8 +63,10 @@ const products = [
     shippingDetails : "Free Shipping", 
     images : [
       "https://images.pexels.com/photos/17741267/pexels-photo-17741267/free-photo-of-funfair-in-vietnam.png?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/17741267/pexels-photo-17741267/free-photo-of-funfair-in-vietnam.png?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/17741267/pexels-photo-17741267/free-photo-of-funfair-in-vietnam.png?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/7590350/pexels-photo-7590350.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/5035866/pexels-photo-5035866.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/16414722/pexels-photo-16414722/free-photo-of-candid-picture-of-a-man-sitting-on-a-bench-outside-of-a-building.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/11116098/pexels-photo-11116098.jpeg?auto=compress&cs=tinysrgb&w=400"
     ]
   },
   {
@@ -72,7 +78,10 @@ const products = [
     shippingDetails : "Free Shipping", 
     images : [
       "https://images.pexels.com/photos/10976653/pexels-photo-10976653.jpeg?auto=compress&cs=tinysrgb&w=400",
-      "https://images.pexels.com/photos/10976653/pexels-photo-10976653.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/8891951/pexels-photo-8891951.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/8891959/pexels-photo-8891959.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/16438670/pexels-photo-16438670/free-photo-of-close-up-of-woman-wearing-a-silver-ring-with-a-ruby-stone.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/8306528/pexels-photo-8306528.jpeg?auto=compress&cs=tinysrgb&w=400"
     ]
   },
   {
@@ -83,7 +92,12 @@ const products = [
       "Running Shoes. Running shoes are lightweight and flexible. They are designed for anterior (forward) and vertical (up and down) motion. Running shoes have cushioning to absorb the impact of each stride, plus extra shock absorption in the heel.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/10963373/pexels-photo-10963373.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/10963373/pexels-photo-10963373.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/9507116/pexels-photo-9507116.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/11292946/pexels-photo-11292946.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/2404959/pexels-photo-2404959.png?auto=compress&cs=tinysrgb&w=400"
+    ]
   },
   {
     id: 7,
@@ -93,7 +107,12 @@ const products = [
       "A crab is a sea creature with a flat round body covered by a shell, and five pairs of legs with large claws on the front pair.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/6270541/pexels-photo-6270541.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/6270541/pexels-photo-6270541.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/343871/pexels-photo-343871.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/983587/pexels-photo-983587.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/105588/pexels-photo-105588.jpeg?auto=compress&cs=tinysrgb&w=400"
+    ]
   },
   {
     id: 8,
@@ -103,7 +122,12 @@ const products = [
       "A table is a piece of furniture with a flat top that you put things on or sit at. She was sitting at the kitchen table eating a currant bun. I placed his drink on the small table at his elbow. Synonyms: counter, bench, stand, board More Synonyms of table.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/11112739/pexels-photo-11112739.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/11112739/pexels-photo-11112739.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/129721/pexels-photo-129721.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/3098621/pexels-photo-3098621.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/1937337/pexels-photo-1937337.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/3143813/pexels-photo-3143813.jpeg?auto=compress&cs=tinysrgb&w=400"
+    ]
   },
   {
     id: 9,
@@ -113,7 +137,12 @@ const products = [
       "A sofa is a piece of furniture that a few people can comfortably sit on together. On a rainy weekend, you and your friends might pile on the sofa to watch scary movies and eat popcorn. A sofa is similar to a couch — officially, it needs to seat at least three or more people to qualify as a sofa.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/11112734/pexels-photo-11112734.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/11112734/pexels-photo-11112734.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/11112727/pexels-photo-11112727.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/11112731/pexels-photo-11112731.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/9290601/pexels-photo-9290601.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/12486219/pexels-photo-12486219.jpeg?auto=compress&cs=tinysrgb&w=400"
+    ]
   },
   {
     id: 10,
@@ -123,7 +152,12 @@ const products = [
       "In general, frogs have protruding eyes, no tail, and strong, webbed hind feet that are adapted for leaping and swimming. They also possess smooth, moist skins. Many are predominantly aquatic, but some live on land, in burrows, or in trees.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/12569708/pexels-photo-12569708.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/12569708/pexels-photo-12569708.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/12514384/pexels-photo-12514384.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/12569707/pexels-photo-12569707.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/12569713/pexels-photo-12569713.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/12079027/pexels-photo-12079027.jpeg?auto=compress&cs=tinysrgb&w=400"
+    ]
   },
   {
     id: 11,
@@ -133,7 +167,11 @@ const products = [
       "A flower, sometimes known as a bloom or blossom, is the reproductive structure found in flowering plants (plants of the division Angiospermae). Flowers produce gametophytes, which in flowering plants consist of a few haploid cells which produce gametes.",
     shippingDetails : "Free Shipping", 
     images : [
-      "https://images.pexels.com/photos/10760330/pexels-photo-10760330.jpeg?auto=compress&cs=tinysrgb&w=400",]
+      "https://images.pexels.com/photos/10760330/pexels-photo-10760330.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/189361/pexels-photo-189361.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/189396/pexels-photo-189396.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/130574/pexels-photo-130574.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/670741/pexels-photo-670741.jpeg?auto=compress&cs=tinysrgb&w=400"]
   },
 ];
 
