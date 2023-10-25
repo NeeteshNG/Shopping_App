@@ -1,32 +1,52 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {removeFromWishlist } from '../Redux/listSlice';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromWishlist } from "../Redux/listSlice";
 
 function Wishlist() {
-    const wishlist = useSelector((state) => state.list.wishlist)
-    const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.list.wishlist);
+  const dispatch = useDispatch();
 
-    const removeItem = (product) => {
-        dispatch(removeFromWishlist(product));
-    }
+  const removeItem = (product) => {
+    dispatch(removeFromWishlist(product));
+  };
 
-    const totalAmount = wishlist.reduce((total, product) => total + product.price, 0 )
-    return (
-        <div className='body-wish'>
-            <div className='wish-container'>
-                <h1 className='wish-title'>Wishlist : </h1>
-                <div className='wish-contents'>
-                    {wishlist.map((product) => (
-                        <div key={product.id} className='wish-item'>
-                            <h2>{product.name}</h2>
-                            <p>{product.description}</p>
-                            <button onClick={removeItem}><i className="fa fa-trash-o"></i></button>
-                        </div>
-                    ))}
+  return (
+    <div className="wishlist-body">
+      <div className="wishlist-container">
+        <h1 className="wishlist-title">Wishlist</h1>
+        {wishlist.length > 0 ? (
+          <div className="wishlist-items">
+            {wishlist.map((product) => (
+              <div key={product.id} className="wishlist-item">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="wishlist-item-image"
+                />
+                <div className="wishlist-item-details">
+                  <h2 className="wishlist-item-name">{product.name}</h2>
+                  <p className="wishlist-item-description">
+                    {product.description}
+                  </p>
+                  <p className="wishlist-item-price">
+                    Price: {product.price}/-
+                  </p>
                 </div>
-            </div>
-        </div>
-    )
+                <button
+                  onClick={() => removeItem(product)}
+                  className="wishlist-item-remove-button"
+                >
+                  <i class="gg-remove"></i>
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="empty-wishlist-message">Your wishlist is empty.</p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default Wishlist;
