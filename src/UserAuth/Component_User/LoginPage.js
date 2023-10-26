@@ -9,7 +9,7 @@ const usersData = [
     {username : "user3", password : "user3"}
 ]
 
-const LoginPage = () => {
+const LoginPage = ({setLoggedIn}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -18,6 +18,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     if (isValidUser(username, password)) {
       const token = generateToken();
+      setLoggedIn(true);
       dispatch(login({ user: { username }, token }));
       localStorage.setItem("token", token);
       navigate('/products')
