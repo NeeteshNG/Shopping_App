@@ -12,8 +12,33 @@ const listSlice = createSlice({
     initialState,
     reducers:{
         addToCart : (state, action) => {
-            state.cart.push(action.payload);
-            state.cartNotification++;
+            const product = action.payload;
+            const existingProduct = state.cart.find((item) => item.id === product.id);
+            if (existingProduct) {
+              existingProduct.quantity++;
+            } else {
+              product.quantity = 1;
+              state.cart.push(product);
+              state.cartNotification++;
+            }
+        },
+        incrementQuantity: (state, action) => {
+          const productId = action.payload;
+          const product = state.cart.find((item) => item.id === productId);
+          if (product) {
+            product.quantity++;
+          }
+        },
+        decrementQuantity: (state, action) => {
+          const productId = action.payload;
+          const product = state.cart.find((item) => item.id === productId);
+          if (product) {
+            if (product.quantity > 1) {
+              product.quantity--; 
+            } else {
+              state.cart = state.cart.filter((item) => item.id !== productId);
+            }
+          }
         },
         addToWishlist : (state, action) => {
             state.wishlist.push(action.payload);
@@ -30,6 +55,6 @@ const listSlice = createSlice({
     }
 });
 
-export const { addToCart, addToWishlist, removeFromCart, removeFromWishlist } = listSlice.actions;
+export const { addToCart, addToWishlist, removeFromCart, removeFromWishlist, incrementQuantity, decrementQuantity } = listSlice.actions;
 
 export default listSlice.reducer;

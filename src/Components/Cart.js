@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../Redux/listSlice";
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from "../Redux/listSlice";
 import { useState } from "react";
 import ProductDetails from "./ProductDetails";
 import { Link } from "react-router-dom";
@@ -21,7 +25,15 @@ function Cart() {
     dispatch(removeFromCart(product));
   };
 
-  const totalAmount = cart.reduce((total, product) => total + product.price, 0);
+  const incrementItemQuantity = (productId) => {
+    dispatch(incrementQuantity(productId));
+  };
+
+  const decrementItemQuantity = (productId) => {
+    dispatch(decrementQuantity(productId));
+  };
+
+  const totalAmount = cart.reduce((total, product) => total + product.price * product.quantity, 0);
   return (
     <div className="cart-body">
       <div className="cart-container">
@@ -53,6 +65,17 @@ function Cart() {
             >
               <i className="fa fa-trash-o"></i>
             </button>
+            <p className="cart-item-quantity">
+              <div className="quantity-buttons">
+                <button onClick={() => decrementItemQuantity(product.id)}>
+                  -
+                </button>
+                {product.quantity}
+                <button onClick={() => incrementItemQuantity(product.id)}>
+                  +
+                </button>
+              </div>
+            </p>
           </div>
         ))}
         {showModal && (

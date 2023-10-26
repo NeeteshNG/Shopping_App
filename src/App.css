@@ -250,6 +250,42 @@
   margin: 0 auto;
 }
 
+/* Add this CSS to your project to style the quantity section in the cart */
+/* .cart-item-quantity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.cart-item-quantity button {
+  background-color: #007bff; /* Change the background color to your preference */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.quantity-buttons{
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+.cart-item-quantity button:hover {
+  background-color: #0056b3; /* Change the hover background color */
+}
+
+/* Style the quantity number */
+.cart-item-quantity span {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+
 h1 {
   font-size: 24px;
   margin-bottom: 20px;
