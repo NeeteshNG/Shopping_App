@@ -140,11 +140,11 @@
 
 .home-content h2:nth-child(1) {
   color: transparent;
-  -webkit-text-stroke: 2px #007bff;
+  -webkit-text-stroke: 2px #144981;
 }
 
 .home-content h2:nth-child(2) {
-  color: #007bff;
+  color: #144981;
   animation: animate 4s ease-in-out infinite;
 }
 
@@ -228,6 +228,11 @@
 .product-card img {
   max-width: 100%;
   height: auto;
+}
+
+.product-card img:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .product-card h2 {
