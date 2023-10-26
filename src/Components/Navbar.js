@@ -1,12 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
+import { logout } from "../UserAuth/Redux_User/userSlice";
 
-function Navbar() {
+function Navbar({loggedIn, setLoggedIn}) {
   const cartNotification = useSelector((state) => state.list.cartNotification);
   const wishlistNotification = useSelector(
     (state) => state.list.wishlistNotification
   );
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+  };
 
   return (
     <div className="body-navbar">
@@ -41,11 +46,19 @@ function Navbar() {
             </li>
           </div>
           <div className="nav-icon">
-            <li style={{ position: "relative" }}>
-              <Link to="/loginpage" className="nav-buttons">
-                <i className="fa fa-user"></i>
-              </Link>
-            </li>
+            {loggedIn ? (
+              <li style={{ position: "relative" }}>
+                <Link onClick={handleLogout} className="nav-buttons">
+                  <i class="fa fa-sign-out"></i>
+                </Link>
+              </li>
+            ) : (
+              <li style={{ position: "relative" }}>
+                <Link to="/loginpage" className="nav-buttons">
+                  <i className="fa fa-user"></i>
+                </Link>
+              </li>
+            )}
           </div>
         </div>
       </ul>

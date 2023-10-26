@@ -184,10 +184,13 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
           <Route path="/" exact Component={Home} />
-          <Route path="/loginpage" element={<LoginPage setLoggedIn={setLoggedIn} />} />
+          <Route
+            path="/loginpage"
+            element={<LoginPage setLoggedIn={setLoggedIn} />}
+          />
           <Route
             path="/products"
             element={
@@ -200,27 +203,19 @@ function App() {
           />
           <Route
             path="/cart"
-            element={
-              loggedIn ? (
-                <Cart/>
-              ) : (
-                <Navigate to="/loginpage" replace />
-              )
-            }
+            element={loggedIn ? <Cart /> : <Navigate to="/loginpage" replace />}
           />
           <Route
             path="/wishlist"
             element={
-              loggedIn ? (
-                <Wishlist/>
-              ) : (
-                <Navigate to="/loginpage" replace />
-              )
+              loggedIn ? <Wishlist /> : <Navigate to="/loginpage" replace />
             }
           />
           <Route
             path="/products/:productId"
-            element={<ProductPage products={products} />}
+            element={
+              loggedIn ? <ProductPage products={products} /> : <Navigate to="/loginpage" replace />
+            }
           />
         </Routes>
         <Footer />

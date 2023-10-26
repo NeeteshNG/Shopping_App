@@ -17,10 +17,8 @@ const LoginPage = ({setLoggedIn}) => {
 
   const handleLogin = () => {
     if (isValidUser(username, password)) {
-      const token = generateToken();
       setLoggedIn(true);
-      dispatch(login({ user: { username }, token }));
-      localStorage.setItem("token", token);
+      dispatch(login({ user: { username } }));
       navigate('/products')
     } else {
     }
@@ -33,10 +31,6 @@ const LoginPage = ({setLoggedIn}) => {
       return true;
     }
     return false;
-  };
-
-  const generateToken = () => {
-    return "your_dynamic_token";
   };
 
   return (
