@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 
 function Navbar() {
-  const cartNotification = useSelector((state) => state.list.cartNotification)
-  const wishlistNotification = useSelector((state) => state.list.wishlistNotification)
+  const cartNotification = useSelector((state) => state.list.cartNotification);
+  const wishlistNotification = useSelector(
+    (state) => state.list.wishlistNotification
+  );
 
   return (
     <div className="body-navbar">
@@ -23,7 +25,7 @@ function Navbar() {
         </div>
         <div className="right-buttons">
           <div className="nav-icon">
-            <li style={{position:'relative'}}>
+            <li style={{ position: "relative" }}>
               <Link to="/cart" className="nav-buttons">
                 <i className="fa fa-shopping-cart"></i>
               </Link>
@@ -31,11 +33,18 @@ function Navbar() {
             </li>
           </div>
           <div className="nav-icon">
-            <li style={{position:'relative'}}>
+            <li style={{ position: "relative" }}>
               <Link to="/wishlist" className="nav-buttons">
                 <i className="fa fa-heart-o"></i>
               </Link>
               <div className="wishlist-dot">{wishlistNotification}</div>
+            </li>
+          </div>
+          <div className="nav-icon">
+            <li style={{ position: "relative" }}>
+              <Link to="/loginpage" className="nav-buttons">
+                <i className="fa fa-user"></i>
+              </Link>
             </li>
           </div>
         </div>

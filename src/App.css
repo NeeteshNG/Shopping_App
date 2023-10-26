@@ -3,14 +3,14 @@
 
 /* CSS for Navigation Bar */
 
-.body-navbar{
+.body-navbar {
   width: 100%;
   top: 0;
   position: fixed;
   z-index: 1000;
 }
 
-.nav-links{
+.nav-links {
   display: flex;
   margin: 0;
   width: 100%;
@@ -19,11 +19,12 @@
   padding: 20px 15px;
 }
 
-.nav-links li{
+.nav-links li {
   list-style: none;
   margin: 0 12px;
 }
-.nav-links li .nav-buttons{
+
+.nav-links li .nav-buttons {
   position: relative;
   color: white;
   font-size: 20px;
@@ -31,7 +32,8 @@
   padding: 6px 0;
   text-decoration: none;
 }
-.nav-links li .nav-buttons:before{
+
+.nav-links li .nav-buttons:before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -42,39 +44,45 @@
   border-radius: 12px;
   transition: all 0.4s ease;
 }
-.nav-links li .nav-buttons:hover:before{
+
+.nav-links li .nav-buttons:hover:before {
   width: 100%;
 }
-.nav-links li.center .nav-buttons:before{
+
+.nav-links li.center .nav-buttons:before {
   left: 50%;
   transform: translateX(-50%);
 }
-.nav-links li.upward .nav-buttons:before{
+
+.nav-links li.upward .nav-buttons:before {
   width: 100%;
   bottom: -5px;
   opacity: 0;
 }
-.nav-links li.upward .nav-buttons:hover:before{
+
+.nav-links li.upward .nav-buttons:hover:before {
   bottom: 0px;
   opacity: 1;
 }
-.nav-links li.forward .nav-buttons:before{
+
+.nav-links li.forward .nav-buttons:before {
   width: 100%;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s ease;
 }
-.nav-links li.forward .nav-buttons:hover:before{
+
+.nav-links li.forward .nav-buttons:hover:before {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-.left-buttons{
+.left-buttons {
   display: flex;
   flex-direction: row;
 }
 
-.right-buttons{
+.right-buttons {
   margin-left: 950px;
   display: flex;
   flex-direction: row;
@@ -109,7 +117,7 @@
 }
 
 /* CSS Style for Home Page*/
-.home-container{
+.home-container {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -141,42 +149,39 @@
 }
 
 @keyframes animate {
+
   0%,
   100% {
-    clip-path: polygon(
-      0% 45%,
-      16% 44%,
-      33% 50%,
-      54% 60%,
-      70% 61%,
-      84% 59%,
-      100% 52%,
-      100% 100%,
-      0% 100%
-    );
+    clip-path: polygon(0% 45%,
+        16% 44%,
+        33% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%);
   }
 
   50% {
-    clip-path: polygon(
-      0% 60%,
-      15% 65%,
-      34% 66%,
-      51% 62%,
-      67% 50%,
-      84% 45%,
-      100% 46%,
-      100% 100%,
-      0% 100%
-    );
+    clip-path: polygon(0% 60%,
+        15% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%);
   }
 }
 
-.body-cards{
+.body-cards {
   display: flex;
   justify-content: center;
 }
 
-.grid-container{
+.grid-container {
   display: grid;
   margin-top: 80px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -211,7 +216,7 @@
   font-size: 24px;
 }
 
-.wishlist-button :hover{
+.wishlist-button :hover {
   transform: translateY(-2px);
 }
 
@@ -254,7 +259,7 @@
 
 
 /* CSS for Cart.js */
-.cart-body{
+.cart-body {
   margin-top: 100px;
   margin-bottom: 180px;
 }
@@ -272,8 +277,10 @@
 }
 
 .cart-item-quantity button {
-  background-color: #007bff; /* Change the background color to your preference */
-  color: #fff; /* Text color */
+  background-color: #007bff;
+  /* Change the background color to your preference */
+  color: #fff;
+  /* Text color */
   border: none;
   border-radius: 50%;
   width: 15px;
@@ -283,13 +290,15 @@
   margin: 0 5px;
 }
 
-.quantity-buttons{
+.quantity-buttons {
   display: flex;
   flex-direction: row;
   font-size: 14px;
 }
+
 .cart-item-quantity button:hover {
-  background-color: #0056b3; /* Change the hover background color */
+  background-color: #0056b3;
+  /* Change the hover background color */
 }
 
 /* Style the quantity number */
@@ -393,7 +402,7 @@ h2 {
 }
 
 /* CSS for Wishlist.js */
-.wishlist-body{
+.wishlist-body {
   margin-top: 100px;
   margin-bottom: 200px;
 }
@@ -481,14 +490,14 @@ h2 {
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(var(--ggs,1));
+  transform: scale(var(--ggs, 1));
   width: 22px;
   height: 22px;
   border: 2px solid;
   border-radius: 22px
- }
- 
- .gg-remove::before {
+}
+
+.gg-remove::before {
   content: "";
   display: block;
   box-sizing: border-box;
@@ -499,10 +508,10 @@ h2 {
   border-radius: 5px;
   top: 8px;
   left: 4px
- } 
+}
 
- /* CSS for ProductDescriptionModal.js */
-.body-details{
+/* CSS for ProductDescriptionModal.js */
+.body-details {
   bottom: 100px;
 }
 
@@ -517,7 +526,8 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999; /* Ensure it's displayed on top */
+  z-index: 999;
+  /* Ensure it's displayed on top */
 }
 
 .product-modal-content {
@@ -529,7 +539,7 @@ h2 {
   text-align: left;
 }
 
-.product-modal-content img{
+.product-modal-content img {
   margin-left: 200px;
   margin-right: 200px;
   width: 140px;
@@ -547,7 +557,7 @@ h2 {
 }
 
 /* ProductPage.css */
-.page-body{
+.page-body {
   margin-top: 100px;
   margin-bottom: 200px;
 }
@@ -704,4 +714,142 @@ h2 {
 .footer-bottom p {
   font-size: 10px;
   margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.signin {
+  width: 300px;
+  background: #144981;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 9);
+}
+
+.signin .content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.signin .content h2 {
+  font-size: 2em;
+  color: white;
+  text-transform: uppercase;
+}
+
+.signin .content .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.signin .content .form .inputBox {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.signin .content .form .inputBox input {
+  position: relative;
+  width: 100%;
+  background: #5f83aa;
+  border: none;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #144981;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.signin .content .form .inputBox i {
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: #144981;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.signin .content .form .inputBox input:focus~i,
+.signin .content .form .inputBox input:valid~i {
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: #144981;
+}
+
+.signin .content .form .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin .content .form .links a {
+  color: #144981;
+  text-decoration: none;
+}
+
+.signin .content .form .links a:nth-child(2) {
+  color: white;
+  font-weight: 600;
+}
+
+.signin .content .form .inputBox input[type="submit"] {
+  padding: 10px;
+  border: 5px #144981 solid;
+  background: #5f83aa;
+  color: white;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.signin .content .form .inputBox input[type="submit"]:hover {
+  border-color: white;
+  background: #144981;
+  color: white;
+}
+
+input[type="submit"]:active {
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  span {
+    width: calc(10vw - 2px);
+    height: calc(10vw - 2px);
+  }
+}
+
+@media (max-width: 600px) {
+  span {
+    width: calc(20vw - 2px);
+    height: calc(20vw - 2px);
+  }
+}
+
+.login-error {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+  color: white;
+  font-weight: 1000;
+}
+
+#logout {
+  display: flex;
 }

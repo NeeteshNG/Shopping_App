@@ -7,6 +7,7 @@ import Cart from "./Components/Cart";
 import Wishlist from "./Components/Wishlist";
 import ProductPage from "./Components/ProductPage";
 import Footer from "./Components/Footer";
+import LoginPage from "./UserAuth/Component_User/LoginPage";
 
 const products = [
   {
@@ -189,6 +190,7 @@ function App() {
             path="/products/:productId"
             element={<ProductPage products={products}/>}
           />
+          <Route path="/loginpage" Component={LoginPage} />
         </Routes>
         <Footer/>
       </div>
