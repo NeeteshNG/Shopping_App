@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 
-function Navbar({loggedIn, setLoggedIn}) {
+function Navbar({ loggedIn, setLoggedIn }) {
   const cartNotification = useSelector((state) => state.list.cartNotification);
   const wishlistNotification = useSelector(
     (state) => state.list.wishlistNotification
@@ -29,33 +29,34 @@ function Navbar({loggedIn, setLoggedIn}) {
         </div>
         <div className="right-buttons">
           <div className="nav-icon">
-            <li style={{ position: "relative" }}>
-              <Link to="/cart" className="nav-buttons">
-                <i className="fa fa-shopping-cart"></i>
-              </Link>
-              <div className="cart-dot">{cartNotification}</div>
-            </li>
-          </div>
-          <div className="nav-icon">
-            <li style={{ position: "relative" }}>
-              <Link to="/wishlist" className="nav-buttons">
-              <i class="fa-solid fa-heart"></i>
-              </Link>
-              <div className="wishlist-dot">{wishlistNotification}</div>
-            </li>
-          </div>
-          <div className="nav-icon">
-            {loggedIn ? (
+            {loggedIn && (
               <li style={{ position: "relative" }}>
-                <Link onClick={handleLogout} className="nav-buttons">
-                  <i class="fa fa-sign-out"></i>
+                <Link to="/cart" className="nav-buttons">
+                  <i className="fa fa-shopping-cart"></i>
                 </Link>
+                <div className="cart-dot">{cartNotification}</div>
               </li>
-            ) : (
+            )}
+          </div>
+          <div className="nav-icon">
+            {loggedIn && (
               <li style={{ position: "relative" }}>
-                <Link to="/loginpage" className="nav-buttons">
+                <Link to="/wishlist" className="nav-buttons">
+                  <i class="fa-solid fa-heart"></i>
+                </Link>
+                <div className="wishlist-dot">{wishlistNotification}</div>
+              </li>
+            )}
+          </div>
+          <div className="nav-icon">
+            {loggedIn && (
+              <li style={{ position: "relative" }}>
+                <Link className="nav-buttons">
                   <i className="fa fa-user"></i>
-                  <i className="fa-solid fa-caret-down" style={{fontSize : "15px"}}></i>
+                  <i
+                    className="fa-solid fa-caret-down"
+                    style={{ fontSize: "15px" }}
+                  ></i>
                 </Link>
               </li>
             )}
