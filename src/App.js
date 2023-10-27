@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import LoginPage from "./UserAuth/Component_User/LoginPage";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import ProfilePage from "./UserAuth/Component_User/ProfilePage";
 
 const products = [
   {
@@ -215,6 +216,12 @@ function App() {
             path="/products/:productId"
             element={
               loggedIn ? <ProductPage products={products} /> : <Navigate to="/loginpage" replace />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              loggedIn ? <ProfilePage /> : <Navigate to="/loginpage" replace />
             }
           />
         </Routes>
