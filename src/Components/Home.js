@@ -2,10 +2,10 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="home-container">
-      <div className="home-content">
-        <h2>ShopApp</h2>
-        <h2>ShopApp</h2>
+    <div className="app">
+      <h1><i class="fa-solid fa-bag-shopping"></i></h1>
+      <div className="container">
+        <i className="fa-brands fa-shopify element element1"></i>
       </div>
     </div>
   );

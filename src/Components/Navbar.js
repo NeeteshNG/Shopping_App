@@ -39,7 +39,7 @@ function Navbar({loggedIn, setLoggedIn}) {
           <div className="nav-icon">
             <li style={{ position: "relative" }}>
               <Link to="/wishlist" className="nav-buttons">
-                <i className="fa fa-heart-o"></i>
+              <i class="fa-solid fa-heart"></i>
               </Link>
               <div className="wishlist-dot">{wishlistNotification}</div>
             </li>
@@ -55,6 +55,7 @@ function Navbar({loggedIn, setLoggedIn}) {
               <li style={{ position: "relative" }}>
                 <Link to="/loginpage" className="nav-buttons">
                   <i className="fa fa-user"></i>
+                  <i className="fa-solid fa-caret-down" style={{fontSize : "15px"}}></i>
                 </Link>
               </li>
             )}
