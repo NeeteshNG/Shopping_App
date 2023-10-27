@@ -28,11 +28,20 @@ function Navbar({ loggedIn, setLoggedIn }) {
               Home
             </Link>
           </li>
-          <li className="center">
-            <Link to="/products" className="nav-buttons">
-              Products
-            </Link>
-          </li>
+          {!loggedIn && (
+            <li>
+              <Link to="/loginpage" className="nav-buttons">
+                Login
+              </Link>
+            </li>
+          )}
+          {loggedIn && (
+            <li className="center">
+              <Link to="/products" className="nav-buttons">
+                Products
+              </Link>
+            </li>
+          )}
         </div>
         <div className="right-buttons">
           <div className="nav-icon">

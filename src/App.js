@@ -190,7 +190,13 @@ function App() {
           <Route path="/" exact Component={Home} />
           <Route
             path="/loginpage"
-            element={<LoginPage setLoggedIn={setLoggedIn} />}
+            element={
+              !loggedIn ? (
+                <LoginPage setLoggedIn={setLoggedIn}/>
+              ) : (
+                <Navigate to="/products" replace />
+              )
+            }
           />
           <Route
             path="/products"
@@ -215,7 +221,11 @@ function App() {
           <Route
             path="/products/:productId"
             element={
-              loggedIn ? <ProductPage products={products} /> : <Navigate to="/loginpage" replace />
+              loggedIn ? (
+                <ProductPage products={products} />
+              ) : (
+                <Navigate to="/loginpage" replace />
+              )
             }
           />
           <Route

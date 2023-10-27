@@ -20,7 +20,7 @@ const usersData = [
     phone: "+91-9815421421",
     username: "Shri",
     password: "shri@123",
-    cart: []
+    cart: [],
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const usersData = [
     phone: "+91-8741216598",
     username: "Rahul",
     password: "rahul@123",
-    cart: []
+    cart: [],
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const usersData = [
     phone: "+91-9875110647",
     username: "Rohit",
     password: "rohit@123",
-    cart: []
+    cart: [],
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const usersData = [
     phone: "+91-9874556252",
     username: "Deepak",
     password: "deepak@123",
-    cart: []
+    cart: [],
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const usersData = [
     phone: "+91-9787254544",
     username: "Deepti",
     password: "deepti@123",
-    cart: []
+    cart: [],
   },
   {
     id: 7,
@@ -65,7 +65,7 @@ const usersData = [
     phone: "+91-9754627546",
     username: "Shruti",
     password: "shruti@123",
-    cart: []
+    cart: [],
   },
   {
     id: 8,
@@ -74,7 +74,7 @@ const usersData = [
     phone: "+91-9724254211",
     username: "Kapil",
     password: "kapil@123",
-    cart: []
+    cart: [],
   },
   {
     id: 9,
@@ -83,31 +83,26 @@ const usersData = [
     phone: "+91-8925484132",
     username: "Piyush",
     password: "piyush@123",
-    cart: []
-  }
-]
+    cart: [],
+  },
+];
 
-
-const LoginPage = ({setLoggedIn}) => {
+const LoginPage = ({ setLoggedIn }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    const user = isValidUser(username, password);
+    const user = usersData.find(
+      (user) => user.username === username && user.password === password
+    );
 
     if (user) {
       setLoggedIn(true);
       dispatch(login({ user }));
-      navigate('/products')
-    } else {
+      navigate("/products");
     }
-  };
-
-  const isValidUser = (username, password) => {
-    const user =usersData.find((user) => user.username === username && user.password === password);
-    return user;
   };
 
   return (
