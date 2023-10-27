@@ -4,10 +4,89 @@ import { login } from "../Redux_User/userSlice";
 import { useNavigate } from "react-router";
 
 const usersData = [
-    {username : "user1", password : "user1"},
-    {username : "user2", password : "user2"},
-    {username : "user3", password : "user3"}
+  {
+    id: 1,
+    names: "Neetesh Gupta",
+    address: "Ashoknagar",
+    phone: "+91-7000835163",
+    username: "Neetesh",
+    password: "neetesh@123",
+    cart: [],
+  },
+  {
+    id: 2,
+    names: "Shri Yadav",
+    address: "Banglore",
+    phone: "+91-9815421421",
+    username: "Shri",
+    password: "shri@123",
+    cart: []
+  },
+  {
+    id: 3,
+    names: "Rahul Khanna",
+    address: "Mumbai",
+    phone: "+91-8741216598",
+    username: "Rahul",
+    password: "rahul@123",
+    cart: []
+  },
+  {
+    id: 4,
+    names: "Rohit Mishra",
+    address: "Bhopal",
+    phone: "+91-9875110647",
+    username: "Rohit",
+    password: "rohit@123",
+    cart: []
+  },
+  {
+    id: 5,
+    names: "Deepak Sahu",
+    address: "Ujjain",
+    phone: "+91-9874556252",
+    username: "Deepak",
+    password: "deepak@123",
+    cart: []
+  },
+  {
+    id: 6,
+    names: "Deepti Vishw",
+    address: "Shimla",
+    phone: "+91-9787254544",
+    username: "Deepti",
+    password: "deepti@123",
+    cart: []
+  },
+  {
+    id: 7,
+    names: "Shruti Chouhan",
+    address: "Kashmir",
+    phone: "+91-9754627546",
+    username: "Shruti",
+    password: "shruti@123",
+    cart: []
+  },
+  {
+    id: 8,
+    names: "Kapil Bhati",
+    address: "Kota",
+    phone: "+91-9724254211",
+    username: "Kapil",
+    password: "kapil@123",
+    cart: []
+  },
+  {
+    id: 9,
+    names: "Piyush Sharma",
+    address: "Indore",
+    phone: "+91-8925484132",
+    username: "Piyush",
+    password: "piyush@123",
+    cart: []
+  }
 ]
+
 
 const LoginPage = ({setLoggedIn}) => {
   const dispatch = useDispatch();
@@ -16,21 +95,19 @@ const LoginPage = ({setLoggedIn}) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    if (isValidUser(username, password)) {
+    const user = isValidUser(username, password);
+
+    if (user) {
       setLoggedIn(true);
-      dispatch(login({ user: { username } }));
+      dispatch(login({ user }));
       navigate('/products')
     } else {
     }
   };
 
   const isValidUser = (username, password) => {
-    const user = usersData.find((user) => user.username === username);
-
-    if (user && user.password === password) {
-      return true;
-    }
-    return false;
+    const user =usersData.find((user) => user.username === username && user.password === password);
+    return user;
   };
 
   return (

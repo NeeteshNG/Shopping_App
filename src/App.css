@@ -901,7 +901,7 @@ input[type="submit"]:active {
 }
 
 .app h1 {
-  color: black;
+  color: #144981;
   text-align: center;
   position: absolute;
   top: 38%;
@@ -932,7 +932,7 @@ input[type="submit"]:active {
 .element1 {
   width: 200px;
   height: 200px;
-  color: black;
+  color: #144981;
   font-size: 50px;
   animation: orbit1 16s linear infinite; /* Slower orbit */
 }
@@ -952,28 +952,66 @@ input[type="submit"]:active {
   100% { transform: translate(-50%, -50%) rotate(360deg) translateX(30px) rotate(360deg); }
 }
 
-.user-profile {
-  padding: 20px;
+/* You can add more styling to customize the appearance of the user profile */
+
+.details-container {
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
   text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: #144981;
+  max-width: 1000px;
+  margin: 100px auto;
 }
 
-.user-profile h1 {
-  font-size: 24px;
+.details-container h2 {
+  font-size: 18px;
+  color: white;
   margin-bottom: 20px;
 }
 
-.profile-details {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.personal-details {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  justify-content: space-around;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.profile-details div {
-  margin: 10px 0;
-}
-
-.profile-details strong {
+.personal-details h1 {
+  color: #144981;
   font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.personal-details p {
+  color: #144981;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.back-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.back-button button {
+  background-color: white;
+  color: #144981;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button button:hover {
+  /* background-color: #144981; */
+  color: #144981;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }

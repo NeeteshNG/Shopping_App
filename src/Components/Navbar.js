@@ -10,7 +10,6 @@ function Navbar({ loggedIn, setLoggedIn }) {
   );
 
   const [showDropDown, setShowDropDown] = useState(false);
-  const dropDownRef = useRef(null);
 
   const toggleDropDown = () => {
     setShowDropDown(!showDropDown);
