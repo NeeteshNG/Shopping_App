@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
-import { logout } from "../UserAuth/Redux_User/userSlice";
 
 function Navbar({loggedIn, setLoggedIn}) {
   const cartNotification = useSelector((state) => state.list.cartNotification);

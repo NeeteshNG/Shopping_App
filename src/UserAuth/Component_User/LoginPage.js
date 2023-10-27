@@ -44,6 +44,7 @@ const LoginPage = ({setLoggedIn}) => {
               <input
                 type="text"
                 value={username}
+                autoComplete="off"
                 name="username"
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -55,6 +56,7 @@ const LoginPage = ({setLoggedIn}) => {
               <input
                 type="password"
                 value={password}
+                autoComplete="off"
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
