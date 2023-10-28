@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 function Navbar({ loggedIn, setLoggedIn }) {
   const cartNotification = useSelector((state) => state.list.cartNotification);
   const wishlistNotification = useSelector(
-    (state) => state.list.wishlistNotification
+    (state) => state.list.wishlistNotification,
   );
 
   const [showDropDown, setShowDropDown] = useState(false);
@@ -17,6 +17,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
 
   const handleLogout = () => {
     setLoggedIn(false);
+    localStorage.removeItem("loggedIn");
   };
 
   return (

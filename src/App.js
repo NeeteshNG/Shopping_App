@@ -11,6 +11,7 @@ import LoginPage from "./UserAuth/Component_User/LoginPage";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import ProfilePage from "./UserAuth/Component_User/ProfilePage";
+import { useEffect } from "react";
 
 const products = [
   {
@@ -182,57 +183,42 @@ const products = [
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userIsLoggedIn = localStorage.getItem("loggedIn") === "true";
+    if (userIsLoggedIn) {
+      setLoggedIn(true);
+    }
+  }, []);
+
   return (
     <Router>
       <div className="App">
         <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
-          <Route path="/" exact Component={Home} />
-          <Route
-            path="/loginpage"
-            element={
-              !loggedIn ? (
-                <LoginPage setLoggedIn={setLoggedIn}/>
-              ) : (
-                <Navigate to="/products" replace />
-              )
-            }
-          />
-          <Route
-            path="/products"
-            element={
-              loggedIn ? (
-                <Products products={products} />
-              ) : (
-                <Navigate to="/loginpage" replace />
-              )
-            }
-          />
-          <Route
-            path="/cart"
-            element={loggedIn ? <Cart /> : <Navigate to="/loginpage" replace />}
-          />
-          <Route
-            path="/wishlist"
-            element={
-              loggedIn ? <Wishlist /> : <Navigate to="/loginpage" replace />
-            }
-          />
+          <Route path="/" element={<Home />} />
+          {!loggedIn ? (
+            <Route
+              path="/loginpage"
+              element={<LoginPage setLoggedIn={setLoggedIn} />}
+            />
+          ) : (
+            <Route path="/" element={<Home />} />
+          )}
+          {loggedIn ? (
+            <>
+              <Route
+                path="/products"
+                element={<Products products={products} />}
+              />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </>
+          ) : null}
           <Route
             path="/products/:productId"
-            element={
-              loggedIn ? (
-                <ProductPage products={products} />
-              ) : (
-                <Navigate to="/loginpage" replace />
-              )
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              loggedIn ? <ProfilePage /> : <Navigate to="/loginpage" replace />
-            }
+            element={<ProductPage products={products} />}
           />
         </Routes>
         <Footer />

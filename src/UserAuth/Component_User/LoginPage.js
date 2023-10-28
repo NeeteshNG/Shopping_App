@@ -95,13 +95,14 @@ const LoginPage = ({ setLoggedIn }) => {
 
   const handleLogin = () => {
     const user = usersData.find(
-      (user) => user.username === username && user.password === password
+      (user) => user.username === username && user.password === password,
     );
 
     if (user) {
       setLoggedIn(true);
       dispatch(login({ user }));
       navigate("/products");
+      localStorage.setItem("loggedIn", "true");
     }
   };
 
