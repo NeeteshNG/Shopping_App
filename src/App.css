@@ -1,5 +1,5 @@
 /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 /* CSS for Navigation Bar */
 
@@ -34,7 +34,7 @@
 }
 
 .nav-links li .nav-buttons:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -82,7 +82,7 @@
   flex-direction: row;
 }
 
-.profile-button{
+.profile-button {
   color: #144981;
   font-size: 20px;
   font-weight: 500;
@@ -104,18 +104,17 @@
   background-color: white;
   border: 2px solid #144981;
   border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
-.dropdown-content button{
+.dropdown-content button {
   margin: 5px;
 }
 
 .show {
   display: none;
 }
-
 
 .cart-dot {
   background-color: #ff6347;
@@ -151,7 +150,6 @@
   justify-content: center;
   flex-direction: row;
   margin-top: 250px;
-
 }
 
 .home-content {
@@ -178,30 +176,33 @@
 }
 
 @keyframes animate {
-
   0%,
   100% {
-    clip-path: polygon(0% 45%,
-        16% 44%,
-        33% 50%,
-        54% 60%,
-        70% 61%,
-        84% 59%,
-        100% 52%,
-        100% 100%,
-        0% 100%);
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
   }
 
   50% {
-    clip-path: polygon(0% 60%,
-        15% 65%,
-        34% 66%,
-        51% 62%,
-        67% 50%,
-        84% 45%,
-        100% 46%,
-        100% 100%,
-        0% 100%);
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
   }
 }
 
@@ -217,7 +218,6 @@
   gap: 20px;
   justify-content: center;
   margin-bottom: 170px;
-
 }
 
 /* product-card.css */
@@ -253,13 +253,12 @@
   color: red;
 }
 
-
 .product-card img {
   max-width: 100%;
   height: auto;
 }
 
-.product-card img:hover{
+.product-card img:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
@@ -291,13 +290,11 @@
   background-color: #0056b3;
 }
 
-
 /* CSS for Cart.js */
 .cart-body {
   margin-top: 100px;
   margin-bottom: 180px;
 }
-
 
 .cart-container {
   z-index: 999;
@@ -341,7 +338,6 @@
   font-weight: bold;
   margin: 0 5px;
 }
-
 
 h1 {
   font-size: 24px;
@@ -528,7 +524,7 @@ h2 {
   width: 22px;
   height: 22px;
   border: 2px solid;
-  border-radius: 22px
+  border-radius: 22px;
 }
 
 .gg-remove::before {
@@ -541,7 +537,7 @@ h2 {
   background: currentColor;
   border-radius: 5px;
   top: 8px;
-  left: 4px
+  left: 4px;
 }
 
 /* CSS for ProductDescriptionModal.js */
@@ -750,12 +746,12 @@ h2 {
   margin: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 .login-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin: 160px;
 }
 
 .signin {
@@ -818,8 +814,8 @@ h2 {
   pointer-events: none;
 }
 
-.signin .content .form .inputBox input:focus~i,
-.signin .content .form .inputBox input:valid~i {
+.signin .content .form .inputBox input:focus ~ i,
+.signin .content .form .inputBox input:valid ~ i {
   transform: translateY(-7.5px);
   font-size: 0.8em;
   color: #144981;
@@ -878,7 +874,7 @@ input[type="submit"]:active {
 }
 
 .login-error {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: large;
   color: white;
   font-weight: 1000;
@@ -938,18 +934,32 @@ input[type="submit"]:active {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes orbit {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(100px)
+      rotate(360deg);
+  }
 }
 
 @keyframes orbit1 {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(30px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(30px) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(30px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(30px)
+      rotate(360deg);
+  }
 }
 
 /* You can add more styling to customize the appearance of the user profile */
