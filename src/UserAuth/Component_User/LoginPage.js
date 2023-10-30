@@ -102,7 +102,6 @@ const LoginPage = ({ setLoggedIn }) => {
       setLoggedIn(true);
       dispatch(login({ user }));
       navigate("/products");
-      localStorage.setItem(user.id, user);
       localStorage.setItem("loggedIn", "true");
     }
   };

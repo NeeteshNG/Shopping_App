@@ -17,6 +17,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
     }
     else if(selectedValue === "logout"){
       setLoggedIn(false);
+      localStorage.removeItem("user");
       localStorage.removeItem("loggedIn");
     }
   }

@@ -65,7 +65,7 @@ function Cart() {
             >
               <i className="fa fa-trash-o"></i>
             </button>
-            <p className="cart-item-quantity">
+            <div className="cart-item-quantity">
               <div className="quantity-buttons">
                 <button onClick={() => decrementItemQuantity(product.id)}>
                   -
@@ -75,7 +75,7 @@ function Cart() {
                   +
                 </button>
               </div>
-            </p>
+            </div>
           </div>
         ))}
         {showModal && (

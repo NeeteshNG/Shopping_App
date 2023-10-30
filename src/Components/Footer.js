@@ -9,8 +9,24 @@ function Footer() {
         <div className="footer-section">
           <h2>About Us</h2>
           <p>
-                This is the Shopping App that was Given as a Task to implement React Learnings that we have learned so Far. You can also go through the GitHub repository to see how this task is implemented from the scratch.
+            This is the Shopping App that was Given as a Task to implement React
+            Learnings that we have learned so Far. You can also go through the
+            GitHub repository to see how this task is implemented from the
+            scratch.
           </p>
+          <ul className="ul_git">
+            <li className="il_git">
+              <a
+                href="https://github.com/NeeteshNG/MyTaskBestPeers_4"
+                rel="noreferrer"
+                target="_blank"
+                title="Git Repo"
+                className="git-click"
+              >
+                <i className="fab fa-github size_git"></i>
+              </a>
+            </li>
+          </ul>
         </div>
         <div className="footer-section">
           <h2>Contact Us</h2>

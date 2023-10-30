@@ -13,22 +13,22 @@ function ProfilePage() {
     <div className="details-container">
       <h2>DETAIL</h2>
       <div className="personal-details">
-        <p>
-          <p>
+        <div className="para">
+          <div>
             <h1>Name :</h1> {user.names}
-          </p>
-          <p>
+          </div>
+          <div>
             <h1>Username :</h1> {user.username}
-          </p>
-        </p>
-        <p>
-          <p>
+          </div>
+        </div>
+        <div className="para">
+          <div>
             <h1>Address :</h1> {user.address}
-          </p>
-          <p>
+          </div>
+          <div>
             <h1>Phone :</h1> {user.phone}
-          </p>
-        </p>
+          </div>
+        </div>
       </div>
       <div className="back-button">
         <Link to="/products">
