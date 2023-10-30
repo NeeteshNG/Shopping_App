@@ -27,10 +27,6 @@ function ProductCard({ product }) {
     dispatch(addToCart(product));
   };
 
-  const handleAddToWishlist = () => {
-    dispatch(addToWishlist(product));
-  };
-
   const handleToggle = () => {
     setShowModal(!showModal);
   };

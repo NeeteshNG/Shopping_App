@@ -1109,3 +1109,15 @@ select {
   font-size: 40px;
   cursor: pointer;
 }
+
+.git-click :link :hover
+{
+   color: white;
+   text-decoration: none;
+}
+
+a.git-click:hover
+{
+   color: white;
+   text-decoration: none;
+}
