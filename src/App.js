@@ -9,9 +9,9 @@ import ProductPage from "./Components/ProductPage";
 import Footer from "./Components/Footer";
 import LoginPage from "./UserAuth/Component_User/LoginPage";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import ProfilePage from "./UserAuth/Component_User/ProfilePage";
 import { useEffect } from "react";
+import ProtectedRoute from "./UserAuth/ProtectedRoute";
 
 const products = [
   {
@@ -197,28 +197,65 @@ function App() {
         <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
           <Route path="/" element={<Home />} />
-          {!loggedIn ? (
-            <Route
-              path="/loginpage"
-              element={<LoginPage setLoggedIn={setLoggedIn} />}
-            />
-          ) : (
-            <Route path="/" element={<Home />} />
-          )}
-          {loggedIn ? (
-            <>
-              <Route
-                path="/products"
-                element={<Products products={products} />}
+          <Route
+            path="/loginpage"
+            element={
+              <ProtectedRoute
+                element={<LoginPage setLoggedIn={setLoggedIn} />}
+                authenticated={!loggedIn}
+                redirectPath="/products"
               />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/wishlist" element={<Wishlist />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </>
-          ) : null}
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <ProtectedRoute
+                element={<Products products={products} />}
+                authenticated={loggedIn}
+                redirectPath="/loginpage"
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute
+                element={<Cart />}
+                authenticated={loggedIn}
+                redirectPath="/loginpage"
+              />
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <ProtectedRoute
+                element={<Wishlist />}
+                authenticated={loggedIn}
+                redirectPath="/loginpage"
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute
+                element={<ProfilePage />}
+                authenticated={loggedIn}
+                redirectPath="/loginpage"
+              />
+            }
+          />
           <Route
             path="/products/:productId"
-            element={<ProductPage products={products} />}
+            element={
+              <ProtectedRoute
+                element={<ProductPage products={products} />}
+                authenticated={loggedIn}
+                redirectPath="/loginpage"
+              />
+            }
           />
         </Routes>
         <Footer />

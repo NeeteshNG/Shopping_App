@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Navbar({ loggedIn, setLoggedIn }) {
   const cartNotification = useSelector((state) => state.list.cartNotification);
