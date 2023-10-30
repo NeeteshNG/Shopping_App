@@ -69,7 +69,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
           <div className="nav-icon">
             {loggedIn && (
               <li style={{ position: "relative" }}>
-                <select className="drop-down-select" onChange={handleSelectChange}>
+                <select name="sel" className="drop-down-select" onChange={handleSelectChange}>
                   <option className="not-show-button">&#xf007;</option>
                   <option className="drop-down-button" value="profile">
                     &#xf2c2;
