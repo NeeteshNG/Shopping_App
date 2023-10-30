@@ -1,24 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Outlet, Link } from "react-router-dom";
-import { useState } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 function Navbar({ loggedIn, setLoggedIn }) {
   const cartNotification = useSelector((state) => state.list.cartNotification);
   const wishlistNotification = useSelector(
-    (state) => state.list.wishlistNotification,
+    (state) => state.list.wishlistNotification
   );
 
-  const [showDropDown, setShowDropDown] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleDropDown = () => {
-    setShowDropDown(!showDropDown);
-  };
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-    localStorage.removeItem("loggedIn");
-  };
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    if(selectedValue === "profile"){
+      navigate("/profile");
+    }
+    else if(selectedValue === "logout"){
+      setLoggedIn(false);
+      localStorage.removeItem("loggedIn");
+    }
+  }
 
   return (
     <div className="body-navbar">
@@ -68,25 +69,15 @@ function Navbar({ loggedIn, setLoggedIn }) {
           <div className="nav-icon">
             {loggedIn && (
               <li style={{ position: "relative" }}>
-                <Link onClick={toggleDropDown} className="nav-buttons">
-                  <i className="fa fa-user"></i>
-                  <i
-                    className={`fa ${
-                      showDropDown ? "fa-caret-down" : "fa-caret-up"
-                    }`}
-                    style={{ fontSize: "15px" }}
-                  ></i>
-                </Link>
-                <div
-                  className={`dropdown-content ${showDropDown ? "show" : ""}`}
-                >
-                  <Link to="/profile">
-                    <i className="fa-regular fa-address-card profile-button"></i>
-                  </Link>
-                  <Link onClick={handleLogout}>
-                    <i className="fa-solid fa-right-from-bracket profile-button"></i>
-                  </Link>
-                </div>
+                <select className="drop-down-select" onChange={handleSelectChange}>
+                  <option className="not-show-button">&#xf007;</option>
+                  <option className="drop-down-button" value="profile">
+                    &#xf2c2;
+                  </option>
+                  <option value="logout" className="drop-down-button">
+                    &#xf2f5;
+                  </option>
+                </select>
               </li>
             )}
           </div>
