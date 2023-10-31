@@ -5,21 +5,11 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "../Redux/listSlice";
-import { useState } from "react";
-import ProductDetails from "./ProductDetails";
 import { Link } from "react-router-dom";
 
 function Cart() {
   const cart = useSelector((state) => state.list.cart);
   const dispatch = useDispatch();
-
-  const [showModal, setShowModal] = useState(false);
-  const [selected, setSelected] = useState(null);
-
-  const handleToggle = (product) => {
-    setSelected(product);
-    setShowModal(!showModal);
-  };
 
   const removeItem = (product) => {
     dispatch(removeFromCart(product));
@@ -50,7 +40,6 @@ function Cart() {
             <div className="cart-item-details">
               <h2
                 className="cart-item-name"
-                onClick={() => handleToggle(product)}
               >
                 {product.name}
               </h2>
@@ -78,12 +67,6 @@ function Cart() {
             </div>
           </div>
         ))}
-        {showModal && (
-          <ProductDetails
-            product={selected}
-            onClose={() => handleToggle(null)}
-          />
-        )}
         <h2 className="total-amount">Total: {totalAmount}/-</h2>
         <button className="checkout-button">Checkout</button>
       </div>

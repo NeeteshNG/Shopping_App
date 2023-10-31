@@ -1,21 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../Redux/listSlice";
-import { useState } from "react";
-import ProductDetails from "./ProductDetails";
 import { Link } from "react-router-dom";
 
 function Wishlist() {
   const wishlist = useSelector((state) => state.list.wishlist);
   const dispatch = useDispatch();
-
-  const [showModal, setShowModal] = useState(false);
-  const [selected, setSelected] = useState(null);
-
-  const handleToggle = (product) => {
-    setSelected(product);
-    setShowModal(!showModal);
-  };
 
   const removeItem = (product) => {
     dispatch(removeFromWishlist(product));
@@ -39,7 +29,6 @@ function Wishlist() {
                 <div className="wishlist-item-details">
                   <h2
                     className="wishlist-item-name"
-                    onClick={() => handleToggle(product)}
                   >
                     {product.name}
                   </h2>
@@ -58,12 +47,6 @@ function Wishlist() {
                 </button>
               </div>
             ))}
-            {showModal && (
-              <ProductDetails
-                product={selected}
-                onClose={() => handleToggle(null)}
-              />
-            )}
           </div>
         ) : (
           <p className="empty-wishlist-message">Your wishlist is empty.</p>
