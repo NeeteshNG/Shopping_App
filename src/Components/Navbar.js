@@ -12,15 +12,14 @@ function Navbar({ loggedIn, setLoggedIn }) {
 
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-    if(selectedValue === "profile"){
+    if (selectedValue === "profile") {
       navigate("/profile");
-    }
-    else if(selectedValue === "logout"){
+    } else if (selectedValue === "logout") {
       setLoggedIn(false);
       localStorage.removeItem("user");
       localStorage.removeItem("loggedIn");
     }
-  }
+  };
 
   return (
     <div className="body-navbar">
@@ -31,44 +30,46 @@ function Navbar({ loggedIn, setLoggedIn }) {
               Home
             </Link>
           </li>
-          {!loggedIn && (
-            <li>
-              <Link to="/loginpage" className="nav-buttons">
-                Login
-              </Link>
-            </li>
-          )}
-            <li className="center">
-              <Link to="/products" className="nav-buttons">
-                Products
-              </Link>
-            </li>
+          <li className="center">
+            <Link to="/products" className="nav-buttons">
+              Products
+            </Link>
+          </li>
         </div>
         <div className="right-buttons">
           <div className="nav-icon">
-            {loggedIn && (
-              <li style={{ position: "relative" }}>
-                <Link to="/cart" className="nav-buttons">
-                  <i className="fa fa-shopping-cart"></i>
-                </Link>
-                <div className="cart-dot">{cartNotification}</div>
-              </li>
-            )}
+            <li style={{ position: "relative" }}>
+              <Link to="/cart" className="nav-buttons">
+                <i className="fa fa-shopping-cart"></i>
+              </Link>
+              <div className="cart-dot">{cartNotification}</div>
+            </li>
           </div>
+          <div className="nav-icon">
+            <li style={{ position: "relative" }}>
+              <Link to="/wishlist" className="nav-buttons">
+                <i className="fa-solid fa-heart"></i>
+              </Link>
+              <div className="wishlist-dot">{wishlistNotification}</div>
+            </li>
+          </div>
+          {!loggedIn && (
+            <div className="nav-icon">
+              <li style={{ position: "relative" }}>
+                <Link to="/loginpage" className="nav-buttons">
+                  <i class="fa-solid fa-user"></i>
+                </Link>
+              </li>
+            </div>
+          )}
           <div className="nav-icon">
             {loggedIn && (
               <li style={{ position: "relative" }}>
-                <Link to="/wishlist" className="nav-buttons">
-                  <i className="fa-solid fa-heart"></i>
-                </Link>
-                <div className="wishlist-dot">{wishlistNotification}</div>
-              </li>
-            )}
-          </div>
-          <div className="nav-icon">
-            {loggedIn && (
-              <li style={{ position: "relative" }}>
-                <select name="sel" className="drop-down-select" onChange={handleSelectChange}>
+                <select
+                  name="sel"
+                  className="drop-down-select"
+                  onChange={handleSelectChange}
+                >
                   <option className="not-show-button">&#xf007;</option>
                   <option className="drop-down-button" value="profile">
                     &#xf2c2;

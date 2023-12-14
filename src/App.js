@@ -207,27 +207,9 @@ function App() {
               />
             }
           />
-          <Route path="/products" element={<Products products={products} />} />
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute
-                element={<Cart />}
-                authenticated={loggedIn}
-                redirectPath="/loginpage"
-              />
-            }
-          />
-          <Route
-            path="/wishlist"
-            element={
-              <ProtectedRoute
-                element={<Wishlist />}
-                authenticated={loggedIn}
-                redirectPath="/loginpage"
-              />
-            }
-          />
+          <Route path="/products" element={<Products products={products} authenticated={loggedIn}/>} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route
             path="/profile"
             element={
