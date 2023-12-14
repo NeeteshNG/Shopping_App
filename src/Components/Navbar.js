@@ -38,13 +38,11 @@ function Navbar({ loggedIn, setLoggedIn }) {
               </Link>
             </li>
           )}
-          {loggedIn && (
             <li className="center">
               <Link to="/products" className="nav-buttons">
                 Products
               </Link>
             </li>
-          )}
         </div>
         <div className="right-buttons">
           <div className="nav-icon">

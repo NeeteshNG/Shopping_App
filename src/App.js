@@ -207,16 +207,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/products"
-            element={
-              <ProtectedRoute
-                element={<Products products={products} />}
-                authenticated={loggedIn}
-                redirectPath="/loginpage"
-              />
-            }
-          />
+          <Route path="/products" element={<Products products={products} />} />
           <Route
             path="/cart"
             element={
