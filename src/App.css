@@ -124,7 +124,7 @@
   font-size: 10px;
   position: absolute;
   top: -8px;
-  right: -10px;
+  right: -7px;
   left: 12px;
   bottom: 15px;
   padding: 0.2rem;
@@ -604,36 +604,31 @@ h2 {
   margin: 20px;
 }
 
+/* CSS for ProductPage component */
 .thumbnail-images {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
 }
 
 .thumbnail {
+  width: 50px; /* Set your preferred thumbnail size */
+  height: 50px; /* Set your preferred thumbnail size */
+  margin: 5px;
   cursor: pointer;
-  margin-bottom: 10px;
-  transition: opacity 0.3s;
+  overflow: hidden;
 }
 
 .thumbnail img {
-  max-width: 85px;
-  height: auto;
-}
-
-.thumbnail.selected {
-  border: 2px solid #007bff;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .main-image img {
-  max-width: 100%;
-  height: auto;
-}
-
-.main-image {
-  max-width: 100%;
-  margin-left: 10px;
-  height: auto;
+  width: 300px; /* Set your preferred main image size */
+  height: 300px; /* Set your preferred main image size */
+  object-fit: cover;
 }
 
 .thumbnail:hover {

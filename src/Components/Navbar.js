@@ -18,6 +18,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
       setLoggedIn(false);
       localStorage.removeItem("user");
       localStorage.removeItem("loggedIn");
+      navigate("/loginpage");
     }
   };
 

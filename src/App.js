@@ -28,7 +28,7 @@ const products = [
       "https://images.pexels.com/photos/11111603/pexels-photo-11111603.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/11730663/pexels-photo-11730663.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -61,7 +61,7 @@ const products = [
       "https://images.pexels.com/photos/5144485/pexels-photo-5144485.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/5754097/pexels-photo-5754097.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -78,7 +78,7 @@ const products = [
       "https://images.pexels.com/photos/16414722/pexels-photo-16414722/free-photo-of-candid-picture-of-a-man-sitting-on-a-bench-outside-of-a-building.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/11116098/pexels-photo-11116098.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -143,7 +143,7 @@ const products = [
       "https://images.pexels.com/photos/1937337/pexels-photo-1937337.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/3143813/pexels-photo-3143813.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -160,7 +160,7 @@ const products = [
       "https://images.pexels.com/photos/9290601/pexels-photo-9290601.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/12486219/pexels-photo-12486219.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -177,7 +177,7 @@ const products = [
       "https://images.pexels.com/photos/12569713/pexels-photo-12569713.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/12079027/pexels-photo-12079027.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
   },
   {
@@ -194,8 +194,25 @@ const products = [
       "https://images.pexels.com/photos/130574/pexels-photo-130574.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/670741/pexels-photo-670741.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
-    catefory: "all",
+    category: "all",
     stock: 10,
+  },
+  {
+    id: 12,
+    name: "Dennis Lingo - Shirt",
+    price: 489,
+    description:
+      "Men Slim Fit Striped Slim Collar Casual Shirt.",
+    shippingDetails: "Free Shipping",
+    images: [
+      "https://images.pexels.com/photos/13094233/pexels-photo-13094233.jpeg?auto=compress&cs=tinysrgb&w=400&h=750&dpr=1",
+      "https://images.pexels.com/photos/13094146/pexels-photo-13094146.jpeg?auto=compress&cs=tinysrgb&w=400&h=750&dpr=1",
+      "https://images.pexels.com/photos/13094187/pexels-photo-13094187.jpeg?auto=compress&cs=tinysrgb&w=400&h=750&dpr=1",
+      "https://static.zara.net/photos///2022/I/0/2/p/7545/290/802/2/w/400/7545290802_1_1_1.jpg?ts=1664347949819",
+      "https://static.zara.net/photos///2022/I/0/2/p/7545/290/802/2/w/563/7545290802_6_1_1.jpg?ts=1664292948268",
+    ],
+    category: "men",
+    stock: 5,
   },
 ];
 

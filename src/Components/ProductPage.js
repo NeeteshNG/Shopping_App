@@ -15,7 +15,7 @@ function ProductPage({ products }) {
   const dispatch = useDispatch();
   const product = products.find((product) => product.id === Number(productId));
 
-  const wishlist = useSelector((state) => state.list.wishlist);
+  const wishlist = useSelector((state) => state.user.user?.wishlist || []);
   const [isInWishlist, setIsInWishlist] = useState(
     wishlist.some((item) => item.id === product.id)
   );
