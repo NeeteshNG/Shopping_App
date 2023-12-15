@@ -2,16 +2,16 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Slidingpage.css";
+import "./slidingpage.css";
 
 const SlidingPage = () => {
   const images = [
-    "./Images/Image1.jpg",
-    "./Images/Image2.jpg",
-    "./Images/Image3.jpg",
-    "./Images/Image4.jpg",
-    "./Images/Image5.jpg",
-    "./Images/Image6.jpg"
+    "./images/Image2.jpg",
+    "./images/Image3.jpg",
+    "./images/Image4.jpg",
+    "./images/Image1.jpg",
+    "./images/Image5.jpg",
+    "./images/Image6.jpg"
   ];
 
   const CustomPrevArrow = (props) => {

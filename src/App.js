@@ -1,12 +1,12 @@
 import "./App.css";
-import Home from "./Components/Homepage/Home";
+import Home from "./Components/homepage/home";
 import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Products from "./Components/Products";
-import Cart from "./Components/Cart";
-import Wishlist from "./Components/Wishlist";
+import Cart from "./Components/cartpage/cart";
+import Wishlist from "./Components/wishlistpage/wishlist";
 import ProductPage from "./Components/ProductPage";
-import Footer from "./Components/Footer";
+import Footer from "./Components/footer/footer";
 import LoginPage from "./UserAuth/Component_User/LoginPage";
 import { useState } from "react";
 import ProfilePage from "./UserAuth/Component_User/ProfilePage";

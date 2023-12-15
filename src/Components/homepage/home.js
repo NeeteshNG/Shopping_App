@@ -1,6 +1,6 @@
 import React from "react";
-import SlidingPage from "../Slidingpage/Slidingpage";
-import "../Homepage/Home.css"
+import SlidingPage from "../slidingpage/slidingpage";
+import "../homepage/home.css"
 
 function Home() {
   return (

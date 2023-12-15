@@ -1,10 +1,11 @@
 import React from "react";
+import "./cart.css"
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
-} from "../UserAuth/Redux_User/userSlice";
+} from "../../UserAuth/Redux_User/userSlice";
 import { Link } from "react-router-dom";
 
 function Cart() {
