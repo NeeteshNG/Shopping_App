@@ -1,17 +1,17 @@
 import "./App.css";
-import Home from "./Components/homepage/home";
-import Navbar from "./Components/navbar/navbar";
+import Home from "./components/homepage/home";
+import Navbar from "./components/navbar/navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Products from "./Components/products/products";
-import Cart from "./Components/cartpage/cart";
-import Wishlist from "./Components/wishlistpage/wishlist";
-import ProductPage from "./Components/productPage/productPage";
-import Footer from "./Components/footer/footer";
-import LoginPage from "./Components/loginPage/loginPage";
+import Products from "./components/products/products";
+import Cart from "./components/cartpage/cart";
+import Wishlist from "./components/wishlistpage/wishlist";
+import ProductPage from "./components/productPage/productPage";
+import Footer from "./components/footer/footer";
+import LoginPage from "./components/loginPage/loginPage";
 import { useState } from "react";
-import ProfilePage from "./Components/profilePage/profilePage";
+import ProfilePage from "./components/profilePage/profilePage";
 import { useEffect } from "react";
-import ProtectedRoute from "./Components/protectedRoute/protectedRoute";
+import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 
 const products = [
   {
