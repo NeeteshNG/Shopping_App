@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./loginPage.css"
 import { useDispatch } from "react-redux";
-import { login } from "../Redux_User/userSlice";
+import { login } from "../../Redux/userSlice";
 import { useNavigate } from "react-router";
 
 const usersData = [

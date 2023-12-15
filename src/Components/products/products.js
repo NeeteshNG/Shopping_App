@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import ProductCard from "./ProductCard";
+import "./products.css"
+import ProductCard from "../productcard/productCard";
 
 function Products({ products }) {
   const [selectedCategory, setSelectedCategory] = useState("");

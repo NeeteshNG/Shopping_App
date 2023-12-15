@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import "./productPage.css"
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   addToCart,
   removeFromWishlist,
   addToWishlist,
-} from "../UserAuth/Redux_User/userSlice";
+} from "../../Redux/userSlice";
 import { useDispatch } from "react-redux";
 
 function ProductPage({ products }) {

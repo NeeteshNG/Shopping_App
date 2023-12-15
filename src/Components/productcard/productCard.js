@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import "./productCard.css"
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToWishlist } from "../UserAuth/Redux_User/userSlice";
-import ProductDetails from "./ProductDetails";
+import { addToCart, addToWishlist } from "../../Redux/userSlice";
+import ProductDetails from "../productDetails/productDetails";
 import { Link } from "react-router-dom";
-import { removeFromWishlist } from "../UserAuth/Redux_User/userSlice";
+import { removeFromWishlist } from "../../Redux/userSlice";
 
 function ProductCard({ product }) {
   const { id, name, price, description, images } = product;

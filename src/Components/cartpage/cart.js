@@ -5,7 +5,7 @@ import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
-} from "../../UserAuth/Redux_User/userSlice";
+} from "../../Redux/userSlice";
 import { Link } from "react-router-dom";
 
 function Cart() {

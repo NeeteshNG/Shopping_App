@@ -1,0 +1,124 @@
+.page-body {
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+.product-page {
+    display: flex;
+    margin: 20px;
+}
+
+.product-images {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.thumbnail:hover {
+    opacity: 0.7;
+}
+
+.product-details {
+    flex: 2;
+    padding: 20px;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.add-to-cart-button,
+.add-to-wishlist-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.add-to-wishlist-button {
+    background-color: #28a745;
+}
+
+.product-details a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px; /* Adjust the width as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+  
+  .quantity-control button {
+    background-color: #1f8a24;
+    border: none;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  .quantity-control button:hover {
+    background-color: #3cb3d8;
+  }
+  
+  .quantity-control input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    outline: none;
+  }
+  
+  .quantity-control button:first-of-type {
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .quantity-control button:last-of-type {
+    border-radius: 0 4px 4px 0;
+  }
+  
