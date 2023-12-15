@@ -15,7 +15,7 @@ function Wishlist() {
     <div className="wishlist-body">
       <div className="wishlist-container">
         <h1 className="wishlist-title">Wishlist</h1>
-        {wishlist.length > 0 ? (
+        {wishlist && wishlist.length > 0 ? (
           <div className="wishlist-items">
             {wishlist.map((product) => (
               <div key={product.id} className="wishlist-item">

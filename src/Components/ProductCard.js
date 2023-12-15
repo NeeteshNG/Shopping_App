@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToWishlist } from "../UserAuth/Redux_User/userSlice";
 import ProductDetails from "./ProductDetails";
 import { Link } from "react-router-dom";
-import { removeFromWishlist } from "../Redux/listSlice";
+import { removeFromWishlist } from "../UserAuth/Redux_User/userSlice";
 
 function ProductCard({ product }) {
   const { id, name, price, description, images } = product;
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
-  const wishlist = useSelector((state) => state.list.wishlist)
-  const [isInWishlist, setIsInWishlist] = useState(wishlist.some(item => item.id === product.id));
+  const wishlist = useSelector((state) => state.user.user?.wishlist || []);
+  const [isInWishlist, setIsInWishlist] = useState(wishlist.some(item => item.id === product.id));  
 
   const toggleWishlist = () => {
     if (isInWishlist) {
