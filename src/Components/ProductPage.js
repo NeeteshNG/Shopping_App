@@ -5,7 +5,7 @@ import {
   addToCart,
   removeFromWishlist,
   addToWishlist,
-} from "../Redux/listSlice";
+} from "../UserAuth/Redux_User/userSlice";
 import { useDispatch } from "react-redux";
 
 function ProductPage({ products }) {

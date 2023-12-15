@@ -5,7 +5,7 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 function Navbar({ loggedIn, setLoggedIn }) {
   const cartNotification = useSelector((state) => state.user.user.cartNotification);
   const wishlistNotification = useSelector(
-    (state) => state.list.wishlistNotification
+    (state) => state.user.user.wishlistNotification
   );
 
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
               <Link to="/cart" className="nav-buttons">
                 <i className="fa fa-shopping-cart"></i>
               </Link>
-              <div className="cart-dot">{cartNotification}</div>
+              <div className="cart-dot">{cartNotification || 0}</div>
             </li>
           </div>
           <div className="nav-icon">
@@ -50,7 +50,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
               <Link to="/wishlist" className="nav-buttons">
                 <i className="fa-solid fa-heart"></i>
               </Link>
-              <div className="wishlist-dot">{wishlistNotification}</div>
+              <div className="wishlist-dot">{wishlistNotification || 0}</div>
             </li>
           </div>
           {!loggedIn && (

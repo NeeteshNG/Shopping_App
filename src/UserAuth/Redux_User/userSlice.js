@@ -69,17 +69,27 @@ const userSlice = createSlice({
       }
     },
     addToWishlist: (state, action) => {
-      state.user.wishlist.push(action.payload);
-      state.user.wishlistNotification++;
-    },
+        if (!state.user.wishlist) {
+          state.user.wishlist = []; // Initialize wishlist array if it's undefined
+        }
+        state.user.wishlist.push(action.payload);
+        state.user.wishlistNotification = state.user.wishlist.length ;
+      },
     removeFromCart: (state, action) => {
       state.user.cart = state.user.cart.filter((item) => item.id !== action.payload.id);
       state.user.cartNotification--;
     },
     removeFromWishlist: (state, action) => {
-      state.user.wishlist = state.user.wishlist.filter((item) => item.id !== action.payload.id);
-      state.user.wishlistNotification--;
-    },
+        if (!state.user.wishlist) {
+          return state; // Wishlist not properly initialized, return current state
+        }
+        
+        state.user.wishlist = state.user.wishlist.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.user.wishlistNotification--;
+      },
+      
   },
 });
 

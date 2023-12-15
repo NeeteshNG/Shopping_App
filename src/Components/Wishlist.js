@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromWishlist } from "../Redux/listSlice";
+import { removeFromWishlist } from "../UserAuth/Redux_User/userSlice";
 import { Link } from "react-router-dom";
 
 function Wishlist() {
-  const wishlist = useSelector((state) => state.list.wishlist);
+  const wishlist = useSelector((state) => state.user.user.wishlist);
   const dispatch = useDispatch();
 
   const removeItem = (product) => {
