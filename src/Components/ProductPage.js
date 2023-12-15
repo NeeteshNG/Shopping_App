@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { addToCart, removeFromWishlist, addToWishlist } from "../Redux/listSlice";
+import {
+  addToCart,
+  removeFromWishlist,
+  addToWishlist,
+} from "../Redux/listSlice";
 import { useDispatch } from "react-redux";
 
 function ProductPage({ products }) {
@@ -11,14 +15,14 @@ function ProductPage({ products }) {
   const dispatch = useDispatch();
   const product = products.find((product) => product.id === Number(productId));
 
-  const wishlist = useSelector((state) => state.list.wishlist)
-  const [isInWishlist, setIsInWishlist] = useState(wishlist.some(item => item.id === product.id));
-
+  const wishlist = useSelector((state) => state.list.wishlist);
+  const [isInWishlist, setIsInWishlist] = useState(
+    wishlist.some((item) => item.id === product.id)
+  );
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
-
 
   const toggleWishlist = () => {
     if (isInWishlist) {
@@ -34,7 +38,13 @@ function ProductPage({ products }) {
   }
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    if (quantity < product.stock) {
+      setQuantity(quantity + 1);
+    } else {
+      alert(
+        `Maximum available quantity for ${product.name} is ${product.stock}`
+      );
+    }
   };
 
   const handleDecrement = () => {
@@ -47,7 +57,7 @@ function ProductPage({ products }) {
     <div className="page-body">
       <div className="product-page">
         <div className="product-images">
-        <div className="thumbnail-images">
+          <div className="thumbnail-images">
             {product.images.map((image, index) => (
               <div
                 key={index}
