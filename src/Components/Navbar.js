@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
 function Navbar({ loggedIn, setLoggedIn }) {
-  const cartNotification = useSelector((state) => state.list.cartNotification);
+  const cartNotification = useSelector((state) => state.user.user.cartNotification);
   const wishlistNotification = useSelector(
     (state) => state.list.wishlistNotification
   );
@@ -57,7 +57,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
             <div className="nav-icon">
               <li style={{ position: "relative" }}>
                 <Link to="/loginpage" className="nav-buttons">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                 </Link>
               </li>
             </div>

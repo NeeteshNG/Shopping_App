@@ -4,11 +4,11 @@ import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
-} from "../Redux/listSlice";
+} from "../UserAuth/Redux_User/userSlice";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const cart = useSelector((state) => state.list.cart);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   const removeItem = (product) => {
@@ -23,12 +23,16 @@ function Cart() {
     dispatch(decrementQuantity(productId));
   };
 
-  const totalAmount = cart.reduce((total, product) => total + product.price * product.quantity, 0);
+  const totalAmount = user.cart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
   return (
     <div className="cart-body">
       <div className="cart-container">
         <h1>CART</h1>
-        {cart.map((product) => (
+        {user.cart.map((product) => (
           <div key={product.id} className="cart-item">
             <Link to={`/products/${product.id}`}>
               <img
@@ -38,11 +42,7 @@ function Cart() {
               />
             </Link>
             <div className="cart-item-details">
-              <h2
-                className="cart-item-name"
-              >
-                {product.name}
-              </h2>
+              <h2 className="cart-item-name">{product.name}</h2>
               <p className="cart-item-description">
                 {product.description.slice(0, 60)}
               </p>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToWishlist } from "../Redux/listSlice";
+import { addToCart, addToWishlist } from "../UserAuth/Redux_User/userSlice";
 import ProductDetails from "./ProductDetails";
 import { Link } from "react-router-dom";
 import { removeFromWishlist } from "../Redux/listSlice";
