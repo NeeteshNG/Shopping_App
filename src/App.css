@@ -1121,3 +1121,13 @@ a.git-click:hover
    color: white;
    text-decoration: none;
 }
+
+.category-filter{
+  margin-top: 85px;
+  margin-bottom: -70px;
+  margin-left: 517px;
+}
+
+#category{
+  text-align: center;
+}

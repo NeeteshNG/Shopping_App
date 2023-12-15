@@ -28,6 +28,7 @@ const products = [
       "https://images.pexels.com/photos/11111603/pexels-photo-11111603.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/11730663/pexels-photo-11730663.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 2,
@@ -43,6 +44,7 @@ const products = [
       "https://images.pexels.com/photos/1151440/pexels-photo-1151440.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/1136589/pexels-photo-1136589.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "men"
   },
   {
     id: 3,
@@ -58,6 +60,7 @@ const products = [
       "https://images.pexels.com/photos/5144485/pexels-photo-5144485.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/5754097/pexels-photo-5754097.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 4,
@@ -73,6 +76,7 @@ const products = [
       "https://images.pexels.com/photos/16414722/pexels-photo-16414722/free-photo-of-candid-picture-of-a-man-sitting-on-a-bench-outside-of-a-building.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/11116098/pexels-photo-11116098.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 5,
@@ -88,6 +92,7 @@ const products = [
       "https://images.pexels.com/photos/16438670/pexels-photo-16438670/free-photo-of-close-up-of-woman-wearing-a-silver-ring-with-a-ruby-stone.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/8306528/pexels-photo-8306528.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "women"
   },
   {
     id: 6,
@@ -103,6 +108,7 @@ const products = [
       "https://images.pexels.com/photos/11292946/pexels-photo-11292946.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/2404959/pexels-photo-2404959.png?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "men"
   },
   {
     id: 7,
@@ -118,6 +124,7 @@ const products = [
       "https://images.pexels.com/photos/983587/pexels-photo-983587.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/105588/pexels-photo-105588.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "food"
   },
   {
     id: 8,
@@ -133,6 +140,7 @@ const products = [
       "https://images.pexels.com/photos/1937337/pexels-photo-1937337.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/3143813/pexels-photo-3143813.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 9,
@@ -148,6 +156,7 @@ const products = [
       "https://images.pexels.com/photos/9290601/pexels-photo-9290601.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/12486219/pexels-photo-12486219.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 10,
@@ -163,6 +172,7 @@ const products = [
       "https://images.pexels.com/photos/12569713/pexels-photo-12569713.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/12079027/pexels-photo-12079027.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
   {
     id: 11,
@@ -178,6 +188,7 @@ const products = [
       "https://images.pexels.com/photos/130574/pexels-photo-130574.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/670741/pexels-photo-670741.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
+    category: "all"
   },
 ];
 
