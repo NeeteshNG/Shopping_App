@@ -1,23 +1,53 @@
-// ProductPage.js
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { addToCart, removeFromWishlist, addToWishlist } from "../Redux/listSlice";
+import { useDispatch } from "react-redux";
 
 function ProductPage({ products }) {
   const { productId } = useParams();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   const product = products.find((product) => product.id === Number(productId));
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const wishlist = useSelector((state) => state.list.wishlist)
+  const [isInWishlist, setIsInWishlist] = useState(wishlist.some(item => item.id === product.id));
+
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
+
+  const toggleWishlist = () => {
+    if (isInWishlist) {
+      dispatch(removeFromWishlist(product));
+    } else {
+      dispatch(addToWishlist(product));
+    }
+    setIsInWishlist(!isInWishlist);
+  };
 
   if (!product) {
     return <div>Product not found</div>;
   }
 
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <div className="page-body">
       <div className="product-page">
         <div className="product-images">
-          <div className="thumbnail-images">
+        <div className="thumbnail-images">
             {product.images.map((image, index) => (
               <div
                 key={index}
@@ -39,8 +69,17 @@ function ProductPage({ products }) {
           <p>{product.description}</p>
           <p>Price: {product.price}/-</p>
           <p>Shipping Details: {product.shippingDetails}</p>
-          <button className="add-to-cart-button">Add to Cart</button>
-          <button className="add-to-wishlist-button">Add to Wishlist</button>
+          <div className="quantity-control">
+            <button onClick={handleDecrement}>-</button>
+            <input type="text" value={quantity} readOnly />
+            <button onClick={handleIncrement}>+</button>
+          </div>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
+          <button className="add-to-wishlist-button" onClick={toggleWishlist}>
+            Add to Wishlist
+          </button>
         </div>
       </div>
     </div>

@@ -17,19 +17,23 @@ function Products({ products }) {
   return (
     <div className="body-products">
       <div className="category-filter">
-        <label className="filter-text" htmlFor="category">FILTER BY CATEGORY : </label>
-        <select
-          id="category"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-        >
-          <option value="">All</option>
-          {categoryOptions.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+        <div className="box">
+        <label className="filter-text" htmlFor="category">
+          FILTER BY CATEGORY :{" "}
+        </label>
+          <select
+            id="category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <option value="">All</option>
+            {categoryOptions.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div className="body-cards">
         <div className="grid-container">
