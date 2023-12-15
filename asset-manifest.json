@@ -1,15 +1,25 @@
 {
   "files": {
-    "main.css": "/Shopping_App/static/css/main.e8f548af.css",
-    "main.js": "/Shopping_App/static/js/main.bdd25545.js",
+    "main.css": "/Shopping_App/static/css/main.4c56edca.css",
+    "main.js": "/Shopping_App/static/js/main.1d6d193a.js",
     "static/js/787.5f8b4b68.chunk.js": "/Shopping_App/static/js/787.5f8b4b68.chunk.js",
+    "static/media/Image1.jpg": "/Shopping_App/static/media/Image1.7cd63e2489f771001170.jpg",
+    "static/media/Image5.jpg": "/Shopping_App/static/media/Image5.a420438a9427131e14f5.jpg",
+    "static/media/Image4.jpg": "/Shopping_App/static/media/Image4.fbe190adc9efa7213314.jpg",
+    "static/media/Image3.jpg": "/Shopping_App/static/media/Image3.5abcd27847b0a4cc7fe2.jpg",
+    "static/media/Image2.jpg": "/Shopping_App/static/media/Image2.f1240436adbd7aab66b8.jpg",
+    "static/media/Image6.jpg": "/Shopping_App/static/media/Image6.c94dbd0fcd3dba23dab3.jpg",
+    "static/media/slick.svg": "/Shopping_App/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Shopping_App/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Shopping_App/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/Shopping_App/index.html",
-    "main.e8f548af.css.map": "/Shopping_App/static/css/main.e8f548af.css.map",
-    "main.bdd25545.js.map": "/Shopping_App/static/js/main.bdd25545.js.map",
+    "static/media/slick.woff": "/Shopping_App/static/media/slick.295183786cd8a1389865.woff",
+    "main.4c56edca.css.map": "/Shopping_App/static/css/main.4c56edca.css.map",
+    "main.1d6d193a.js.map": "/Shopping_App/static/js/main.1d6d193a.js.map",
     "787.5f8b4b68.chunk.js.map": "/Shopping_App/static/js/787.5f8b4b68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8f548af.css",
-    "static/js/main.bdd25545.js"
+    "static/css/main.4c56edca.css",
+    "static/js/main.1d6d193a.js"
   ]
 }
