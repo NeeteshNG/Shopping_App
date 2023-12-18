@@ -5,7 +5,6 @@ import ProductCard from "../productcard/productCard";
 function Products({ products }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);

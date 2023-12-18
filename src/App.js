@@ -231,7 +231,7 @@ function App() {
       <div className="App">
         <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home products={products}/>} />
           <Route
             path="/loginpage"
             element={
