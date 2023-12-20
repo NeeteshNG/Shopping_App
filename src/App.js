@@ -218,6 +218,24 @@ const products = [
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/productsApi/products/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const userIsLoggedIn = localStorage.getItem("loggedIn") === "true";
