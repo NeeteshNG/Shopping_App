@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./productCard.css"
+import "./productCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToWishlist } from "../../Redux/userSlice";
 import ProductDetails from "../productDetails/productDetails";
@@ -12,7 +12,9 @@ function ProductCard({ product }) {
   const dispatch = useDispatch();
 
   const wishlist = useSelector((state) => state.user.user?.wishlist || []);
-  const [isInWishlist, setIsInWishlist] = useState(wishlist.some(item => item.id === product.id));  
+  const [isInWishlist, setIsInWishlist] = useState(
+    wishlist.some((item) => item.id === product.id)
+  );
 
   const toggleWishlist = () => {
     if (isInWishlist) {
@@ -22,7 +24,6 @@ function ProductCard({ product }) {
     }
     setIsInWishlist(!isInWishlist);
   };
-
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
@@ -35,9 +36,17 @@ function ProductCard({ product }) {
   return (
     <div className="product-card">
       <Link to={`/products/${id}`}>
-        <img src={images} alt={name} />
+        {images.length > 0 && (
+          <img
+            src={images[0].image}
+            alt={`${name}-Image`}
+          />
+        )}
       </Link>
-      <div className={`wishlist-button ${isInWishlist ? 'filled' : ''}`} onClick={toggleWishlist}>
+      <div
+        className={`wishlist-button ${isInWishlist ? "filled" : ""}`}
+        onClick={toggleWishlist}
+      >
         <i className="fa fa-heart"></i>
       </div>
       <h2>{name}</h2>

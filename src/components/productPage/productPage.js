@@ -59,7 +59,7 @@ function ProductPage({ products }) {
       <div className="product-page">
         <div className="product-images">
           <div className="thumbnail-images">
-            {product.images.map((image, index) => (
+          {product.images.map((item, index) => (
               <div
                 key={index}
                 className={`thumbnail ${
@@ -67,12 +67,12 @@ function ProductPage({ products }) {
                 }`}
                 onClick={() => setSelectedImageIndex(index)}
               >
-                <img src={image} alt={product.name} />
+                <img src={item.image} alt={product.name} />
               </div>
             ))}
           </div>
           <div className="main-image">
-            <img src={product.images[selectedImageIndex]} alt={product.name} />
+            <img src={product.images[selectedImageIndex].image} alt={product.name} />
           </div>
         </div>
         <div className="product-details">
