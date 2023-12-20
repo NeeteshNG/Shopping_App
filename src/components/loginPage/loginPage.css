@@ -1,7 +1,7 @@
 .login-container {
     display: flex;
     justify-content: center;
-    margin: 110px;
+    margin: 85px;
 }
 
 .signin {
@@ -121,4 +121,13 @@ input[type="submit"]:active {
         width: calc(20vw - 2px);
         height: calc(20vw - 2px);
     }
+}
+
+.register-text{
+    color: white;
+}
+
+.register-text a{
+    color: darkgray;
+    font-weight: 600;
 }

@@ -3,6 +3,8 @@ import "./loginPage.css"
 import { useDispatch } from "react-redux";
 import { login } from "../../Redux/userSlice";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = ({ setLoggedIn }) => {
   const dispatch = useDispatch();
@@ -12,16 +14,13 @@ const LoginPage = ({ setLoggedIn }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: username, password }),
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+        email: username,
+        password: password,
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         if (data.token) {
           setLoggedIn(true);
           dispatch(login({ user: data.user }));
@@ -70,6 +69,7 @@ const LoginPage = ({ setLoggedIn }) => {
               <input type="submit" value="Login" />
             </div>
           </div>
+            <p className="register-text">Not a Member ?  <Link to="/registerPage">Register</Link></p>
         </div>
       </div>
     </div>

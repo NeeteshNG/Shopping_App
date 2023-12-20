@@ -12,6 +12,7 @@ import { useState } from "react";
 import ProfilePage from "./components/profilePage/profilePage";
 import { useEffect } from "react";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
+import RegisterForm from "./components/registerPage/registerPage";
 
 const products = [
   {
@@ -201,8 +202,7 @@ const products = [
     id: 12,
     name: "Dennis Lingo - Shirt",
     price: 489,
-    description:
-      "Men Slim Fit Striped Slim Collar Casual Shirt.",
+    description: "Men Slim Fit Striped Slim Collar Casual Shirt.",
     shippingDetails: "Free Shipping",
     images: [
       "https://images.pexels.com/photos/13094233/pexels-photo-13094233.jpeg?auto=compress&cs=tinysrgb&w=400&h=750&dpr=1",
@@ -223,7 +223,9 @@ function App() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch("http://127.0.0.1:8000/productsApi/products/");
+        const response = await fetch(
+          "http://127.0.0.1:8000/productsApi/products/"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -249,12 +251,22 @@ function App() {
       <div className="App">
         <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
-          <Route path="/" element={<Home products={products}/>} />
+          <Route path="/" element={<Home products={products} />} />
           <Route
             path="/loginpage"
             element={
               <ProtectedRoute
                 element={<LoginPage setLoggedIn={setLoggedIn} />}
+                authenticated={!loggedIn}
+                redirectPath="/products"
+              />
+            }
+          />
+          <Route
+            path="/registerPage"
+            element={
+              <ProtectedRoute
+                element={<RegisterForm />}
                 authenticated={!loggedIn}
                 redirectPath="/products"
               />
