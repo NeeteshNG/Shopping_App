@@ -24,16 +24,16 @@ function Cart() {
     dispatch(decrementQuantity(productId));
   };
 
-  const totalAmount = user.cart.reduce(
+  const totalAmount = user && user.cart ? user.cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
-  );
+  ) : 0;
 
   return (
     <div className="cart-body">
       <div className="cart-container">
         <h1>CART</h1>
-        {user.cart.map((product) => (
+        {user && user.cart && user.cart.map((product) => (
           <div key={product.id} className="cart-item">
             <Link to={`/products/${product.id}`}>
               <img

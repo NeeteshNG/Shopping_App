@@ -5,9 +5,9 @@ const storedData = JSON.parse(localStorage.getItem("user"));
 const initialState = {
   user: storedData || {
     id: null,
-    names: null,
+    name: null,
     address: null,
-    phone: null,
+    phone_number: null,
     username: null,
     password: null,
     cart: [],
@@ -23,16 +23,6 @@ const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       const userData = action.payload.user;
-      state.user.id = userData.id;
-      state.user.names = userData.names;
-      state.user.address = userData.address;
-      state.user.phone = userData.phone;
-      state.user.username = userData.username;
-      state.user.password = userData.password;
-      state.user.cart = userData.cart || [];
-      state.user.wishlist = userData.wishlist || [];
-      state.user.cartNotification = userData.cartNotification || 0;
-      state.user.wishlistNotification = userData.wishlistNotification || 0;
       localStorage.setItem("user", JSON.stringify(userData));
     },
     logout: (state) => {

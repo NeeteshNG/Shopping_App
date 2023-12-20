@@ -16,7 +16,7 @@ function ProfilePage() {
       <div className="personal-details">
         <div className="para">
           <div>
-            <h1>Name :</h1> {user.names}
+            <h1>Name :</h1> {user.name}
           </div>
           <div>
             <h1>Username :</h1> {user.username}
@@ -27,7 +27,7 @@ function ProfilePage() {
             <h1>Address :</h1> {user.address}
           </div>
           <div>
-            <h1>Phone :</h1> {user.phone}
+            <h1>Phone :</h1> {user.phone_number}
           </div>
         </div>
       </div>
