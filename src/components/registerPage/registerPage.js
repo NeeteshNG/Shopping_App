@@ -2,6 +2,7 @@ import "./registerPage.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -35,60 +36,94 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="register-form-body">
-      <h1>REGISTER</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="username"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="phone_number"
-          placeholder="Phone Number"
-          value={formData.phone_number}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+      <div className="register-container">
+        <div className="signup">
+          <div className="reg-content">
+            <h2>Register</h2>
+
+            <div className="reg-form">
+              <div className="reg-input">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />{" "}
+                <i>Email</i>
+              </div>
+
+              <div className="reg-input">
+                <input
+                  type="username"
+                  name="username"
+                  value={formData.email}
+                  autoComplete="off"
+                  onChange={handleChange}
+                  required
+                />{" "}
+                <i>Username</i>
+              </div>
+
+              <div className="reg-input">
+                <input
+                  autoComplete="off"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />{" "}
+                <i>Password</i>
+              </div>
+
+              <div className="reg-input">
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />{" "}
+                <i>Name</i>
+              </div>
+
+              <div className="reg-input">
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                  required
+                />{" "}
+                <i>Phone Number</i>
+              </div>
+
+              <div className="reg-input">
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />{" "}
+                <i>Address</i>
+              </div>
+
+            </div>
+              <div className="reg-input-register" onClick={handleSubmit}>
+                <input type="submit" value="REGISTER"/>
+              </div>
+            <p className="login-text">
+              Already a Member ? <Link to="/loginpage">Login</Link>
+            </p>
+          </div>
+        </div>
+      </div>
   );
 };
 

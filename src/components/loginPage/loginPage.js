@@ -51,7 +51,7 @@ const LoginPage = ({ setLoggedIn }) => {
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />{" "}
-              <i>Username</i>
+              <i>Email</i>
             </div>
 
             <div className="inputBox">
