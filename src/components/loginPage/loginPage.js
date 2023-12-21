@@ -36,7 +36,7 @@ const LoginPage = ({ setLoggedIn }) => {
   };
 
   return (
-    <div className="login-container">
+    <div className="content-body">
       <div className="signin">
         <div className="content">
           <h2>Log In</h2>

@@ -13,7 +13,7 @@ function Wishlist() {
   };
 
   return (
-    <div className="wishlist-body">
+    <div className="content-body">
       <div className="wishlist-container">
         <h1 className="wishlist-title">Wishlist</h1>
         {wishlist && wishlist.length > 0 ? (

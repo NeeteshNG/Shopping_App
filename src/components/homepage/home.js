@@ -28,7 +28,7 @@ function Home({ products }) {
         <div className="products-row">
           {visibleProducts.map((product, index) => (
             <div key={index} className="home-product-card">
-              <img src={product.images} alt={product.name} />
+              <img src={product.images[0].image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>{product.description.slice(0, 50)}...</p>
               <p>Price: {product.price}</p>

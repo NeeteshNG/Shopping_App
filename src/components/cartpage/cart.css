@@ -1,12 +1,3 @@
-.cart-body {
-  margin-top: 30px;
-  margin-bottom: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
 .cart-container {
   width: 80%;
   max-width: 1200px;

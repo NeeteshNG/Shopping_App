@@ -30,7 +30,7 @@ function Cart() {
   ) : 0;
 
   return (
-    <div className="cart-body">
+    <div className="content-body">
       <div className="cart-container">
         <h1>CART</h1>
         {user && user.cart && user.cart.map((product) => (

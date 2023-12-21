@@ -35,52 +35,54 @@ function Products({ products }) {
   ];
 
   return (
-    <div className="body-products">
-      <div className="filter-section">
-        <div className="filter-box">
-          <label className="filter-text" htmlFor="category">
-            FILTER BY CATEGORY :{" "}
-          </label>
-          <select
-            id="category"
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-          >
-            <option value="">All</option>
-            {categoryOptions.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className="content-body">
+      <div className="products-body">
+        <div className="filter-section">
+          <div className="filter-box">
+            <label className="filter-text" htmlFor="category">
+              FILTER BY CATEGORY :{" "}
+            </label>
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              <option value="">All</option>
+              {categoryOptions.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="filter-box">
-          <label className="filter-text" htmlFor="sorting">
-            SORT BY PRICE:{" "}
-          </label>
-          <select
-            id="sorting"
-            value={selectedSorting}
-            onChange={handleSortingChange}
-          >
-            {sortingOptions.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <div className="filter-box">
+            <label className="filter-text" htmlFor="sorting">
+              SORT BY PRICE:{" "}
+            </label>
+            <select
+              id="sorting"
+              value={selectedSorting}
+              onChange={handleSortingChange}
+            >
+              {sortingOptions.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
-      <div className="body-cards">
-        <div className="grid-container">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              className="grid-item"
-              key={product.id}
-              product={product}
-            />
-          ))}
+        <div className="body-cards">
+          <div className="grid-container">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                className="grid-item"
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

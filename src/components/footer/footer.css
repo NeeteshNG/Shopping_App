@@ -2,9 +2,6 @@
     background-color: #144981;
     color: #fff;
     padding: 5px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
 }
@@ -112,7 +109,6 @@
     padding: 0;
     display: flex;
     position: absolute;
-    top: 50%;
     left: 90%;
     transform: translate(-50%, -50%);
 }

@@ -3,7 +3,7 @@ import "./productDetail.css"
 
 function ProductDetails({ product, onClose }) {
   return (
-    <div className="body-details">
+    <div className="content-body">
       <div className="product-modal">
         <div className="product-modal-content">
           <h2>{product.name}</h2>

@@ -1,10 +1,3 @@
-.register-container {
-    display: flex;
-    justify-content: center;
-    margin: 82px;
-    margin-bottom: 200px;
-}
-
 .signup {
     width: 600px;
     background: #144981;

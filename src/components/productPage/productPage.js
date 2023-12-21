@@ -55,7 +55,7 @@ function ProductPage({ products }) {
   };
 
   return (
-    <div className="page-body">
+    <div className="content-body">
       <div className="product-page">
         <div className="product-images">
           <div className="thumbnail-images">

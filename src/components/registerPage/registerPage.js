@@ -36,7 +36,7 @@ const RegisterForm = () => {
   };
 
   return (
-      <div className="register-container">
+      <div className="content-body">
         <div className="signup">
           <div className="reg-content">
             <h2>Register</h2>
