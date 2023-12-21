@@ -90,27 +90,6 @@
     font-weight: 600;
 }
 
-.signup .reg-content .reg-form .reg-input input[type="submit"] {
-    padding: 10px;
-    border: 5px #144981 solid;
-    background: #5f83aa;
-    color: white;
-    font-weight: 600;
-    font-size: 1.35em;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-}
-
-.signup .reg-content .reg-form .reg-input input[type="submit"]:hover {
-    border-color: white;
-    background: #144981;
-    color: white;
-}
-
-input[type="submit"]:active {
-    opacity: 0.6;
-}
-
 @media (max-width: 900px) {
     span {
         width: calc(10vw - 2px);
@@ -169,8 +148,4 @@ input[type="submit"]:active {
     border-color: white;
     background: #144981;
     color: white;
-}
-
-input[type="submit"]:active {
-    opacity: 0.6;
 }

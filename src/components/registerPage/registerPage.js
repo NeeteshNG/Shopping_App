@@ -47,9 +47,9 @@ const RegisterForm = () => {
                   type="email"
                   name="email"
                   value={formData.email}
+                  autoComplete="off"
                   onChange={handleChange}
                   required
-                  autoComplete="off"
                 />{" "}
                 <i>Email</i>
               </div>
@@ -58,7 +58,7 @@ const RegisterForm = () => {
                 <input
                   type="username"
                   name="username"
-                  value={formData.email}
+                  value={formData.username}
                   autoComplete="off"
                   onChange={handleChange}
                   required

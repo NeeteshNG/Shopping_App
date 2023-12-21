@@ -22,7 +22,7 @@ function Wishlist() {
               <div key={product.id} className="wishlist-item">
                 <Link to={`/products/${product.id}`}>
                   <img
-                    src={product.images}
+                    src={product.images[0].image}
                     alt={product.name}
                     className="wishlist-item-image"
                   />

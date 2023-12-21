@@ -37,7 +37,7 @@ function Cart() {
           <div key={product.id} className="cart-item">
             <Link to={`/products/${product.id}`}>
               <img
-                src={product.images}
+                src={product.images[0].image}
                 alt={product.name}
                 className="cart-item-image"
               />
