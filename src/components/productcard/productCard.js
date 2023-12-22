@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import "./productCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToWishlist } from "../../Redux/userSlice";
-import ProductDetails from "../productDetails/productDetails";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { removeFromWishlist } from "../../Redux/userSlice";
 
 function ProductCard({ product }) {
   const { id, name, price, description, images } = product;
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const wishlist = useSelector((state) => state.user.user?.wishlist || []);
   const [isInWishlist, setIsInWishlist] = useState(
@@ -30,7 +29,7 @@ function ProductCard({ product }) {
   };
 
   const handleToggle = () => {
-    setShowModal(!showModal);
+    navigate(`/products/${id}`)
   };
 
   return (
@@ -39,7 +38,7 @@ function ProductCard({ product }) {
         {images.length > 0 && (
           <img
             src={images[0].image}
-            alt={`${name}-Image`}
+            alt={`${name}`}
           />
         )}
       </Link>
@@ -58,7 +57,6 @@ function ProductCard({ product }) {
       <button onClick={handleToggle}>
         <i className="fa fa-info-circle"></i>
       </button>
-      {showModal && <ProductDetails product={product} onClose={handleToggle} />}
     </div>
   );
 }

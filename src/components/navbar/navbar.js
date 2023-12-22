@@ -28,7 +28,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
       <ul className="nav-links">
         <div className="left-buttons">
           <li>
-            <Link to="/" className="nav-buttons">
+            <Link to="/Shopping_App" className="nav-buttons">
               Home
             </Link>
           </li>

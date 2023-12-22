@@ -32,8 +32,9 @@
 }
 
 .home-product-card img {
-    max-width: 100%;
-    height: auto;
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
 }
 
 .home-product-card img:hover {

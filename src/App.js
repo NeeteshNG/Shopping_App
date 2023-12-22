@@ -49,7 +49,7 @@ function App() {
       <div className="App">
         <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         <Routes>
-          <Route path="/" element={<Home products={products} />} />
+          <Route path="/Shopping_App" element={<Home products={products} />} />
           <Route
             path="/loginpage"
             element={
@@ -88,13 +88,7 @@ function App() {
           />
           <Route
             path="/products/:productId"
-            element={
-              <ProtectedRoute
-                element={<ProductPage products={products} />}
-                authenticated={loggedIn}
-                redirectPath="/loginpage"
-              />
-            }
+            element={<ProductPage products={products} />}
           />
         </Routes>
         <Footer />
