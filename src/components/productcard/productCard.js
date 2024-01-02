@@ -18,7 +18,19 @@ function ProductCard({ product }) {
 
   const toggleWishlist = (product) => {
     if (isInWishlist) {
-      dispatch(removeFromWishlist(product));
+      if (userData && userData.id) {
+        axios
+          .delete(`http://127.0.0.1:8000/wishlistApi/wishlist-items/delete/${product.id}/`)
+          .then((response) => {
+            console.log("Item removed from wishlist on the server:", response.data);
+            setIsInWishlist(false); // Update the local state after successful removal
+          })
+          .catch((error) => {
+            console.error("Error removing item from wishlist:", error);
+          });
+      } else {
+        console.error("User data not available");
+      }
     } else {
       if (userData && userData.id) {
         axios
@@ -40,21 +52,21 @@ function ProductCard({ product }) {
   };
 
   const handleAddToCart = (product) => {
-      if (userData && userData.id) {
-        axios
-          .post("http://127.0.0.1:8000/cartApi/cart-items/", {
-            product: product.id,
-            user: userData.id,
-          })
-          .then((response) => {
-            console.log("Item added to cart on the server:", response.data);
-          })
-          .catch((error) => {
-            console.error("Error adding item to cart:", error);
-          });
-      } else {
-        console.error("User data not available");
-      }
+    if (userData && userData.id) {
+      axios
+        .post("http://127.0.0.1:8000/cartApi/cart-items/", {
+          product: product.id,
+          user: userData.id,
+        })
+        .then((response) => {
+          console.log("Item added to cart on the server:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error adding item to cart:", error);
+        });
+    } else {
+      console.error("User data not available");
+    }
   };
 
   const handleToggle = () => {
