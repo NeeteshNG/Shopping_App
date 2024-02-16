@@ -11,6 +11,7 @@ function Cart({ products }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
+  const [userCartInfo, setUserCartInfo] = useState([]);
   const [userCartProducts, setUserCartProducts] = useState([]);
 
   useEffect(() => {
@@ -30,6 +31,8 @@ function Cart({ products }) {
         }
         const data = await response.json();
         const userCartProductsInfo = data
+        setUserCartInfo(data)
+
         const authUserIdInfo = userCartProductsInfo.filter((id_of) => (
           id_of.user === user.id
         ))
@@ -87,13 +90,47 @@ function Cart({ products }) {
     }
   };
   
-  const incrementItemQuantity = (productId) => {
-    dispatch(incrementQuantity(productId));
-  };
+  const incrementItemQuantity = ( productId) => {
+    try {
+      const filteredProductInfo = userCartInfo.filter((info) => (
+        info.product === productId
+      ))
+      const cartItemId = filteredProductInfo[0].id
+      const token = localStorage.getItem('token'); 
 
-  const decrementItemQuantity = (productId) => {
-    dispatch(decrementQuantity(productId));
+      const incrementResponse = fetch(
+        `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/increment/`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...filteredProductInfo, quantity: filteredProductInfo[0].quantity + 1 }),
+        }
+      );
+
+      if (!incrementResponse.ok) {
+        throw new Error("Failed to update cart item quantity");
+      }
+  
+      const updatedCart = userCartProducts.map(item => {
+        if (item.id === productId) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setUserCartProducts(updatedCart);
+    } catch (error) {
+      console.error("Error incrementing item quantity:", error);
+    }
   };
+  
+  
+  const decrementItemQuantity = async (productId) => {
+  };
+  
+  
 
   const totalAmount = userCartProducts && userCartProducts.length > 0 ? userCartProducts.reduce(
     (total, product) => total + product.price * product.quantity,
