@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./cart.css"
-import { useDispatch } from "react-redux";
-import {
-  incrementQuantity,
-  decrementQuantity,
-} from "../../Redux/userSlice";
 import { Link } from "react-router-dom";
 
 function Cart({ products }) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch();
 
   const [userCartInfo, setUserCartInfo] = useState([]);
   const [userCartProducts, setUserCartProducts] = useState([]);
@@ -36,7 +30,7 @@ function Cart({ products }) {
         const authUserIdInfo = userCartProductsInfo.filter((id_of) => (
           id_of.user === user.id
         ))
-        
+
         const filteredProducts = authUserIdInfo.map((info) => {
           const product = products.find((item) => item.id === info.product);
           if (product) {
@@ -44,7 +38,7 @@ function Cart({ products }) {
           }
           return null;
         }).filter(Boolean);
-          
+
         setUserCartProducts(filteredProducts)
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -54,22 +48,14 @@ function Cart({ products }) {
     fetchProducts();
   }, []);
 
-  const removeItem = async (product) => {
+  const removeItem = async (productId) => {
     try {
+      const filteredProductInfo = userCartInfo.filter((info) => (
+        info.product === productId
+      ))
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        `http://127.0.0.1:8000/cartApi/cart-items/?product=${product.id}`,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch cart item");
-      }
-      const data = await response.json();
-      const cartItemId = data[0].id;
+      const cartItemId = filteredProductInfo[0].id
+
       const deleteResponse = await fetch(
         `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/`,
         {
@@ -79,26 +65,27 @@ function Cart({ products }) {
           },
         }
       );
+
       if (!deleteResponse.ok) {
         throw new Error("Failed to delete cart item");
       }
 
-      const updatedCart = userCartProducts.filter(item => item.id !== product.id);
+      const updatedCart = userCartProducts.filter(item => item.id !== productId);
       setUserCartProducts(updatedCart);
     } catch (error) {
       console.error("Error removing item:", error);
     }
   };
-  
-  const incrementItemQuantity = ( productId) => {
+
+  const incrementItemQuantity = async (productId) => {
     try {
       const filteredProductInfo = userCartInfo.filter((info) => (
         info.product === productId
       ))
       const cartItemId = filteredProductInfo[0].id
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
 
-      const incrementResponse = fetch(
+      const incrementResponse = await fetch(
         `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/increment/`,
         {
           method: 'PATCH',
@@ -113,7 +100,7 @@ function Cart({ products }) {
       if (!incrementResponse.ok) {
         throw new Error("Failed to update cart item quantity");
       }
-  
+
       const updatedCart = userCartProducts.map(item => {
         if (item.id === productId) {
           return { ...item, quantity: item.quantity + 1 };
@@ -125,12 +112,46 @@ function Cart({ products }) {
       console.error("Error incrementing item quantity:", error);
     }
   };
-  
-  
+
   const decrementItemQuantity = async (productId) => {
+    try {
+      const filteredProductInfo = userCartInfo.filter((info) => (
+        info.product === productId
+      ))
+      const cartItemId = filteredProductInfo[0].id
+      const token = localStorage.getItem('token');
+
+      if (filteredProductInfo[0].quantity === 1) {
+        return removeItem(productId);
+      }
+
+      const decrementResponse = await fetch(
+        `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/decrement/`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...filteredProductInfo, quantity: filteredProductInfo[0].quantity - 1 }),
+        }
+      );
+
+      if (!decrementResponse.ok) {
+        throw new Error("Failed to update cart item quantity");
+      }
+
+      const updatedCart = userCartProducts.map(item => {
+        if (item.id === productId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      setUserCartProducts(updatedCart);
+    } catch (error) {
+      console.error("Error decrementing item quantity:", error);
+    }
   };
-  
-  
 
   const totalAmount = userCartProducts && userCartProducts.length > 0 ? userCartProducts.reduce(
     (total, product) => total + product.price * product.quantity,
@@ -158,7 +179,7 @@ function Cart({ products }) {
               <p className="cart-item-price">Price: {product.price}/-</p>
             </div>
             <button
-              onClick={() => removeItem(product)}
+              onClick={() => removeItem(product.id)}
               className="cart-item-remove-button"
             >
               <i className="fa fa-trash-o"></i>
