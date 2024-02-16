@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "./productCard.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { removeFromWishlist } from "../../Redux/userSlice";
 import axios from "axios";
 
 function ProductCard({ product }) {
   const { id, name, price, description, images } = product;
-  const userData = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
+  const userData = JSON.parse(localStorage.getItem("user"))
+
   const navigate = useNavigate();
 
   const wishlist = useSelector((state) => state.user.user?.wishlist || []);
@@ -23,7 +22,7 @@ function ProductCard({ product }) {
           .delete(`http://127.0.0.1:8000/wishlistApi/wishlist-items/delete/${product.id}/`)
           .then((response) => {
             console.log("Item removed from wishlist on the server:", response.data);
-            setIsInWishlist(false); // Update the local state after successful removal
+            setIsInWishlist(false);
           })
           .catch((error) => {
             console.error("Error removing item from wishlist:", error);
@@ -53,11 +52,18 @@ function ProductCard({ product }) {
 
   const handleAddToCart = (product) => {
     if (userData && userData.id) {
+      const token = localStorage.getItem('token');
       axios
-        .post("http://127.0.0.1:8000/cartApi/cart-items/", {
+        .post("http://127.0.0.1:8000/cartApi/add-to-cart/", {
           product: product.id,
           user: userData.id,
-        })
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+        )
         .then((response) => {
           console.log("Item added to cart on the server:", response.data);
         })

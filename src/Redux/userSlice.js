@@ -9,7 +9,6 @@ const initialState = {
     address: null,
     phone_number: null,
     username: null,
-    password: null,
     cart: [],
     wishlist: [],
     cartNotification: 0,
@@ -23,6 +22,7 @@ const userSlice = createSlice({
   reducers: {
     login: (action) => {
       const userData = action.payload.user;
+      localStorage.setItem("test", 1);
       localStorage.setItem("user", JSON.stringify(userData));
     },
     logout: (state) => {

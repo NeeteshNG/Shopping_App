@@ -74,7 +74,7 @@ function App() {
             path="/products"
             element={<Products products={products} authenticated={loggedIn} />}
           />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart products={products}/>} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route
             path="/profile"

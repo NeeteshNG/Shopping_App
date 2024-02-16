@@ -19,6 +19,7 @@ function Navbar({ loggedIn, setLoggedIn }) {
       setLoggedIn(false);
       localStorage.removeItem("user");
       localStorage.removeItem("loggedIn");
+      localStorage.removeItem("token"); 
       navigate("/loginpage");
     }
   };

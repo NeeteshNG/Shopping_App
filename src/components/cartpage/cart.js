@@ -1,21 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./cart.css"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  removeFromCart,
   incrementQuantity,
   decrementQuantity,
 } from "../../Redux/userSlice";
 import { Link } from "react-router-dom";
 
-function Cart() {
-  const user = useSelector((state) => state.user.user);
+function Cart({ products }) {
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
-  const removeItem = (product) => {
-    dispatch(removeFromCart(product));
-  };
+  const [userCartProducts, setUserCartProducts] = useState([]);
 
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(
+          "http://127.0.0.1:8000/cartApi/cart-items/",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        const userCartProductsInfo = data
+        const authUserIdInfo = userCartProductsInfo.filter((id_of) => (
+          id_of.user === user.id
+        ))
+        
+        const filteredProducts = authUserIdInfo.map((info) => {
+          const product = products.find((item) => item.id === info.product);
+          if (product) {
+            return { ...product, quantity: info.quantity };
+          }
+          return null;
+        }).filter(Boolean);
+          
+        setUserCartProducts(filteredProducts)
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  const removeItem = async (product) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(
+        `http://127.0.0.1:8000/cartApi/cart-items/?product=${product.id}`,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch cart item");
+      }
+      const data = await response.json();
+      const cartItemId = data[0].id;
+      const deleteResponse = await fetch(
+        `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      if (!deleteResponse.ok) {
+        throw new Error("Failed to delete cart item");
+      }
+
+      const updatedCart = userCartProducts.filter(item => item.id !== product.id);
+      setUserCartProducts(updatedCart);
+    } catch (error) {
+      console.error("Error removing item:", error);
+    }
+  };
+  
   const incrementItemQuantity = (productId) => {
     dispatch(incrementQuantity(productId));
   };
@@ -24,7 +95,7 @@ function Cart() {
     dispatch(decrementQuantity(productId));
   };
 
-  const totalAmount = user && user.cart ? user.cart.reduce(
+  const totalAmount = userCartProducts && userCartProducts.length > 0 ? userCartProducts.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   ) : 0;
@@ -33,7 +104,7 @@ function Cart() {
     <div className="content-body">
       <div className="cart-container">
         <h1>CART</h1>
-        {user && user.cart && user.cart.map((product) => (
+        {userCartProducts && userCartProducts.length > 0 && userCartProducts.map((product) => (
           <div key={product.id} className="cart-item">
             <Link to={`/products/${product.id}`}>
               <img

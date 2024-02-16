@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "./loginPage.css"
-import { useDispatch } from "react-redux";
-import { login } from "../../Redux/userSlice";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const LoginPage = ({ setLoggedIn }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,9 +20,10 @@ const LoginPage = ({ setLoggedIn }) => {
         const data = response.data;
         if (data.token) {
           setLoggedIn(true);
-          dispatch(login({ user: data.user }));
           navigate("/products");
-          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem('loggedIn', 'true')
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem('token', data.token)
         }
       } else {
         console.error("Login failed");
