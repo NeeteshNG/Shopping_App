@@ -25,6 +25,10 @@ function App() {
     userCartProducts,
     setUserCartProducts,
     fetchCartProducts,
+    removeItemFromCart,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+    totalAmountOfCart
   } = useAppController();
 
   return (
@@ -68,6 +72,10 @@ function App() {
                 setUserCartInfo={setUserCartInfo}
                 userCartProducts={userCartProducts}
                 setUserCartProducts={setUserCartProducts}
+                removeItem={removeItemFromCart}
+                incrementQuantity={incrementCartItemQuantity}
+                decrementQuantity={decrementCartItemQuantity}
+                totalAmount={totalAmountOfCart}
               />
             } 
           />
