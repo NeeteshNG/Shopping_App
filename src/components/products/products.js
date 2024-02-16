@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./products.css";
 import ProductCard from "../productcard/productCard";
 
-function Products({ products }) {
+function Products({ products, fetchCartProducts }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
 
@@ -80,6 +80,7 @@ function Products({ products }) {
                 className="grid-item"
                 key={product.id}
                 product={product}
+                fetchCartProducts={fetchCartProducts}
               />
             ))}
           </div>

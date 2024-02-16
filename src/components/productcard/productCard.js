@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function ProductCard({ product }) {
+function ProductCard({ product, fetchCartProducts }) {
   const { id, name, price, description, images } = product;
   const userData = JSON.parse(localStorage.getItem("user"))
 
@@ -66,6 +66,7 @@ function ProductCard({ product }) {
         )
         .then((response) => {
           console.log("Item added to cart on the server:", response.data);
+          fetchCartProducts();
         })
         .catch((error) => {
           console.error("Error adding item to cart:", error);

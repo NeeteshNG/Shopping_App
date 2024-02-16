@@ -2,50 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./cart.css"
 import { Link } from "react-router-dom";
 
-function Cart({ products }) {
+function Cart(
+    { 
+      fetchCartProducts, userCartInfo, userCartProducts, setUserCartProducts 
+    }
+  ) {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const [userCartInfo, setUserCartInfo] = useState([]);
-  const [userCartProducts, setUserCartProducts] = useState([]);
-
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(
-          "http://127.0.0.1:8000/cartApi/cart-items/",
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        const userCartProductsInfo = data
-        setUserCartInfo(data)
-
-        const authUserIdInfo = userCartProductsInfo.filter((id_of) => (
-          id_of.user === user.id
-        ))
-
-        const filteredProducts = authUserIdInfo.map((info) => {
-          const product = products.find((item) => item.id === info.product);
-          if (product) {
-            return { ...product, quantity: info.quantity };
-          }
-          return null;
-        }).filter(Boolean);
-
-        setUserCartProducts(filteredProducts)
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    }
-
-    fetchProducts();
+    fetchCartProducts();
   }, []);
 
   const removeItem = async (productId) => {

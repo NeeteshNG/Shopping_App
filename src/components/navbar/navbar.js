@@ -3,8 +3,8 @@ import "./navbar.css"
 import { useSelector } from "react-redux";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
-function Navbar({ loggedIn, setLoggedIn }) {
-  const cartNotification = useSelector((state) => state.user.user.cartNotification);
+function Navbar({ loggedIn, setLoggedIn, cartQuantity }) {
+  const cartNotification = cartQuantity;
   const wishlistNotification = useSelector(
     (state) => state.user.user.wishlistNotification
   );
