@@ -8,86 +8,24 @@ import Wishlist from "./components/wishlistpage/wishlist";
 import ProductPage from "./components/productPage/productPage";
 import Footer from "./components/footer/footer";
 import LoginPage from "./components/loginPage/loginPage";
-import { useState } from "react";
 import ProfilePage from "./components/profilePage/profilePage";
-import { useEffect } from "react";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import RegisterForm from "./components/registerPage/registerPage";
+import useAppController from "./AppController";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState(0)
-
-  const [userCartInfo, setUserCartInfo] = useState([]);
-  const [userCartProducts, setUserCartProducts] = useState([]);
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const fetchProducts = async () =>  {
-    try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/productsApi/products/"
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  }
-
-  const fetchCartProducts = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(
-        "http://127.0.0.1:8000/cartApi/cart-items/",
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-
-      const data = await response.json();
-      const userCartProductsInfo = data
-
-      setUserCartInfo(data)
-
-      const authUserIdInfo = userCartProductsInfo.filter((id_of) => (
-        id_of.user === user.id
-      ))
-
-      const filteredProducts = authUserIdInfo.map((info) => {
-        const product = products.find((item) => item.id === info.product);
-        if (product) {
-          return { ...product, quantity: info.quantity };
-        }
-        return null;
-      }).filter(Boolean);
-
-      setUserCartProducts(filteredProducts)
-      setCartQuantity(filteredProducts.length)
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  }
-
-  useEffect(() => {
-    fetchProducts();
-    fetchCartProducts();
-
-    const userIsLoggedIn = localStorage.getItem("loggedIn") === "true";
-    if (userIsLoggedIn) {
-      setLoggedIn(true);
-    }
-  }, []);
+  const {
+    loggedIn,
+    setLoggedIn,
+    products,
+    cartQuantity,
+    setCartQuantity,
+    userCartInfo,
+    setUserCartInfo,
+    userCartProducts,
+    setUserCartProducts,
+    fetchCartProducts,
+  } = useAppController();
 
   return (
     <Router>

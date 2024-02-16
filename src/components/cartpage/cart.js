@@ -37,6 +37,7 @@ function Cart(
 
       const updatedCart = userCartProducts.filter(item => item.id !== productId);
       setUserCartProducts(updatedCart);
+      fetchCartProducts();
     } catch (error) {
       console.error("Error removing item:", error);
     }
@@ -113,6 +114,7 @@ function Cart(
         return item;
       });
       setUserCartProducts(updatedCart);
+      fetchCartProducts();
     } catch (error) {
       console.error("Error decrementing item quantity:", error);
     }
