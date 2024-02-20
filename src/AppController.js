@@ -7,6 +7,13 @@ const useAppController = () => {
   const [cartQuantity, setCartQuantity] = useState(0)
   const [userCartInfo, setUserCartInfo] = useState([])
   const [userCartProducts, setUserCartProducts] = useState([])
+  const [userWishlistInfo, setUserWishlistInfo] = useState([])
+  const [userWishlistProducts, setUserWishlistProducts] = useState([])
+
+  const [isInWishlist, setIsInWishlist] = useState(
+    userWishlistProducts.some(item => item.id === products.id)
+  )
+
   const user = JSON.parse(localStorage.getItem('user'))
 
   const fetchProducts = useCallback(async () => {
@@ -181,6 +188,61 @@ const useAppController = () => {
     0
   ) : 0;
 
+  const toggleWishlist = async (product) => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      console.error('Token not available')
+      return
+    }
+
+    try {
+      if (isInWishlist) {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/wishlistApi/wishlist-items/?user=${user.id}&product=${product.id}`,
+          {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          }
+        )
+
+        const wishlistItemId = response.data[0]?.id
+        if (wishlistItemId) {
+          await axios.delete(
+            `http://127.0.0.1:8000/wishlistApi/wishlist-items/delete/${wishlistItemId}/`,
+            {
+              headers: {
+                Authorization: `Token ${token}`
+              }
+            }
+          )
+          console.log('Item removed from wishlist on the server')
+          setIsInWishlist(false)
+        } else {
+          console.error('Wishlist item not found for product:', product.id)
+        }
+      } else {
+        await axios.post(
+          'http://127.0.0.1:8000/wishlistApi/wishlist-items/',
+          {
+            product: product.id,
+            user: user.id
+          },
+          {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          }
+        )
+        console.log('Item added to wishlist on the server')
+        setIsInWishlist(true)
+      }
+    } catch (error) {
+      console.error('Error toggling wishlist item:', error)
+    }
+  }
+
+
   return {
     loggedIn,
     products,
@@ -197,7 +259,9 @@ const useAppController = () => {
     removeItemFromCart,
     incrementCartItemQuantity,
     decrementCartItemQuantity,
-    totalAmountOfCart
+    totalAmountOfCart,
+    toggleWishlist,
+    isInWishlist
   }
 }
 

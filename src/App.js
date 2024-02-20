@@ -28,7 +28,9 @@ function App() {
     removeItemFromCart,
     incrementCartItemQuantity,
     decrementCartItemQuantity,
-    totalAmountOfCart
+    totalAmountOfCart,
+    toggleWishlist,
+    isInWishlist
   } = useAppController();
 
   return (
@@ -59,7 +61,15 @@ function App() {
           />
           <Route
             path="/products"
-            element={<Products fetchCartProducts={fetchCartProducts} products={products} authenticated={loggedIn} />}
+            element={
+              <Products 
+                fetchCartProducts={fetchCartProducts} 
+                products={products} 
+                authenticated={loggedIn}
+                toggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
+              />
+            }
           />
           <Route 
             path="/cart" 

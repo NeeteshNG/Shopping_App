@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./products.css";
 import ProductCard from "../productcard/productCard";
 
-function Products({ products, fetchCartProducts }) {
+function Products({ products, fetchCartProducts, toggleWishlist, isInWishlist }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
 
@@ -81,6 +81,8 @@ function Products({ products, fetchCartProducts }) {
                 key={product.id}
                 product={product}
                 fetchCartProducts={fetchCartProducts}
+                toggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
               />
             ))}
           </div>
