@@ -30,7 +30,8 @@ function App() {
     decrementCartItemQuantity,
     totalAmountOfCart,
     toggleWishlist,
-    isInWishlist
+    isInWishlist,
+    userWishlistProducts
   } = useAppController();
 
   return (
@@ -68,6 +69,7 @@ function App() {
                 authenticated={loggedIn}
                 toggleWishlist={toggleWishlist}
                 isInWishlist={isInWishlist}
+                userWishlistProducts={userWishlistProducts}
               />
             }
           />

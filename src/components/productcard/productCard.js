@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './productCard.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-function ProductCard ({ product, fetchCartProducts, toggleWishlist, isInWishlist }) {
+function ProductCard ({ product, fetchCartProducts, toggleWishlist, userWishlistProducts }) {
   const { id, name, price, description, images } = product
   const userData = JSON.parse(localStorage.getItem('user'))
 
   const navigate = useNavigate()
+
+  const isInWishlist = userWishlistProducts.some(item => item.id === product.id)
 
   const handleAddToCart = product => {
     if (userData && userData.id) {
