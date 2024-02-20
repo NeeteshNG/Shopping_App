@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState, useEffect, useCallback } from 'react'
 
 const useAppController = () => {
@@ -10,23 +11,20 @@ const useAppController = () => {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         'http://127.0.0.1:8000/productsApi/products/'
       )
-      if (!response.ok) {
-        throw new Error('Failed to fetch products')
-      }
-      const data = await response.json()
-      setProducts(data)
+      setProducts(response?.data)
+      fetchCartProducts(response?.data)
     } catch (error) {
       console.error('Error fetching products:', error)
     }
   }, [])
 
-  const fetchCartProducts = useCallback(async () => {
+  const fetchCartProducts = useCallback(async (products) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(
+      const response = await axios.get(
         'http://127.0.0.1:8000/cartApi/cart-items/',
         {
           headers: {
@@ -35,14 +33,9 @@ const useAppController = () => {
         }
       )
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch products')
-      }
+      const userCartProductsInfo = response.data
 
-      const data = await response.json()
-      const userCartProductsInfo = data
-
-      setUserCartInfo(data)
+      setUserCartInfo(response.data)
 
       const authUserIdInfo = userCartProductsInfo.filter(
         id_of => id_of.user === user.id
@@ -66,14 +59,13 @@ const useAppController = () => {
   }, [products, user.id])
   
   useEffect(() => {
-    fetchCartProducts()
     fetchProducts()
 
     const userIsLoggedIn = localStorage.getItem('loggedIn') === 'true'
     if (userIsLoggedIn) {
       setLoggedIn(true)
     }
-  }, [fetchCartProducts, fetchProducts])
+  }, [])
 
   const removeItemFromCart = async productId => {
     try {
@@ -83,7 +75,7 @@ const useAppController = () => {
       const token = localStorage.getItem('token')
       const cartItemId = filteredProductInfo[0].id
 
-      const deleteResponse = await fetch(
+      const deleteResponse = await axios.delete(
         `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/`,
         {
           method: 'DELETE',
@@ -92,10 +84,6 @@ const useAppController = () => {
           }
         }
       )
-
-      if (!deleteResponse.ok) {
-        throw new Error('Failed to delete cart item')
-      }
 
       const updatedCart = userCartProducts.filter(item => item.id !== productId)
       setUserCartProducts(updatedCart)
