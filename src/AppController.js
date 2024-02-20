@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 const useAppController = () => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -8,17 +8,7 @@ const useAppController = () => {
   const [userCartProducts, setUserCartProducts] = useState([])
   const user = JSON.parse(localStorage.getItem('user'))
 
-  useEffect(() => {
-    fetchCartProducts()
-    fetchProducts()
-
-    const userIsLoggedIn = localStorage.getItem('loggedIn') === 'true'
-    if (userIsLoggedIn) {
-      setLoggedIn(true)
-    }
-  }, [])
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(
         'http://127.0.0.1:8000/productsApi/products/'
@@ -31,9 +21,9 @@ const useAppController = () => {
     } catch (error) {
       console.error('Error fetching products:', error)
     }
-  }
+  }, [])
 
-  const fetchCartProducts = async () => {
+  const fetchCartProducts = useCallback(async () => {
     try {
       const token = localStorage.getItem('token')
       const response = await fetch(
@@ -68,12 +58,22 @@ const useAppController = () => {
         })
         .filter(Boolean)
 
-      setUserCartProducts(filteredProducts)
+        setUserCartProducts(filteredProducts)
       setCartQuantity(filteredProducts.length)
     } catch (error) {
       console.error('Error fetching products:', error)
     }
-  }
+  }, [products, user.id])
+  
+  useEffect(() => {
+    fetchCartProducts()
+    fetchProducts()
+
+    const userIsLoggedIn = localStorage.getItem('loggedIn') === 'true'
+    if (userIsLoggedIn) {
+      setLoggedIn(true)
+    }
+  }, [fetchCartProducts, fetchProducts])
 
   const removeItemFromCart = async productId => {
     try {
