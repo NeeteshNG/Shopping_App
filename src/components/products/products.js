@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./products.css";
 import ProductCard from "../productcard/productCard";
 
-function Products({ products, fetchCartProducts, toggleWishlist, userWishlistProducts }) {
+function Products({ products, fetchCartProducts, toggleWishlist, userWishlistProducts, handleAddToCart }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
 
@@ -83,6 +83,7 @@ function Products({ products, fetchCartProducts, toggleWishlist, userWishlistPro
                 fetchCartProducts={fetchCartProducts}
                 toggleWishlist={toggleWishlist}
                 userWishlistProducts={userWishlistProducts}
+                handleAddToCart={handleAddToCart}
               />
             ))}
           </div>

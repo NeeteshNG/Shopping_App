@@ -1,24 +1,15 @@
 import React from "react";
 import "./wishlist.css"
-import { useSelector, useDispatch } from "react-redux";
-import { removeFromWishlist } from "../../Redux/userSlice";
 import { Link } from "react-router-dom";
 
-function Wishlist() {
-  const wishlist = useSelector((state) => state.user.user.wishlist);
-  const dispatch = useDispatch();
-
-  const removeItem = (product) => {
-    dispatch(removeFromWishlist(product));
-  };
-
+function Wishlist({ products, toggleWishlist }) {
   return (
     <div className="content-body">
       <div className="wishlist-container">
         <h1 className="wishlist-title">Wishlist</h1>
-        {wishlist && wishlist.length > 0 ? (
+        {products && products.length > 0 ? (
           <div className="wishlist-items">
-            {wishlist.map((product) => (
+            {products.map((product) => (
               <div key={product.id} className="wishlist-item">
                 <Link to={`/products/${product.id}`}>
                   <img
@@ -41,7 +32,7 @@ function Wishlist() {
                   </p>
                 </div>
                 <button
-                  onClick={() => removeItem(product)}
+                  onClick={() => toggleWishlist(product)}
                   className="wishlist-item-remove-button"
                 >
                   <i className="gg-remove"></i>

@@ -31,13 +31,20 @@ function App() {
     totalAmountOfCart,
     toggleWishlist,
     isInWishlist,
-    userWishlistProducts
+    userWishlistProducts,
+    wishlistQuantity,
+    handleAddToCart
   } = useAppController();
 
   return (
     <Router>
       <div className="App">
-        <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} cartQuantity={cartQuantity}/>
+        <Navbar 
+          setLoggedIn={setLoggedIn} 
+          loggedIn={loggedIn} 
+          cartQuantity={cartQuantity}
+          wishlistQuantity={wishlistQuantity}
+        />
         <Routes>
           <Route path="/Shopping_App" element={<Home products={products} />} />
           <Route
@@ -70,6 +77,7 @@ function App() {
                 toggleWishlist={toggleWishlist}
                 isInWishlist={isInWishlist}
                 userWishlistProducts={userWishlistProducts}
+                handleAddToCart={handleAddToCart}
               />
             }
           />
@@ -91,7 +99,15 @@ function App() {
               />
             } 
           />
-          <Route path="/wishlist" element={<Wishlist />} />
+          <Route 
+            path="/wishlist" 
+            element={
+              <Wishlist 
+                products={userWishlistProducts}
+                toggleWishlist={toggleWishlist} 
+              />
+            } 
+          />
           <Route
             path="/profile"
             element={

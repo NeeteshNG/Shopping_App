@@ -1,13 +1,10 @@
 import React from "react";
 import "./navbar.css"
-import { useSelector } from "react-redux";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
-function Navbar({ loggedIn, setLoggedIn, cartQuantity }) {
+function Navbar({ loggedIn, setLoggedIn, cartQuantity, wishlistQuantity }) {
   const cartNotification = cartQuantity;
-  const wishlistNotification = useSelector(
-    (state) => state.user.user.wishlistNotification
-  );
+  const wishlistNotification = wishlistQuantity;
 
   const navigate = useNavigate();
 

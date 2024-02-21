@@ -31,7 +31,7 @@ const useAppController = () => {
         setUserCartInfo(response.data)
 
         const authUserIdInfo = userCartProductsInfo.filter(
-          id_of => id_of.user === user.id
+          id_of => id_of.user === user?.id
         )
 
         const filteredProducts = authUserIdInfo
@@ -50,7 +50,7 @@ const useAppController = () => {
         console.error('Error fetching products:', error)
       }
     },
-    [user.id]
+    [user?.id]
   )
 
   const fetchWishlistProducts = useCallback(
@@ -71,7 +71,7 @@ const useAppController = () => {
         setUserWishlistInfo(response.data)
 
         const authUserIdInfo = userWishlistProductsInfo.filter(
-          id_of => id_of.user === user.id
+          id_of => id_of.user === user?.id
         )
 
         const filteredWishlistProducts = authUserIdInfo
@@ -90,7 +90,7 @@ const useAppController = () => {
         console.error('Error fetching products:', error)
       }
     },
-    [user.id]
+    [user?.id]
   )
 
   const fetchProducts = useCallback(async () => {
@@ -99,12 +99,14 @@ const useAppController = () => {
         'http://127.0.0.1:8000/productsApi/products/'
       )
       setProducts(response?.data)
-      fetchCartProducts(response?.data)
-      fetchWishlistProducts(response?.data)
+      if(user){
+        fetchCartProducts(response?.data)
+        fetchWishlistProducts(response?.data)
+      }
     } catch (error) {
       console.error('Error fetching products:', error)
     }
-  }, [fetchCartProducts, fetchWishlistProducts])
+  }, [fetchCartProducts, fetchWishlistProducts, user])
 
   useEffect(() => {
     fetchProducts()
@@ -232,7 +234,7 @@ const useAppController = () => {
         )
       : 0
 
-  const toggleWishlist = async product => {
+  const toggleWishlist = async (product) => {
     const token = localStorage.getItem('token')
     if (!token) {
       console.error('Token not available')
@@ -241,7 +243,7 @@ const useAppController = () => {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/wishlistApi/wishlist-items/?user=${user.id}&product=${product.id}`,
+        `http://127.0.0.1:8000/wishlistApi/wishlist-items/?user=${user?.id}&product=${product.id}`,
         {
           headers: {
             Authorization: `Token ${token}`
@@ -249,8 +251,12 @@ const useAppController = () => {
         }
       )
 
-      const wishlistItemId = response.data[0]?.id
-      if (wishlistItemId) {
+      const wishlistItemProductId = response.data.map(item => item.product);
+
+      if ( wishlistItemProductId.includes(product.id) ) {
+        const wishlistItemIndex = response.data.findIndex(item => item.product === product.id);
+        const wishlistItemId = response.data[wishlistItemIndex].id;
+
         await axios.delete(
           `http://127.0.0.1:8000/wishlistApi/wishlist-items/delete/${wishlistItemId}/`,
           {
@@ -260,12 +266,13 @@ const useAppController = () => {
           }
         )
         console.log('Item removed from wishlist on the server')
+        fetchProducts()
       } else {
         await axios.post(
           'http://127.0.0.1:8000/wishlistApi/wishlist-items/',
           {
             product: product.id,
-            user: user.id
+            user: user?.id
           },
           {
             headers: {
@@ -274,9 +281,38 @@ const useAppController = () => {
           }
         )
         console.log('Item added to wishlist on the server')
+        fetchProducts();
       }
     } catch (error) {
       console.error('Error toggling wishlist item:', error)
+    }
+  }
+
+  const handleAddToCart = (product) => {
+    if (user && user?.id) {
+      const token = localStorage.getItem('token')
+      axios
+        .post(
+          'http://127.0.0.1:8000/cartApi/add-to-cart/',
+          {
+            product: product.id,
+            user: user?.id
+          },
+          {
+            headers: {
+              Authorization: `Token ${token}`
+            }
+          }
+        )
+        .then(response => {
+          console.log('Item added to cart on the server:', response.data)
+          fetchProducts()
+        })
+        .catch(error => {
+          console.error('Error adding item to cart:', error)
+        })
+    } else {
+      console.error('User data not available')
     }
   }
 
@@ -300,7 +336,8 @@ const useAppController = () => {
     toggleWishlist,
     userWishlistProducts,
     userWishlistInfo,
-    wishlistQuantity
+    wishlistQuantity,
+    handleAddToCart
   }
 }
 
