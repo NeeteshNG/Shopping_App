@@ -33,7 +33,8 @@ function App() {
     isInWishlist,
     userWishlistProducts,
     wishlistQuantity,
-    handleAddToCart
+    handleAddToCart,
+    handleLogout
   } = useAppController();
 
   return (
@@ -44,6 +45,7 @@ function App() {
           loggedIn={loggedIn} 
           cartQuantity={cartQuantity}
           wishlistQuantity={wishlistQuantity}
+          handleLogout={handleLogout}
         />
         <Routes>
           <Route path="/Shopping_App" element={<Home products={products} />} />

@@ -12,11 +12,12 @@ const useAppController = () => {
   const [wishlistQuantity, setWishlistQuantity] = useState(0)
 
   const user = JSON.parse(localStorage.getItem('user'))
+  const token = localStorage.getItem('token')
 
   const fetchCartProducts = useCallback(
     async products => {
       try {
-        const token = localStorage.getItem('token')
+        if (!token || !user?.id) return
         const response = await axios.get(
           'http://127.0.0.1:8000/cartApi/cart-items/',
           {
@@ -50,13 +51,14 @@ const useAppController = () => {
         console.error('Error fetching products:', error)
       }
     },
-    [user?.id]
+    [user?.id, token]
   )
 
   const fetchWishlistProducts = useCallback(
     async products => {
       try {
-        const token = localStorage.getItem('token')
+        if (!token || !user?.id) return
+
         const response = await axios.get(
           'http://127.0.0.1:8000/wishlistApi/wishlist-items/',
           {
@@ -90,7 +92,7 @@ const useAppController = () => {
         console.error('Error fetching products:', error)
       }
     },
-    [user?.id]
+    [user?.id, token]
   )
 
   const fetchProducts = useCallback(async () => {
@@ -99,14 +101,14 @@ const useAppController = () => {
         'http://127.0.0.1:8000/productsApi/products/'
       )
       setProducts(response?.data)
-      if(user){
-        fetchCartProducts(response?.data)
-        fetchWishlistProducts(response?.data)
-      }
+      if (!token || !user?.id) return
+
+      fetchCartProducts(response?.data)
+      fetchWishlistProducts(response?.data)
     } catch (error) {
       console.error('Error fetching products:', error)
     }
-  }, [fetchCartProducts, fetchWishlistProducts, user])
+  }, [fetchCartProducts, fetchWishlistProducts, token, user?.id])
 
   useEffect(() => {
     fetchProducts()
@@ -122,7 +124,6 @@ const useAppController = () => {
       const filteredProductInfo = userCartInfo.filter(
         info => info.product === productId
       )
-      const token = localStorage.getItem('token')
       const cartItemId = filteredProductInfo[0].id
 
       await axios.delete(
@@ -149,7 +150,6 @@ const useAppController = () => {
         info => info.product === productId
       )
       const cartItemId = filteredProductInfo[0].id
-      const token = localStorage.getItem('token')
 
       const incrementResponse = await fetch(
         `http://127.0.0.1:8000/cartApi/cart-items/${cartItemId}/increment/`,
@@ -188,7 +188,6 @@ const useAppController = () => {
         info => info.product === productId
       )
       const cartItemId = filteredProductInfo[0].id
-      const token = localStorage.getItem('token')
 
       if (filteredProductInfo[0].quantity === 1) {
         return removeItemFromCart(productId)
@@ -234,8 +233,7 @@ const useAppController = () => {
         )
       : 0
 
-  const toggleWishlist = async (product) => {
-    const token = localStorage.getItem('token')
+  const toggleWishlist = async product => {
     if (!token) {
       console.error('Token not available')
       return
@@ -251,11 +249,13 @@ const useAppController = () => {
         }
       )
 
-      const wishlistItemProductId = response.data.map(item => item.product);
+      const wishlistItemProductId = response.data.map(item => item.product)
 
-      if ( wishlistItemProductId.includes(product.id) ) {
-        const wishlistItemIndex = response.data.findIndex(item => item.product === product.id);
-        const wishlistItemId = response.data[wishlistItemIndex].id;
+      if (wishlistItemProductId.includes(product.id)) {
+        const wishlistItemIndex = response.data.findIndex(
+          item => item.product === product.id
+        )
+        const wishlistItemId = response.data[wishlistItemIndex].id
 
         await axios.delete(
           `http://127.0.0.1:8000/wishlistApi/wishlist-items/delete/${wishlistItemId}/`,
@@ -281,16 +281,15 @@ const useAppController = () => {
           }
         )
         console.log('Item added to wishlist on the server')
-        fetchProducts();
+        fetchProducts()
       }
     } catch (error) {
       console.error('Error toggling wishlist item:', error)
     }
   }
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = product => {
     if (user && user?.id) {
-      const token = localStorage.getItem('token')
       axios
         .post(
           'http://127.0.0.1:8000/cartApi/add-to-cart/',
@@ -316,6 +315,23 @@ const useAppController = () => {
     }
   }
 
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://127.0.0.1:8000/api/logout/', null, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      setLoggedIn(false)
+      localStorage.removeItem('user')
+      localStorage.removeItem('loggedIn')
+      localStorage.removeItem('token')
+      fetchProducts();
+    } catch (error) {
+      console.error('Error logging out:', error)
+    }
+  }
+
   return {
     loggedIn,
     products,
@@ -337,7 +353,8 @@ const useAppController = () => {
     userWishlistProducts,
     userWishlistInfo,
     wishlistQuantity,
-    handleAddToCart
+    handleAddToCart,
+    handleLogout
   }
 }
 

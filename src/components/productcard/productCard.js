@@ -2,7 +2,7 @@ import React from 'react'
 import './productCard.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-function ProductCard ({ product, fetchCartProducts, toggleWishlist, userWishlistProducts, handleAddToCart }) {
+function ProductCard ({ product, toggleWishlist, userWishlistProducts, handleAddToCart }) {
   const { id, name, price, description, images } = product
   const navigate = useNavigate()
   const isInWishlist = userWishlistProducts.some(item => item.id === product.id)
