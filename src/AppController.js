@@ -10,6 +10,19 @@ const useAppController = () => {
   const [userWishlistInfo, setUserWishlistInfo] = useState([])
   const [userWishlistProducts, setUserWishlistProducts] = useState([])
   const [wishlistQuantity, setWishlistQuantity] = useState(0)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)  
+  const initialFormData = useState({
+    email: "",
+    password: "",
+    name: "",
+    phone_number: "",
+    address: "",
+  });
+  const [formData, setFormData] = useState({ ...initialFormData });
 
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
@@ -288,14 +301,15 @@ const useAppController = () => {
     }
   }
 
-  const handleAddToCart = product => {
+  const handleAddToCart = (product, quantity = 1) => {
     if (user && user?.id) {
       axios
         .post(
           'http://127.0.0.1:8000/cartApi/add-to-cart/',
           {
             product: product.id,
-            user: user?.id
+            user: user?.id,
+            quantity: quantity
           },
           {
             headers: {
@@ -326,14 +340,89 @@ const useAppController = () => {
       localStorage.removeItem('user')
       localStorage.removeItem('loggedIn')
       localStorage.removeItem('token')
-      fetchProducts();
+      setCartQuantity(0);
+      setWishlistQuantity(0);
+      setUserCartProducts([]);
+      setUserWishlistProducts([])
     } catch (error) {
       console.error('Error logging out:', error)
     }
   }
 
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+        email: username,
+        password: password,
+      });
+
+      if (response.status === 200) {
+        const data = response.data;
+        if (data.token) {
+          setLoggedIn(true);
+          localStorage.setItem('loggedIn', 'true')
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem('token', data.token)
+        }
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
+
+  const handleSlide = (direction) => {
+    const lastIndex = products.length - 1;
+    let newIndex;
+
+    if (direction === "prev") {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : lastIndex;
+    } else {
+      newIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
+    }
+
+    setCurrentIndex(newIndex);
+  };
+
+  const handleIncrement = (product) => {
+    if (quantity < product.stock) {
+      setQuantity(quantity + 1);
+    } else {
+      alert(
+        `Maximum available quantity for ${product.name} is ${product.stock}`
+      );
+    }
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleChangeOnRegister = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitOfRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register/",
+        formData
+      );
+      console.log("Registration successful!", response.data);
+      setFormData({ ...initialFormData });
+    } catch (error) {
+      console.error("Registration failed!", error.response.data);
+    }
+  };
+
   return {
     loggedIn,
+    user,
     products,
     cartQuantity,
     userCartInfo,
@@ -354,7 +443,22 @@ const useAppController = () => {
     userWishlistInfo,
     wishlistQuantity,
     handleAddToCart,
-    handleLogout
+    handleLogout,
+    handleLogin,
+    setUsername,
+    setPassword,
+    username,
+    password,
+    handleSlide,
+    currentIndex,
+    quantity,
+    handleIncrement,
+    handleDecrement,
+    selectedImageIndex,
+    setSelectedImageIndex,
+    formData,
+    handleChangeOnRegister,
+    handleSubmitOfRegister
   }
 }
 

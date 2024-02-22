@@ -1,38 +1,14 @@
 import "./registerPage.css";
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-const RegisterForm = () => {
+const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
   const navigate = useNavigate();
-  const initialFormData = useState({
-    email: "",
-    password: "",
-    name: "",
-    phone_number: "",
-    address: "",
-  });
 
-  const [formData, setFormData] = useState({ ...initialFormData });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/register/",
-        formData
-      );
-      console.log("Registration successful!", response.data);
-      navigate("/loginpage");
-      setFormData({ ...initialFormData });
-    } catch (error) {
-      console.error("Registration failed!", error.response.data);
-    }
+  const handleSubmitButton = async (e) => {
+    await handleSubmit(e);
+    navigate("/loginpage");
   };
 
   return (
@@ -115,7 +91,7 @@ const RegisterForm = () => {
               </div>
 
             </div>
-              <div className="reg-input-register" onClick={handleSubmit}>
+              <div className="reg-input-register" onClick={handleSubmitButton}>
                 <input type="submit" value="REGISTER"/>
               </div>
             <p className="login-text">

@@ -1,11 +1,8 @@
 import React from "react";
 import "./profilePage.css"
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function ProfilePage() {
-  const user = useSelector((state) => state.user.user);
-
+function ProfilePage({ user }) {
   if (!user) {
     return <div>User not found</div>;
   }

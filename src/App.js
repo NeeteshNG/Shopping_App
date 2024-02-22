@@ -16,6 +16,7 @@ import useAppController from "./AppController";
 function App() {
   const {
     loggedIn,
+    user,
     setLoggedIn,
     products,
     cartQuantity,
@@ -34,7 +35,22 @@ function App() {
     userWishlistProducts,
     wishlistQuantity,
     handleAddToCart,
-    handleLogout
+    handleLogout,
+    handleLogin,
+    setUsername,
+    setPassword,
+    username, 
+    password,
+    handleSlide,
+    currentIndex,
+    quantity,
+    handleIncrement,
+    handleDecrement,
+    selectedImageIndex,
+    setSelectedImageIndex,
+    formData,
+    handleChangeOnRegister,
+    handleSubmitOfRegister
   } = useAppController();
 
   return (
@@ -48,12 +64,30 @@ function App() {
           handleLogout={handleLogout}
         />
         <Routes>
-          <Route path="/Shopping_App" element={<Home products={products} />} />
+          <Route 
+            path="/Shopping_App" 
+            element={
+              <Home 
+                products={products} 
+                handleSlide={handleSlide} 
+                currentIndex={currentIndex}
+              />
+            } 
+          />
           <Route
             path="/loginpage"
             element={
               <ProtectedRoute
-                element={<LoginPage setLoggedIn={setLoggedIn} />}
+                element={
+                  <LoginPage 
+                    setLoggedIn={setLoggedIn}
+                    setUsername={setUsername}
+                    setPassword={setPassword}
+                    handleLogin={handleLogin}
+                    username={username}
+                    password={password}
+                  />
+                }
                 authenticated={!loggedIn}
                 redirectPath="/products"
               />
@@ -63,7 +97,13 @@ function App() {
             path="/registerPage"
             element={
               <ProtectedRoute
-                element={<RegisterForm />}
+                element={
+                  <RegisterForm 
+                    formData={formData}
+                    handleChange={handleChangeOnRegister}
+                    handleSubmit={handleSubmitOfRegister}
+                  />
+                }
                 authenticated={!loggedIn}
                 redirectPath="/products"
               />
@@ -114,7 +154,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute
-                element={<ProfilePage />}
+                element={<ProfilePage user={user}/>}
                 authenticated={loggedIn}
                 redirectPath="/loginpage"
               />
@@ -122,7 +162,18 @@ function App() {
           />
           <Route
             path="/products/:productId"
-            element={<ProductPage products={products} />}
+            element={
+              <ProductPage 
+                products={products}
+                handleAddToCart={handleAddToCart}
+                toggleWishlist={toggleWishlist}
+                quantity={quantity}
+                handleIncrement={handleIncrement}
+                handleDecrement={handleDecrement}
+                selectedImageIndex={selectedImageIndex}
+                setSelectedImageIndex={setSelectedImageIndex}
+              />
+            }
           />
         </Routes>
         <Footer />

@@ -1,69 +1,38 @@
-import React, { useState } from "react";
-import "./productPage.css"
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {
-  addToCart,
-  removeFromWishlist,
-  addToWishlist,
-} from "../../Redux/userSlice";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import './productPage.css'
+import { useParams } from 'react-router-dom'
 
-function ProductPage({ products }) {
-  const { productId } = useParams();
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const dispatch = useDispatch();
-  const product = products.find((product) => product.id === Number(productId));
+function ProductPage ({
+  products,
+  handleAddToCart,
+  toggleWishlist,
+  quantity,
+  handleIncrement,
+  handleDecrement,
+  selectedImageIndex,
+  setSelectedImageIndex
+}) {
+  const { productId } = useParams()
+  const product = products.find(product => product.id === Number(productId))
 
-  const wishlist = useSelector((state) => state.user.user?.wishlist || []);
-  const [isInWishlist, setIsInWishlist] = useState(
-    wishlist.some((item) => item.id === product.id)
-  );
-
-  const handleAddToCart = () => {
-    dispatch(addToCart(product));
-  };
-
-  const toggleWishlist = () => {
-    if (isInWishlist) {
-      dispatch(removeFromWishlist(product));
-    } else {
-      dispatch(addToWishlist(product));
-    }
-    setIsInWishlist(!isInWishlist);
-  };
+  // const [isInWishlist, setIsInWishlist] = useState(
+  //   wishlist.some((item) => item.id === product.id)
+  // );
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>Product not found</div>
   }
 
-  const handleIncrement = () => {
-    if (quantity < product.stock) {
-      setQuantity(quantity + 1);
-    } else {
-      alert(
-        `Maximum available quantity for ${product.name} is ${product.stock}`
-      );
-    }
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   return (
-    <div className="content-body">
-      <div className="product-page">
-        <div className="product-images">
-          <div className="thumbnail-images">
-          {product.images.map((item, index) => (
+    <div className='content-body'>
+      <div className='product-page'>
+        <div className='product-images'>
+          <div className='thumbnail-images'>
+            {product.images.map((item, index) => (
               <div
                 key={index}
                 className={`thumbnail ${
-                  index === selectedImageIndex ? "selected" : ""
+                  index === selectedImageIndex ? 'selected' : ''
                 }`}
                 onClick={() => setSelectedImageIndex(index)}
               >
@@ -71,30 +40,39 @@ function ProductPage({ products }) {
               </div>
             ))}
           </div>
-          <div className="main-image">
-            <img src={product.images[selectedImageIndex].image} alt={product.name} />
+          <div className='main-image'>
+            <img
+              src={product.images[selectedImageIndex].image}
+              alt={product.name}
+            />
           </div>
         </div>
-        <div className="product-details">
+        <div className='product-details'>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <p>Price: {product.price}/-</p>
           <p>Shipping Details: {product.shippingDetails}</p>
-          <div className="quantity-control">
+          <div className='quantity-control'>
             <button onClick={handleDecrement}>-</button>
-            <input type="text" value={quantity} readOnly />
-            <button onClick={handleIncrement}>+</button>
+            <input type='text' value={quantity} readOnly />
+            <button onClick={() => handleIncrement(product)}>+</button>
           </div>
-          <button className="add-to-cart-button" onClick={handleAddToCart}>
+          <button
+            className='add-to-cart-button'
+            onClick={() => handleAddToCart(product, quantity)}
+          >
             Add to Cart
           </button>
-          <button className="add-to-wishlist-button" onClick={toggleWishlist}>
+          <button
+            className='add-to-wishlist-button'
+            onClick={() => toggleWishlist(product)}
+          >
             Add to Wishlist
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProductPage;
+export default ProductPage

@@ -1,77 +1,63 @@
-import React, { useState } from "react";
-import "./loginPage.css"
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react'
+import './loginPage.css'
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
-const LoginPage = ({ setLoggedIn }) => {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const LoginPage = ({
+  username,
+  password,
+  setUsername,
+  setPassword,
+  handleLogin
+}) => {
+  const navigate = useNavigate()
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        email: username,
-        password: password,
-      });
-
-      if (response.status === 200) {
-        const data = response.data;
-        if (data.token) {
-          setLoggedIn(true);
-          navigate("/products");
-          localStorage.setItem('loggedIn', 'true')
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem('token', data.token)
-        }
-      } else {
-        console.error("Login failed");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
+  const handleSubmit = async () => {
+    await handleLogin()
+    navigate('/products')
+  }
 
   return (
-    <div className="content-body">
-      <div className="signin">
-        <div className="content">
+    <div className='content-body'>
+      <div className='signin'>
+        <div className='content'>
           <h2>Log In</h2>
 
-          <div className="form">
-            <div className="inputBox">
+          <div className='form'>
+            <div className='inputBox'>
               <input
-                type="text"
+                type='text'
                 value={username}
-                autoComplete="off"
-                name="username"
-                onChange={(e) => setUsername(e.target.value)}
+                autoComplete='off'
+                name='username'
+                onChange={e => setUsername(e.target.value)}
                 required
-              />{" "}
+              />{' '}
               <i>Email</i>
             </div>
 
-            <div className="inputBox">
+            <div className='inputBox'>
               <input
-                type="password"
+                type='password'
                 value={password}
-                autoComplete="off"
-                name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                autoComplete='off'
+                name='password'
+                onChange={e => setPassword(e.target.value)}
                 required
-              />{" "}
+              />{' '}
               <i>Password</i>
             </div>
-            <div className="inputBox" onClick={handleLogin}>
-              <input type="submit" value="Login" />
+            <div className='inputBox' onClick={handleSubmit}>
+              <input type='submit' value='Login' />
             </div>
           </div>
-            <p className="register-text">Not a Member ?  <Link to="/registerPage">Register</Link></p>
+          <p className='register-text'>
+            Not a Member ? <Link to='/registerPage'>Register</Link>
+          </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage
