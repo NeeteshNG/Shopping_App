@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./cart.css"
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function Cart
 
   useEffect(() => {
     fetchCartProducts();
-  }, []);
+  }, [fetchCartProducts]);
 
   return (
     <div className="content-body">
