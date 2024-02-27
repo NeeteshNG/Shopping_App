@@ -12,6 +12,7 @@ import ProfilePage from "./components/profilePage/profilePage";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import RegisterForm from "./components/registerPage/registerPage";
 import useAppController from "./AppController";
+import { Box } from "@mui/material";
 
 function App() {
   const {
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <Box className="App">
         <Navbar 
           setLoggedIn={setLoggedIn} 
           loggedIn={loggedIn} 
@@ -182,7 +183,7 @@ function App() {
           />
         </Routes>
         <Footer />
-      </div>
+      </Box>
     </Router>
   );
 }

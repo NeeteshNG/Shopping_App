@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, Button, Grid } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import SlidingPage from '../slidingpage/slidingpage'
-import '../homepage/home.css'
 import ProductCard from '../productcard/productCard'
 
 function Home ({
@@ -15,10 +14,10 @@ function Home ({
 }) {
   const visibleProducts = products.slice(currentIndex, currentIndex + 4)
   return (
-    <Box style={homeStyles.homePage} className='home-page'>
+    <Box style={homeStyles.homePage}>
       <SlidingPage />
-      <Box style={homeStyles.catalogContainer} className='catalog-container'>
-        <Box style={homeStyles.productsRow} className='products-row'>
+      <Box style={homeStyles.catalogContainer}>
+        <Box style={homeStyles.productsRow}>
           {visibleProducts.map((product, index) => (
             <ProductCard
               key={index}
@@ -30,7 +29,7 @@ function Home ({
             />
           ))}
         </Box>
-        <Box style={homeStyles.sliderControls} className='slider-controls'>
+        <Box style={homeStyles.sliderControls}>
           <Button onClick={() => handleSlide('prev')}>&#8249;</Button>
           <Button onClick={() => handleSlide('next')}>&#8250;</Button>
         </Box>
