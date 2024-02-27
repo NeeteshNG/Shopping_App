@@ -6,4 +6,9 @@
     padding: 20px;
     padding-top: 100px;
     min-height: 64vh;
+    overflow-x: hidden;
+}
+
+.App {
+    overflow-x: hidden;
 }

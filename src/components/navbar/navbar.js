@@ -62,7 +62,7 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
               </Link>
             </Box>
           )}
-          <Box className='nav-icon'>
+          <Box style={{width: '20%'}}>
             {loggedIn && (
               <>
                 <Select

@@ -71,6 +71,11 @@ function App() {
                 products={products} 
                 handleSlide={handleSlide} 
                 currentIndex={currentIndex}
+                fetchCartProducts={fetchCartProducts} 
+                toggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
+                userWishlistProducts={userWishlistProducts}
+                handleAddToCart={handleAddToCart}
               />
             } 
           />
