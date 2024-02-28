@@ -1,7 +1,9 @@
 import React from 'react'
-import { Box, Button } from '@mui/material'
+import { Box, Button, IconButton } from '@mui/material'
 import SlidingPage from '../slidingpage/slidingpage'
 import ProductCard from '../productcard/productCard'
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 function Home ({
   products,
@@ -30,8 +32,14 @@ function Home ({
           ))}
         </Box>
         <Box style={homeStyles.sliderControls}>
-          <Button onClick={() => handleSlide('prev')}>&#8249;</Button>
-          <Button onClick={() => handleSlide('next')}>&#8250;</Button>
+          <IconButton 
+            sx={homeStyles.prevNextButton} 
+            onClick={() => handleSlide('prev')}
+          ><ArrowCircleLeftIcon/></IconButton>
+          <IconButton 
+            sx={homeStyles.prevNextButton} 
+            onClick={() => handleSlide('next')}
+          ><ArrowCircleRightIcon/></IconButton>
         </Box>
       </Box>
     </Box>
@@ -76,8 +84,17 @@ const homeStyles = {
   sliderControls: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '10px'
-  }
+    marginTop: '10px',
+    gap: '10px'
+  },
+  prevNextButton: {
+    color: 'white',
+    backgroundColor: '#144981',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#144981'
+    }
+  },
 }
 
 export default Home

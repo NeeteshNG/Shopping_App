@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import "./products.css";
+import { Box, Grid, MenuItem, Select, Typography } from "@mui/material";
 import ProductCard from "../productcard/productCard";
 
-function Products({ products, fetchCartProducts, toggleWishlist, userWishlistProducts, handleAddToCart }) {
+function Products({
+  products,
+  fetchCartProducts,
+  toggleWishlist,
+  userWishlistProducts,
+  handleAddToCart,
+}) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
 
@@ -35,62 +41,121 @@ function Products({ products, fetchCartProducts, toggleWishlist, userWishlistPro
   ];
 
   return (
-    <div className="content-body">
-      <div className="products-body">
-        <div className="filter-section">
-          <div className="filter-box">
-            <label className="filter-text" htmlFor="category">
+    <Box>
+      <Box style={productsStyle.productsBody}>
+        <Box style={productsStyle.filterSection}>
+          <Box style={productsStyle.filterBox}>
+            <Typography style={productsStyle.filterText} htmlFor="category">
               FILTER BY CATEGORY :{" "}
-            </label>
-            <select
+            </Typography>
+            <Select
               id="category"
               value={selectedCategory}
               onChange={handleCategoryChange}
+              style={productsStyle.filterBoxSelect}
             >
-              <option value="">All</option>
+              <MenuItem value="">All</MenuItem>
               {categoryOptions.map((category, index) => (
-                <option key={index} value={category}>
+                <MenuItem key={index} value={category}>
                   {category}
-                </option>
+                </MenuItem>
               ))}
-            </select>
-          </div>
+            </Select>
+          </Box>
 
-          <div className="filter-box">
-            <label className="filter-text" htmlFor="sorting">
+          <Box style={productsStyle.filterBox}>
+            <Typography style={productsStyle.filterText} htmlFor="sorting">
               SORT BY PRICE:{" "}
-            </label>
-            <select
+            </Typography>
+            <Select
               id="sorting"
               value={selectedSorting}
               onChange={handleSortingChange}
+              style={productsStyle.filterBoxSelect}
             >
               {sortingOptions.map((option, index) => (
-                <option key={index} value={option.value}>
+                <MenuItem key={index} value={option.value}>
                   {option.label}
-                </option>
+                </MenuItem>
               ))}
-            </select>
-          </div>
-        </div>
-        <div className="body-cards">
-          <div className="grid-container">
+            </Select>
+          </Box>
+        </Box>
+        <Box style={productsStyle.bodyCards}>
+          <Grid style={productsStyle.gridBody} container spacing={2}>
             {filteredProducts.map((product) => (
-              <ProductCard
-                className="grid-item"
-                key={product.id}
-                product={product}
-                fetchCartProducts={fetchCartProducts}
-                toggleWishlist={toggleWishlist}
-                userWishlistProducts={userWishlistProducts}
-                handleAddToCart={handleAddToCart}
-              />
+              <Grid item key={product.id}>
+                <ProductCard
+                  product={product}
+                  fetchCartProducts={fetchCartProducts}
+                  toggleWishlist={toggleWishlist}
+                  userWishlistProducts={userWishlistProducts}
+                  handleAddToCart={handleAddToCart}
+                />
+              </Grid>
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 }
+
+
+const productsStyle = {
+  productsBody: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "80px"
+  },
+  filterSection: {
+    backgroundColor: "#f0f0f0",
+    borderRadius: "5px",
+    padding: "10px",
+    width: "fit-content",
+    display: "flex",
+    flexDirection: "row",
+  },
+  categoryFilter: {
+    marginTop: "20px",
+  },
+  bodyCards: {
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "20px",
+  },
+  filterBox: {
+    marginRight: "10px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  filterText: {
+    color: "#144981",
+    fontWeight: 600,
+  },
+  filterBoxSelect: {
+    backgroundColor: "#144981",
+    color: "white",
+    padding: "5px",
+    width: "fit-content",
+    border: "none",
+    fontSize: "12px",
+    height: "40%",
+    boxShadow: "0 5px 25px rgba(0, 0, 0, 0.2)",
+    WebkitAppearance: "button",
+    appearance: "button",
+    outline: "none",
+  },
+  gridBody: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gridGap: "1px",
+    width: "98%",
+  }
+};
 
 export default Products;

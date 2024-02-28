@@ -73,6 +73,7 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
                       style={navStyles.selectIcon}
                     />
                   )}
+                  value='logout'
                   onChange={handleSelectChange}
                   MenuProps={{
                     anchorOrigin: {
@@ -83,13 +84,13 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
                       vertical: 'top',
                       horizontal: 'left'
                     },
-                    getContentAnchorEl: null,
                     PaperProps: {
                       style: {
                         maxHeight: '200px',
                         borderRadius: '10px',
                         marginTop: '5px',
-                        marginLeft: '-10px'
+                        marginLeft: '-10px',
+                        overflow: 'hidden'
                       }
                     }
                   }}
