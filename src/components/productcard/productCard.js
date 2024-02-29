@@ -17,7 +17,8 @@ function ProductCard ({
   product,
   toggleWishlist,
   userWishlistProducts,
-  handleAddToCart
+  handleAddToCart,
+  setQuantity
 }) {
   const navigate = useNavigate()
   const { id, name, price, description, images } = product
@@ -30,7 +31,7 @@ function ProductCard ({
   return (
     <Card sx={cardStyles.cardBody}>
       <Box>
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${id}`} onClick={() => setQuantity(1)}>
           <CardMedia
             component='img'
             sx={cardStyles.cardImage}

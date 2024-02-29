@@ -8,6 +8,7 @@ function Products({
   toggleWishlist,
   userWishlistProducts,
   handleAddToCart,
+  setQuantity
 }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSorting, setSelectedSorting] = useState("");
@@ -91,6 +92,7 @@ function Products({
                   toggleWishlist={toggleWishlist}
                   userWishlistProducts={userWishlistProducts}
                   handleAddToCart={handleAddToCart}
+                  setQuantity={setQuantity}
                 />
               </Grid>
             ))}

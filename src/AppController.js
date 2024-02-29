@@ -320,6 +320,7 @@ const useAppController = () => {
         .then(response => {
           console.log('Item added to cart on the server:', response.data)
           fetchProducts()
+          setQuantity(1)
         })
         .catch(error => {
           console.error('Error adding item to cart:', error)
@@ -458,7 +459,8 @@ const useAppController = () => {
     setSelectedImageIndex,
     formData,
     handleChangeOnRegister,
-    handleSubmitOfRegister
+    handleSubmitOfRegister,
+    setQuantity
   }
 }
 

@@ -51,7 +51,8 @@ function App() {
     setSelectedImageIndex,
     formData,
     handleChangeOnRegister,
-    handleSubmitOfRegister
+    handleSubmitOfRegister,
+    setQuantity
   } = useAppController();
 
   return (
@@ -126,6 +127,7 @@ function App() {
                 isInWishlist={isInWishlist}
                 userWishlistProducts={userWishlistProducts}
                 handleAddToCart={handleAddToCart}
+                setQuantity={setQuantity}
               />
             }
           />
@@ -178,6 +180,7 @@ function App() {
                 handleDecrement={handleDecrement}
                 selectedImageIndex={selectedImageIndex}
                 setSelectedImageIndex={setSelectedImageIndex}
+                userWishlistProducts={userWishlistProducts}
               />
             }
           />
