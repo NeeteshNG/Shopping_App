@@ -2,7 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slidingpage.css";
+import { Box, CardMedia, IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const SlidingPage = () => {
   const images = [
@@ -15,31 +17,32 @@ const SlidingPage = () => {
   ];
 
   const CustomPrevArrow = (props) => {
-    const { className, onClick } = props;
+    const { onClick } = props;
     return (
-      <div className={className} onClick={onClick}>
-        <i className="fa-solid fa-caret-left arrow-button"></i>
-      </div>
+      <IconButton style={slideStyles.prevArrow} onClick={onClick}>
+        <ArrowBackIcon />
+      </IconButton>
     );
   };
 
   const CustomNextArrow = (props) => {
-    const { className, onClick } = props;
+    const { onClick } = props;
     return (
-      <div className={className} onClick={onClick}>
-        <i className="fa-solid fa-caret-right arrow-button"></i>
-      </div>
+      <IconButton style={slideStyles.nextArrow} onClick={onClick}>
+        <ArrowForwardIcon />
+      </IconButton>
     );
   };
 
   const slides = images.map((image, index) => (
-    <div key={index}>
-      <img
-        className="slide-images"
-        src={require(`${image}`)}
+    <Box key={index}>
+      <CardMedia
+        component="img"
+        style={slideStyles.slideImages}
+        image={require(`${image}`)}
         alt={`Slide ${index + 1}`}
       />
-    </div>
+    </Box>
   ));
 
   const settings = {
@@ -55,10 +58,41 @@ const SlidingPage = () => {
   };
 
   return (
-    <div className="slide-box">
+    <Box style={slideStyles.slideBox}>
       <Slider {...settings}>{slides}</Slider>
-    </div>
+    </Box>
   );
+};
+
+const slideStyles = {
+  slideBox: {
+    marginTop: "10px",
+    marginLeft: "40px",
+    marginRight: "40px"
+  },
+  prevArrow: {
+    position: "absolute",
+    left: "-40px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: "1",
+    color: "#144981",
+    cursor: "pointer",
+  },
+  nextArrow: {
+    position: "absolute",
+    right: "-40px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: "1",
+    color: "#144981",
+    cursor: "pointer",
+  },
+  slideImages: {
+    width: "100%",
+    height: "400px",
+    objectFit: "cover"
+}
 };
 
 export default SlidingPage;

@@ -17,7 +17,7 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
     const selectedValue = event.target.value
     if (selectedValue === 'profile') {
       navigate('/profile')
-    } else if (selectedValue === 'logout' && loggedIn) {
+    } else if (selectedValue === 'logout') {
       await handleLogout()
       navigate('/loginpage')
     }
@@ -73,7 +73,6 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
                       style={navStyles.selectIcon}
                     />
                   )}
-                  value='logout'
                   onChange={handleSelectChange}
                   MenuProps={{
                     anchorOrigin: {
