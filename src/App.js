@@ -1,20 +1,20 @@
-import "./App.css";
-import Home from "./components/homepage/home";
-import Navbar from "./components/navbar/navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Products from "./components/products/products";
-import Cart from "./components/cartpage/cart";
-import Wishlist from "./components/wishlistpage/wishlist";
-import ProductPage from "./components/productPage/productPage";
-import Footer from "./components/footer/footer";
-import LoginPage from "./components/loginPage/loginPage";
-import ProfilePage from "./components/profilePage/profilePage";
-import ProtectedRoute from "./components/protectedRoute/protectedRoute";
-import RegisterForm from "./components/registerPage/registerPage";
-import useAppController from "./AppController";
-import { Box } from "@mui/material";
+import './App.css'
+import Home from './components/homepage/home'
+import Navbar from './components/navbar/navbar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Products from './components/products/products'
+import Cart from './components/cartpage/cart'
+import Wishlist from './components/wishlistpage/wishlist'
+import ProductPage from './components/productPage/productPage'
+import Footer from './components/footer/footer'
+import LoginPage from './components/loginPage/loginPage'
+import ProfilePage from './components/profilePage/profilePage'
+import ProtectedRoute from './components/protectedRoute/protectedRoute'
+import RegisterForm from './components/registerPage/registerPage'
+import useAppController from './AppController'
+import { Box } from '@mui/material'
 
-function App() {
+function App () {
   const {
     loggedIn,
     user,
@@ -40,7 +40,7 @@ function App() {
     handleLogin,
     setUsername,
     setPassword,
-    username, 
+    username,
     password,
     handleSlide,
     currentIndex,
@@ -53,40 +53,40 @@ function App() {
     handleChangeOnRegister,
     handleSubmitOfRegister,
     setQuantity
-  } = useAppController();
+  } = useAppController()
 
   return (
     <Router>
-      <Box className="App">
-        <Navbar 
-          setLoggedIn={setLoggedIn} 
-          loggedIn={loggedIn} 
+      <Box className='App'>
+        <Navbar
+          setLoggedIn={setLoggedIn}
+          loggedIn={loggedIn}
           cartQuantity={cartQuantity}
           wishlistQuantity={wishlistQuantity}
           handleLogout={handleLogout}
         />
         <Routes>
-          <Route 
-            path="/Shopping_App" 
+          <Route
+            path='/Shopping_App'
             element={
-              <Home 
-                products={products} 
-                handleSlide={handleSlide} 
+              <Home
+                products={products}
+                handleSlide={handleSlide}
                 currentIndex={currentIndex}
-                fetchCartProducts={fetchCartProducts} 
+                fetchCartProducts={fetchCartProducts}
                 toggleWishlist={toggleWishlist}
                 isInWishlist={isInWishlist}
                 userWishlistProducts={userWishlistProducts}
                 handleAddToCart={handleAddToCart}
               />
-            } 
+            }
           />
           <Route
-            path="/loginpage"
+            path='/loginpage'
             element={
               <ProtectedRoute
                 element={
-                  <LoginPage 
+                  <LoginPage
                     setLoggedIn={setLoggedIn}
                     setUsername={setUsername}
                     setPassword={setPassword}
@@ -96,32 +96,32 @@ function App() {
                   />
                 }
                 authenticated={!loggedIn}
-                redirectPath="/products"
+                redirectPath='/products'
               />
             }
           />
           <Route
-            path="/registerPage"
+            path='/registerPage'
             element={
               <ProtectedRoute
                 element={
-                  <RegisterForm 
+                  <RegisterForm
                     formData={formData}
                     handleChange={handleChangeOnRegister}
                     handleSubmit={handleSubmitOfRegister}
                   />
                 }
                 authenticated={!loggedIn}
-                redirectPath="/products"
+                redirectPath='/products'
               />
             }
           />
           <Route
-            path="/products"
+            path='/products'
             element={
-              <Products 
-                fetchCartProducts={fetchCartProducts} 
-                products={products} 
+              <Products
+                fetchCartProducts={fetchCartProducts}
+                products={products}
                 authenticated={loggedIn}
                 toggleWishlist={toggleWishlist}
                 isInWishlist={isInWishlist}
@@ -131,12 +131,12 @@ function App() {
               />
             }
           />
-          <Route 
-            path="/cart" 
+          <Route
+            path='/cart'
             element={
-              <Cart 
-                products={products} 
-                setCartQuantity={setCartQuantity} 
+              <Cart
+                products={products}
+                setCartQuantity={setCartQuantity}
                 fetchCartProducts={fetchCartProducts}
                 userCartInfo={userCartInfo}
                 setUserCartInfo={setUserCartInfo}
@@ -147,31 +147,31 @@ function App() {
                 decrementQuantity={decrementCartItemQuantity}
                 totalAmount={totalAmountOfCart}
               />
-            } 
-          />
-          <Route 
-            path="/wishlist" 
-            element={
-              <Wishlist 
-                products={userWishlistProducts}
-                toggleWishlist={toggleWishlist} 
-              />
-            } 
+            }
           />
           <Route
-            path="/profile"
+            path='/wishlist'
             element={
-              <ProtectedRoute
-                element={<ProfilePage user={user}/>}
-                authenticated={loggedIn}
-                redirectPath="/loginpage"
+              <Wishlist
+                products={userWishlistProducts}
+                toggleWishlist={toggleWishlist}
               />
             }
           />
           <Route
-            path="/products/:productId"
+            path='/profile'
             element={
-              <ProductPage 
+              <ProtectedRoute
+                element={<ProfilePage user={user} />}
+                authenticated={loggedIn}
+                redirectPath='/loginpage'
+              />
+            }
+          />
+          <Route
+            path='/products/:productId'
+            element={
+              <ProductPage
                 products={products}
                 handleAddToCart={handleAddToCart}
                 toggleWishlist={toggleWishlist}
@@ -188,7 +188,7 @@ function App() {
         <Footer />
       </Box>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
