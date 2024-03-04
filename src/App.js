@@ -53,7 +53,8 @@ function App () {
     handleSubmitOfRegister,
     setQuantity,
     alert,
-    setAlert
+    setAlert,
+    errors
   } = useAppController()
 
   return (
@@ -131,6 +132,7 @@ function App () {
                     formData={formData}
                     handleChange={handleChangeOnRegister}
                     handleSubmit={handleSubmitOfRegister}
+                    errors={errors}
                   />
                 }
                 authenticated={!loggedIn}

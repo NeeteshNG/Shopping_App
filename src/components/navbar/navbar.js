@@ -1,11 +1,12 @@
 import React from 'react'
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 import { AppBar, Box, MenuItem, Select, Toolbar } from '@mui/material'
-import { FavoriteOutlined, ShoppingCartOutlined } from '@mui/icons-material'
+import { ShoppingCartOutlined } from '@mui/icons-material'
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
   const cartNotification = cartQuantity
@@ -47,7 +48,7 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
           </Box>
           <Box>
             <Link to='/wishlist' style={navStyles.navButtons}>
-              <FavoriteOutlined />
+              <FavoriteBorderIcon />
             </Link>
             {wishlistNotification !== 0 && (
               <Box style={navStyles.wishlistNotifiyDot}>

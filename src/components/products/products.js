@@ -157,6 +157,7 @@ const productsStyle = {
     gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gridGap: "1px",
     width: "98%",
+    justifyItems: "center"
   }
 };
 

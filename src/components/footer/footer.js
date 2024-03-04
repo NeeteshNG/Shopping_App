@@ -80,7 +80,7 @@ function Footer () {
               width: '50px',
               height: '50px',
               borderRadius: '50%',
-              backgroundColor: 'black',
+              backgroundColor: 'white',
               margin: '60px'
             }}
           >
@@ -90,7 +90,7 @@ function Footer () {
               target='_blank'
               style={{
                 textDecoration: 'none',
-                color: 'white',
+                color: '#144981',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'

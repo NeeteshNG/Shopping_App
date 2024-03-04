@@ -11,82 +11,80 @@ const useAppController = () => {
   const [userWishlistInfo, setUserWishlistInfo] = useState([])
   const [userWishlistProducts, setUserWishlistProducts] = useState([])
   const [wishlistQuantity, setWishlistQuantity] = useState(0)
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)  
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [quantity, setQuantity] = useState(1)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const initialFormData = useState({
-    email: "",
-    password: "",
-    name: "",
-    phone_number: "",
-    address: "",
-  });
-  const [formData, setFormData] = useState({ ...initialFormData });
+    email: '',
+    password: '',
+    name: '',
+    phone_number: '',
+    address: ''
+  })
+  const [formData, setFormData] = useState({ ...initialFormData })
+  const [errors, setErrors] = useState({})
 
   const [alert, setAlert] = useState({
     open: false,
-    type: "",
-    message: ""
-  });
+    type: '',
+    message: ''
+  })
 
   useEffect(() => {
     if (alert.open) {
       const timer = setTimeout(() => {
-        setAlert({ open: false, type: '', message: '' });
-      }, 5000);
+        setAlert({ open: false, type: '', message: '' })
+      }, 5000)
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer)
     }
-  }, [alert.open]);
+  }, [alert.open])
 
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
 
-  const fetchCartProducts = useCallback(
-    async () => {
-      try {
-        if (!token || !user?.id) return
-        const response = await axios.get(
-          'http://127.0.0.1:8000/cartApi/cart-items/',
-          {
-            headers: {
-              Authorization: `Token ${token}`
-            }
+  const fetchCartProducts = useCallback(async () => {
+    try {
+      if (!token || !user?.id) return
+      const response = await axios.get(
+        'http://127.0.0.1:8000/cartApi/cart-items/',
+        {
+          headers: {
+            Authorization: `Token ${token}`
           }
-        )
+        }
+      )
 
-        const userCartProductsInfo = response.data
+      const userCartProductsInfo = response.data
 
-        setUserCartInfo(response.data)
+      setUserCartInfo(response.data)
 
-        const authUserIdInfo = userCartProductsInfo.filter(
-          id_of => id_of.user === user?.id
-        )
+      const authUserIdInfo = userCartProductsInfo.filter(
+        id_of => id_of.user === user?.id
+      )
 
-        const filteredProducts = authUserIdInfo
-          .map(info => {
-            const product = products.find(item => item.id === info.product)
-            if (product) {
-              return { ...product, quantity: info.quantity }
-            }
-            return null
-          })
-          .filter(Boolean)
-
-        setUserCartProducts(filteredProducts)
-        setCartQuantity(filteredProducts.length)
-      } catch (error) {
-        setAlert({
-          open: true,
-          message: `Error: ${error?.message}. Kindly contact the developer`,
-          type:'error',
+      const filteredProducts = authUserIdInfo
+        .map(info => {
+          const product = products.find(item => item.id === info.product)
+          if (product) {
+            return { ...product, quantity: info.quantity }
+          }
+          return null
         })
-      }
-    },
-    [user?.id, token, products]
-  )
+        .filter(Boolean)
+
+      setUserCartProducts(filteredProducts)
+      setCartQuantity(filteredProducts.length)
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: `Error: ${error?.message}. Kindly contact the developer`,
+        type: 'error'
+      })
+    }
+  }, [user?.id, token, products])
 
   const fetchWishlistProducts = useCallback(
     async products => {
@@ -126,7 +124,7 @@ const useAppController = () => {
         setAlert({
           open: true,
           message: `Error: ${error?.message}. Kindly contact the developer`,
-          type:'error',
+          type: 'error'
         })
       }
     },
@@ -147,7 +145,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Error: ${error?.message}. Kindly contact the developer`,
-        type:'error',
+        type: 'error'
       })
     }
   }, [fetchCartProducts, fetchWishlistProducts, token, user?.id])
@@ -185,7 +183,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Error: ${error.message}`,
-        type:'error',
+        type: 'error'
       })
     }
   }
@@ -227,7 +225,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Error: ${error.message}`,
-        type:'error',
+        type: 'error'
       })
     }
   }
@@ -274,7 +272,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Error: ${error.message}`,
-        type:'error',
+        type: 'error'
       })
     }
   }
@@ -292,7 +290,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Please Login to add ${product.name} to the wishlist.`,
-        type:'error',
+        type: 'error'
       })
       return
     }
@@ -325,8 +323,10 @@ const useAppController = () => {
         )
         setAlert({
           open: true,
-          message: `"${capitalizeWords(product.name)}" removed from the Wishlist.`,
-          type:'warning'
+          message: `"${capitalizeWords(
+            product.name
+          )}" removed from the Wishlist.`,
+          type: 'warning'
         })
         fetchProducts()
       } else {
@@ -345,7 +345,7 @@ const useAppController = () => {
         setAlert({
           open: true,
           message: `"${capitalizeWords(product.name)}" added to the Wishlist.`,
-          type:'success'
+          type: 'success'
         })
         fetchProducts()
       }
@@ -353,7 +353,7 @@ const useAppController = () => {
       setAlert({
         open: true,
         message: `Error: ${error.message}`,
-        type:'error',
+        type: 'error'
       })
     }
   }
@@ -380,21 +380,23 @@ const useAppController = () => {
           setAlert({
             open: true,
             message: `"${capitalizeWords(product.name)}" added to the cart.`,
-            type:'success'
+            type: 'success'
           })
         })
-        .catch((error) => {
+        .catch(error => {
           setAlert({
             open: true,
-            message: `Error : "${(error.message)}".`,
-            type:'error'
+            message: `Error : "${error.message}".`,
+            type: 'error'
           })
         })
     } else {
       setAlert({
         open: true,
-        message: `Please Login to add "${capitalizeWords(product.name)}" to the Cart.`,
-        type:'error',
+        message: `Please Login to add "${capitalizeWords(
+          product.name
+        )}" to the Cart.`,
+        type: 'error'
       })
     }
   }
@@ -411,118 +413,186 @@ const useAppController = () => {
       localStorage.removeItem('user')
       localStorage.removeItem('loggedIn')
       localStorage.removeItem('token')
-      setCartQuantity(0);
-      setWishlistQuantity(0);
-      setUserCartProducts([]);
+      setCartQuantity(0)
+      setWishlistQuantity(0)
+      setUserCartProducts([])
       setUserWishlistProducts([])
       setAlert({
         open: true,
-        message: `Logout Successful. See you Later, ${capitalizeWords(user_name)}.`,
-        type:'success',
+        message: `Logout Successful. See you Later, ${capitalizeWords(
+          user_name
+        )}.`,
+        type: 'success'
       })
     } catch (error) {
       setAlert({
         open: true,
         message: `Error: ${error.message}`,
-        type:'error',
+        type: 'error'
       })
     }
   }
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+      const response = await axios.post('http://127.0.0.1:8000/api/login/', {
         email: username,
-        password: password,
-      });
+        password: password
+      })
 
       if (response.status === 200) {
-        const data = response.data;
+        const data = response.data
         if (data.token) {
-          setLoggedIn(true);
+          setLoggedIn(true)
           localStorage.setItem('loggedIn', 'true')
-          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem('user', JSON.stringify(data.user))
           localStorage.setItem('token', data.token)
           setAlert({
             open: true,
-            message: `Welcome, you have successfully logged in, ${capitalizeWords(data.user.name)}.`,
-            type:'success'
+            message: `Welcome, you have successfully logged in, ${capitalizeWords(
+              data.user.name
+            )}.`,
+            type: 'success'
           })
-          setUsername('');
-          setPassword('');
+          setUsername('')
+          setPassword('')
         }
       } else {
         setAlert({
           open: true,
           message: `Login Failed. Please try again.`,
-          type:'error',
+          type: 'error'
         })
       }
     } catch (error) {
       setAlert({
         open: true,
         message: `Error: ${error.response.data.error}`,
-        type:'error',
+        type: 'error'
       })
     }
-  };
+  }
 
+  const handleSlide = direction => {
+    const lastIndex = products.length - 1
+    let newIndex
 
-  const handleSlide = (direction) => {
-    const lastIndex = products.length - 1;
-    let newIndex;
-
-    if (direction === "prev") {
-      newIndex = currentIndex > 0 ? currentIndex - 1 : lastIndex;
+    if (direction === 'prev') {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : lastIndex
     } else {
-      newIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
+      newIndex = currentIndex < lastIndex ? currentIndex + 1 : 0
     }
 
-    setCurrentIndex(newIndex);
-  };
+    setCurrentIndex(newIndex)
+  }
 
-  const handleIncrement = (product) => {
+  const handleIncrement = product => {
     if (quantity < product.stock) {
-      setQuantity(quantity + 1);
+      setQuantity(quantity + 1)
     } else {
       alert(
         `Maximum available quantity for ${product.name} is ${product.stock}`
-      );
+      )
     }
-  };
+  }
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity(quantity - 1)
     }
-  };
+  }
 
-  const handleChangeOnRegister = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChangeOnRegister = e => {
+    const { name, value } = e.target
+    let updatedFormData = { ...formData }
+    let updatedErrors = { ...errors }
 
-  const handleSubmitOfRegister = async (e) => {
-    e.preventDefault();
+    switch (name) {
+      case 'email':
+        if (!value) {
+          delete updatedErrors.email
+        } else if (!/\S+@\S+\.\S+/.test(value)) {
+          updatedErrors.email = 'Invalid Email Format';
+        } else {
+          delete updatedErrors.email
+        }
+        break
+      case 'username':
+        if (!value) {
+          delete updatedErrors.username
+        } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(value)) {
+          updatedErrors.username = 'Username must contain letters and numbers combined';
+        } else {
+          delete updatedErrors.username
+        }
+        break
+      case 'password':
+        if (!value) {
+          delete updatedErrors.password
+        } else if (!/(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-zA-Z])/.test(value)) {
+          updatedErrors.password = 'Password must contain at least one symbol, one number, and one letter';
+        } else {
+          delete updatedErrors.password
+        }
+        break
+      case 'name':
+        if (!value) {
+          delete updatedErrors.name
+        } else if (!/^[a-zA-Z]+$/.test(value)) {
+          updatedErrors.name = 'Name must contain only letters';
+        } else {
+          delete updatedErrors.name
+        }
+        break
+      case 'phone_number':
+        if (!value) {
+          delete updatedErrors.phone_number
+        } else if (!/^\d{10}$/.test(value)) {
+          updatedErrors.phone_number = 'Phone number must be 10 digits';
+        } else {
+          delete updatedErrors.phone_number
+        }
+        break
+      case 'address':
+        if (!value) {
+          updatedErrors.address = 'Address is required'
+        } else {
+          delete updatedErrors.address
+        }
+        break
+      default:
+        break
+    }
+
+    updatedFormData = { ...updatedFormData, [name]: value }
+    setFormData(updatedFormData)
+    setErrors(updatedErrors)
+  }
+
+  const handleSubmitOfRegister = async e => {
+    e.preventDefault()
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/register/",
+        'http://127.0.0.1:8000/api/register/',
         formData
-      );
-      setFormData({ ...initialFormData });
+      )
+      setFormData({ ...initialFormData })
       setAlert({
         open: true,
-        message: `Registration successful. Kindly Login to proceed "${capitalizeWords(response.data.name)}".`,
-        type:'success',
+        message: `Registration successful. Kindly Login to proceed "${capitalizeWords(
+          response.data.name
+        )}".`,
+        type: 'success'
       })
     } catch (error) {
-      setFormData({ ...initialFormData });
+      setFormData({ ...initialFormData })
       setAlert({
         open: true,
         message: `Error: ${error.response.data}.`,
-        type:'error',
+        type: 'error'
       })
     }
-  };
+  }
 
   return {
     loggedIn,
@@ -565,7 +635,8 @@ const useAppController = () => {
     handleSubmitOfRegister,
     setQuantity,
     alert,
-    setAlert
+    setAlert,
+    errors
   }
 }
 
