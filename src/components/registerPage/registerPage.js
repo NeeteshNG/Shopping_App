@@ -23,7 +23,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.email}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}
@@ -36,7 +36,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.username}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}
@@ -49,7 +49,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.password}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}
@@ -64,7 +64,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.name}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}
@@ -77,7 +77,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.phone_number}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}
@@ -90,7 +90,7 @@ const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
               value={formData.address}
               autoComplete='off'
               onChange={handleChange}
-              fullWidth
+              fullwidth="true"
               required
               InputProps={{ style: { color: '#144981' } }}
               InputLabelProps={{ style: { color: '#144981' } }}

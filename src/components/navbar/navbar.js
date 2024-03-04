@@ -73,6 +73,7 @@ function Navbar ({ loggedIn, cartQuantity, wishlistQuantity, handleLogout }) {
                       style={navStyles.selectIcon}
                     />
                   )}
+                  value='profile'
                   onChange={handleSelectChange}
                   MenuProps={{
                     anchorOrigin: {

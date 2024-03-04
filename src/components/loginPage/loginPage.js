@@ -29,7 +29,7 @@ const LoginPage = ({
             value={username}
             autoComplete='off'
             onChange={e => setUsername(e.target.value)}
-            fullWidth
+            fullwidth="true"
             required
             InputProps={{ style: { color: '#144981' } }}
             InputLabelProps={{ style: { color: '#144981' } }}
@@ -42,7 +42,7 @@ const LoginPage = ({
             value={password}
             autoComplete='off'
             onChange={e => setPassword(e.target.value)}
-            fullWidth
+            fullwidth="true"
             required
             InputProps={{ style: { color: '#144981' } }}
             InputLabelProps={{ style: { color: '#144981' } }}

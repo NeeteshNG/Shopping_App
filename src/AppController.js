@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect, useCallback } from 'react'
+import { capitalizeWords } from './utilities'
 
 const useAppController = () => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -24,11 +25,27 @@ const useAppController = () => {
   });
   const [formData, setFormData] = useState({ ...initialFormData });
 
+  const [alert, setAlert] = useState({
+    open: false,
+    type: "",
+    message: ""
+  });
+
+  useEffect(() => {
+    if (alert.open) {
+      const timer = setTimeout(() => {
+        setAlert({ open: false, type: '', message: '' });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alert.open]);
+
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
 
   const fetchCartProducts = useCallback(
-    async products => {
+    async () => {
       try {
         if (!token || !user?.id) return
         const response = await axios.get(
@@ -61,10 +78,14 @@ const useAppController = () => {
         setUserCartProducts(filteredProducts)
         setCartQuantity(filteredProducts.length)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        setAlert({
+          open: true,
+          message: `Error: ${error?.message}. Kindly contact the developer`,
+          type:'error',
+        })
       }
     },
-    [user?.id, token]
+    [user?.id, token, products]
   )
 
   const fetchWishlistProducts = useCallback(
@@ -102,7 +123,11 @@ const useAppController = () => {
         setUserWishlistProducts(filteredWishlistProducts)
         setWishlistQuantity(filteredWishlistProducts.length)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        setAlert({
+          open: true,
+          message: `Error: ${error?.message}. Kindly contact the developer`,
+          type:'error',
+        })
       }
     },
     [user?.id, token]
@@ -116,10 +141,14 @@ const useAppController = () => {
       setProducts(response?.data)
       if (!token || !user?.id) return
 
-      fetchCartProducts(response?.data)
-      fetchWishlistProducts(response?.data)
+      await fetchCartProducts()
+      await fetchWishlistProducts(response?.data)
     } catch (error) {
-      console.error('Error fetching products:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error?.message}. Kindly contact the developer`,
+        type:'error',
+      })
     }
   }, [fetchCartProducts, fetchWishlistProducts, token, user?.id])
 
@@ -153,7 +182,11 @@ const useAppController = () => {
       setUserCartProducts(updatedCart)
       fetchCartProducts()
     } catch (error) {
-      console.error('Error removing item:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error.message}`,
+        type:'error',
+      })
     }
   }
 
@@ -191,7 +224,11 @@ const useAppController = () => {
       })
       setUserCartProducts(updatedCart)
     } catch (error) {
-      console.error('Error incrementing item quantity:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error.message}`,
+        type:'error',
+      })
     }
   }
 
@@ -234,7 +271,11 @@ const useAppController = () => {
       setUserCartProducts(updatedCart)
       fetchCartProducts()
     } catch (error) {
-      console.error('Error decrementing item quantity:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error.message}`,
+        type:'error',
+      })
     }
   }
 
@@ -248,7 +289,11 @@ const useAppController = () => {
 
   const toggleWishlist = async product => {
     if (!token) {
-      console.error('Token not available')
+      setAlert({
+        open: true,
+        message: `Please Login to add ${product.name} to the wishlist.`,
+        type:'error',
+      })
       return
     }
 
@@ -278,7 +323,11 @@ const useAppController = () => {
             }
           }
         )
-        console.log('Item removed from wishlist on the server')
+        setAlert({
+          open: true,
+          message: `"${capitalizeWords(product.name)}" removed from the Wishlist.`,
+          type:'warning'
+        })
         fetchProducts()
       } else {
         await axios.post(
@@ -293,11 +342,19 @@ const useAppController = () => {
             }
           }
         )
-        console.log('Item added to wishlist on the server')
+        setAlert({
+          open: true,
+          message: `"${capitalizeWords(product.name)}" added to the Wishlist.`,
+          type:'success'
+        })
         fetchProducts()
       }
     } catch (error) {
-      console.error('Error toggling wishlist item:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error.message}`,
+        type:'error',
+      })
     }
   }
 
@@ -318,15 +375,27 @@ const useAppController = () => {
           }
         )
         .then(response => {
-          console.log('Item added to cart on the server:', response.data)
           fetchProducts()
           setQuantity(1)
+          setAlert({
+            open: true,
+            message: `"${capitalizeWords(product.name)}" added to the cart.`,
+            type:'success'
+          })
         })
-        .catch(error => {
-          console.error('Error adding item to cart:', error)
+        .catch((error) => {
+          setAlert({
+            open: true,
+            message: `Error : "${(error.message)}".`,
+            type:'error'
+          })
         })
     } else {
-      console.error('User data not available')
+      setAlert({
+        open: true,
+        message: `Please Login to add "${capitalizeWords(product.name)}" to the Cart.`,
+        type:'error',
+      })
     }
   }
 
@@ -337,6 +406,7 @@ const useAppController = () => {
           Authorization: `Token ${token}`
         }
       })
+      const user_name = user.name
       setLoggedIn(false)
       localStorage.removeItem('user')
       localStorage.removeItem('loggedIn')
@@ -345,8 +415,17 @@ const useAppController = () => {
       setWishlistQuantity(0);
       setUserCartProducts([]);
       setUserWishlistProducts([])
+      setAlert({
+        open: true,
+        message: `Logout Successful. See you Later, ${capitalizeWords(user_name)}.`,
+        type:'success',
+      })
     } catch (error) {
-      console.error('Error logging out:', error)
+      setAlert({
+        open: true,
+        message: `Error: ${error.message}`,
+        type:'error',
+      })
     }
   }
 
@@ -364,12 +443,27 @@ const useAppController = () => {
           localStorage.setItem('loggedIn', 'true')
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem('token', data.token)
+          setAlert({
+            open: true,
+            message: `Welcome, you have successfully logged in, ${capitalizeWords(data.user.name)}.`,
+            type:'success'
+          })
+          setUsername('');
+          setPassword('');
         }
       } else {
-        console.error("Login failed");
+        setAlert({
+          open: true,
+          message: `Login Failed. Please try again.`,
+          type:'error',
+        })
       }
     } catch (error) {
-      console.error("Login error:", error);
+      setAlert({
+        open: true,
+        message: `Error: ${error.response.data.error}`,
+        type:'error',
+      })
     }
   };
 
@@ -414,11 +508,19 @@ const useAppController = () => {
         "http://127.0.0.1:8000/api/register/",
         formData
       );
-      console.log("Registration successful!", response.data);
       setFormData({ ...initialFormData });
+      setAlert({
+        open: true,
+        message: `Registration successful. Kindly Login to proceed "${capitalizeWords(response.data.name)}".`,
+        type:'success',
+      })
     } catch (error) {
-      console.error("Registration failed!", error.response.data);
       setFormData({ ...initialFormData });
+      setAlert({
+        open: true,
+        message: `Error: ${error.response.data}.`,
+        type:'error',
+      })
     }
   };
 
@@ -461,7 +563,9 @@ const useAppController = () => {
     formData,
     handleChangeOnRegister,
     handleSubmitOfRegister,
-    setQuantity
+    setQuantity,
+    alert,
+    setAlert
   }
 }
 

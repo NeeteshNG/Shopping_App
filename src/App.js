@@ -11,7 +11,7 @@ import ProfilePage from './components/profilePage/profilePage'
 import ProtectedRoute from './components/protectedRoute/protectedRoute'
 import RegisterForm from './components/registerPage/registerPage'
 import useAppController from './AppController'
-import { Box } from '@mui/material'
+import { Alert, Box } from '@mui/material'
 
 function App () {
   const {
@@ -51,12 +51,14 @@ function App () {
     formData,
     handleChangeOnRegister,
     handleSubmitOfRegister,
-    setQuantity
+    setQuantity,
+    alert,
+    setAlert
   } = useAppController()
 
   return (
     <Router>
-      <Box style={{ overflowX: 'hidden'}}>
+      <Box style={{ overflowX: 'hidden' }}>
         <Navbar
           setLoggedIn={setLoggedIn}
           loggedIn={loggedIn}
@@ -64,6 +66,27 @@ function App () {
           wishlistQuantity={wishlistQuantity}
           handleLogout={handleLogout}
         />
+        {alert.open && (
+          <Box
+            style={{
+              position: 'fixed',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: '1000',
+              marginTop: '10%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)'
+            }}
+          >
+            <Alert
+              severity={alert.type}
+              onClose={() => setAlert({ open: false, type: '', message: '' })}
+            >
+              {alert.message}
+            </Alert>
+          </Box>
+        )}
         <Routes>
           <Route
             path='/Shopping_App'

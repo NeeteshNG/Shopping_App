@@ -70,7 +70,7 @@ function Cart ({
                   variant='outlined'
                   size='small'
                   color='error'
-                  fullWidth
+                  fullwidth="true"
                 >
                   <DeleteIcon />
                 </IconButton>
