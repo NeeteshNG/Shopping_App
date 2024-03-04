@@ -1,106 +1,186 @@
-import "./registerPage.css";
-import React from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { Box, Typography, TextField, Button } from '@mui/material'
+import { useNavigate } from 'react-router'
 
 const RegisterForm = ({ formData, handleChange, handleSubmit }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const handleSubmitButton = async (e) => {
-    await handleSubmit(e);
-    navigate("/loginpage");
-  };
+  const handleSubmitButton = async e => {
+    await handleSubmit(e)
+    navigate('/loginpage')
+  }
 
   return (
-      <div className="content-body">
-        <div className="signup">
-          <div className="reg-content">
-            <h2>Register</h2>
+    <Box style={registerStyles.registerBody}>
+      <Box style={registerStyles.formBox}>
+        <Typography style={registerStyles.registerText}>REGISTER</Typography>
+        <Box style={registerStyles.twoColumnBox}>
+          <Box style={registerStyles.formColumn}>
+            <TextField
+              label='Email'
+              variant='filled'
+              type='email'
+              name='email'
+              value={formData.email}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+            <TextField
+              label='Username'
+              variant='filled'
+              type='text'
+              name='username'
+              value={formData.username}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+            <TextField
+              label='Password'
+              variant='filled'
+              type='password'
+              name='password'
+              value={formData.password}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+          </Box>
+          <Box style={registerStyles.formColumn}>
+            <TextField
+              label='Name'
+              variant='filled'
+              type='text'
+              name='name'
+              value={formData.name}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+            <TextField
+              label='Phone Number'
+              variant='filled'
+              type='text'
+              name='phone_number'
+              value={formData.phone_number}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+            <TextField
+              label='Address'
+              variant='filled'
+              type='text'
+              name='address'
+              value={formData.address}
+              autoComplete='off'
+              onChange={handleChange}
+              fullWidth
+              required
+              InputProps={{ style: { color: '#144981' } }}
+              InputLabelProps={{ style: { color: '#144981' } }}
+            />
+          </Box>
+        </Box>
+        <Box style={registerStyles.submitButtonBox}>
+          <Button
+            variant='contained'
+            onClick={handleSubmitButton}
+            style={registerStyles.submitButton}
+          >
+            REGISTER
+          </Button>
+        </Box>
+        <Box style={registerStyles.loginTextBox}>
+          <Typography style={{ color: '#144981' }}>
+            Already a Member?{' '}
+          </Typography>
+          <Typography
+            onClick={() => navigate('/loginpage')}
+            style={{
+              color: '#144981',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              textDecoration: 'underline'
+            }}
+          >
+            Login
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
 
-            <div className="reg-form">
-              <div className="reg-input">
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  autoComplete="off"
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Email</i>
-              </div>
+const registerStyles = {
+  registerBody: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '120px',
+    marginBottom: '100px'
+  },
+  formBox: {
+    width: '70%',
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '8px',
+    padding: '20px',
+    flexDirection: 'column',
+    border: '5px solid #144981'
+  },
+  registerText: {
+    fontSize: '40px',
+    fontWeight: 'bold',
+    color: '#144981',
+    marginBottom: '20px'
+  },
+  twoColumnBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%'
+  },
+  formColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+    width: '48%'
+  },
+  submitButtonBox: {
+    margin: '20px 0'
+  },
+  submitButton: {
+    backgroundColor: '#144981',
+    color: 'white',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#FF8C00'
+    }
+  },
+  loginTextBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '10px',
+    color: '#144981'
+  }
+}
 
-              <div className="reg-input">
-                <input
-                  type="username"
-                  name="username"
-                  value={formData.username}
-                  autoComplete="off"
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Username</i>
-              </div>
-
-              <div className="reg-input">
-                <input
-                  autoComplete="off"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Password</i>
-              </div>
-
-              <div className="reg-input">
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Name</i>
-              </div>
-
-              <div className="reg-input">
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="phone_number"
-                  value={formData.phone_number}
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Phone Number</i>
-              </div>
-
-              <div className="reg-input">
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                />{" "}
-                <i>Address</i>
-              </div>
-
-            </div>
-              <div className="reg-input-register" onClick={handleSubmitButton}>
-                <input type="submit" value="REGISTER"/>
-              </div>
-            <p className="login-text">
-              Already a Member ? <Link to="/loginpage">Login</Link>
-            </p>
-          </div>
-        </div>
-      </div>
-  );
-};
-
-export default RegisterForm;
+export default RegisterForm

@@ -1,4 +1,3 @@
-import './App.css'
 import Home from './components/homepage/home'
 import Navbar from './components/navbar/navbar'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -57,7 +56,7 @@ function App () {
 
   return (
     <Router>
-      <Box className='App'>
+      <Box style={{ overflowX: 'hidden'}}>
         <Navbar
           setLoggedIn={setLoggedIn}
           loggedIn={loggedIn}

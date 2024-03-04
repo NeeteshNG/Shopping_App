@@ -418,6 +418,7 @@ const useAppController = () => {
       setFormData({ ...initialFormData });
     } catch (error) {
       console.error("Registration failed!", error.response.data);
+      setFormData({ ...initialFormData });
     }
   };
 
