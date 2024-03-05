@@ -7,3 +7,8 @@ export const capitalizeWords = str => {
 
   return capitalizedWords.join(' ')
 }
+
+export const preprocessPhoneNumber = (value) => {
+  if (!value) return '';
+  return value.replace(/\s+/g, '').replace('+', '');
+};

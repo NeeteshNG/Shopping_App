@@ -11,11 +11,12 @@ function Cart ({
   removeItem,
   incrementQuantity,
   decrementQuantity,
-  totalAmount
+  totalAmount,
+  products
 }) {
   useEffect(() => {
-    fetchCartProducts()
-  }, [fetchCartProducts])
+    fetchCartProducts(products)
+  }, [fetchCartProducts, products])
 
   return (
     <Box style={cartStyles.container}>

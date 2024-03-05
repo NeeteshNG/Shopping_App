@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect, useCallback } from 'react'
-import { capitalizeWords } from './utilities'
+import { capitalizeWords, preprocessPhoneNumber } from './utilities'
 
 const useAppController = () => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -20,10 +20,10 @@ const useAppController = () => {
     email: '',
     password: '',
     name: '',
-    phone_number: '',
+    phone_number: '+91',
     address: ''
   })
-  const [formData, setFormData] = useState({ ...initialFormData })
+  const [formData, setFormData] = useState(...initialFormData )
   const [errors, setErrors] = useState({})
 
   const [alert, setAlert] = useState({
@@ -45,7 +45,7 @@ const useAppController = () => {
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
 
-  const fetchCartProducts = useCallback(async () => {
+  const fetchCartProducts = useCallback(async (products) => {
     try {
       if (!token || !user?.id) return
       const response = await axios.get(
@@ -84,7 +84,7 @@ const useAppController = () => {
         type: 'error'
       })
     }
-  }, [user?.id, token, products])
+  }, [user?.id, token])
 
   const fetchWishlistProducts = useCallback(
     async products => {
@@ -139,7 +139,7 @@ const useAppController = () => {
       setProducts(response?.data)
       if (!token || !user?.id) return
 
-      await fetchCartProducts()
+      await fetchCartProducts(response?.data)
       await fetchWishlistProducts(response?.data)
     } catch (error) {
       setAlert({
@@ -178,7 +178,7 @@ const useAppController = () => {
 
       const updatedCart = userCartProducts.filter(item => item.id !== productId)
       setUserCartProducts(updatedCart)
-      fetchCartProducts()
+      fetchCartProducts(products)
     } catch (error) {
       setAlert({
         open: true,
@@ -267,7 +267,7 @@ const useAppController = () => {
         return item
       })
       setUserCartProducts(updatedCart)
-      fetchCartProducts()
+      fetchCartProducts(products)
     } catch (error) {
       setAlert({
         open: true,
@@ -512,7 +512,7 @@ const useAppController = () => {
         if (!value) {
           delete updatedErrors.email
         } else if (!/\S+@\S+\.\S+/.test(value)) {
-          updatedErrors.email = 'Invalid Email Format';
+          updatedErrors.email = 'Invalid Email Format'
         } else {
           delete updatedErrors.email
         }
@@ -521,7 +521,8 @@ const useAppController = () => {
         if (!value) {
           delete updatedErrors.username
         } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(value)) {
-          updatedErrors.username = 'Username must contain letters and numbers combined';
+          updatedErrors.username =
+            'Username must contain letters and numbers combined'
         } else {
           delete updatedErrors.username
         }
@@ -530,7 +531,8 @@ const useAppController = () => {
         if (!value) {
           delete updatedErrors.password
         } else if (!/(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-zA-Z])/.test(value)) {
-          updatedErrors.password = 'Password must contain at least one symbol, one number, and one letter';
+          updatedErrors.password =
+            'Password must contain at least one symbol, one number, and one letter'
         } else {
           delete updatedErrors.password
         }
@@ -539,7 +541,7 @@ const useAppController = () => {
         if (!value) {
           delete updatedErrors.name
         } else if (!/^[a-zA-Z]+$/.test(value)) {
-          updatedErrors.name = 'Name must contain only letters';
+          updatedErrors.name = 'Name must contain only letters'
         } else {
           delete updatedErrors.name
         }
@@ -547,15 +549,11 @@ const useAppController = () => {
       case 'phone_number':
         if (!value) {
           delete updatedErrors.phone_number
-        } else if (!/^\d{10}$/.test(value)) {
-          updatedErrors.phone_number = 'Phone number must be 10 digits';
-        } else {
-          delete updatedErrors.phone_number
         }
         break
       case 'address':
         if (!value) {
-          updatedErrors.address = 'Address is required'
+          delete updatedErrors.address
         } else {
           delete updatedErrors.address
         }
@@ -571,12 +569,14 @@ const useAppController = () => {
 
   const handleSubmitOfRegister = async e => {
     e.preventDefault()
+    const formDataEdit = formData
+    formDataEdit.phone_number = preprocessPhoneNumber(formDataEdit.phone_number)
     try {
       const response = await axios.post(
         'http://127.0.0.1:8000/api/register/',
-        formData
+        formDataEdit
       )
-      setFormData({ ...initialFormData })
+      setFormData(...initialFormData)
       setAlert({
         open: true,
         message: `Registration successful. Kindly Login to proceed "${capitalizeWords(
@@ -585,7 +585,7 @@ const useAppController = () => {
         type: 'success'
       })
     } catch (error) {
-      setFormData({ ...initialFormData })
+      setFormData(...initialFormData)
       setAlert({
         open: true,
         message: `Error: ${error.response.data}.`,

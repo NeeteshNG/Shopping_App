@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import SlidingPage from '../slidingpage/slidingpage'
 import ProductCard from '../productcard/productCard'
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
