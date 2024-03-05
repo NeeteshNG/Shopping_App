@@ -2,14 +2,22 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import { MuiTelInput } from 'mui-tel-input'
 import { useNavigate } from 'react-router'
 
-const RegisterForm = ({ formData, handleChange, handleSubmit, errors }) => {
+const RegisterForm = ({
+  formData,
+  handleChange,
+  handleSubmit,
+  errors,
+  registerSuccess,
+}) => {
   const navigate = useNavigate()
 
   const handleSubmitButton = async e => {
     await handleSubmit(e)
-    navigate('/loginpage')
+    if (registerSuccess) {
+      navigate('/loginpage')
+    }
   }
-  
+
   return (
     <Box style={registerStyles.registerBody}>
       <Box style={registerStyles.formBox}>
@@ -88,25 +96,6 @@ const RegisterForm = ({ formData, handleChange, handleSubmit, errors }) => {
               }}
               error={errors.name ? true : false}
             />
-            {/* <TextField
-              label={errors.phone_number ? errors.phone_number : 'Phone Number'}
-              variant='outlined'
-              type='tel'
-              name='phone_number'
-              value={formData.phone_number}
-              autoComplete='off'
-              onChange={handleChange}
-              fullWidth={true}
-              required
-              InputProps={{ style: { color: errors.phone_number ? 'red' : '#144981' } }}
-              InputLabelProps={{ style: { color: errors.phone_number ? 'red' : '#144981' } }}
-              error={errors.phone_number ? true : false}
-              inputProps={{
-                inputMode: 'numeric',
-                pattern: '[0-9]*',
-                maxLength: 10
-              }}
-            /> */}
             <MuiTelInput
               label='Phone Number'
               value={formData.phone_number}
@@ -115,8 +104,12 @@ const RegisterForm = ({ formData, handleChange, handleSubmit, errors }) => {
               }
               required
               error={errors.phone_number ? true : false}
-              InputProps={{ style: { color: errors.phone_number ? 'red' : '#144981' } }}
-              InputLabelProps={{ style: { color: errors.phone_number ? 'red' : '#144981' } }}
+              InputProps={{
+                style: { color: errors.phone_number ? 'red' : '#144981' }
+              }}
+              InputLabelProps={{
+                style: { color: errors.phone_number ? 'red' : '#144981' }
+              }}
             />
             <TextField
               label={errors.address ? errors.address : 'Address'}

@@ -54,7 +54,9 @@ function App () {
     setQuantity,
     alert,
     setAlert,
-    errors
+    errors,
+    registerSuccess,
+    setRegisterSuccess,
   } = useAppController()
 
   return (
@@ -116,6 +118,8 @@ function App () {
                     handleLogin={handleLogin}
                     username={username}
                     password={password}
+                    setRegisterSuccess={setRegisterSuccess}
+                    loginSuccess={loggedIn}
                   />
                 }
                 authenticated={!loggedIn}
@@ -133,6 +137,7 @@ function App () {
                     handleChange={handleChangeOnRegister}
                     handleSubmit={handleSubmitOfRegister}
                     errors={errors}
+                    registerSuccess={registerSuccess}
                   />
                 }
                 authenticated={!loggedIn}

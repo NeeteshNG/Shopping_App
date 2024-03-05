@@ -7,14 +7,20 @@ const LoginPage = ({
   password,
   setUsername,
   setPassword,
-  handleLogin
+  handleLogin,
+  setRegisterSuccess,
+  loginSuccess
 }) => {
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
     await handleLogin()
-    navigate('/products')
+    if (loginSuccess) {
+      navigate('/products')
+    }
   }
+
+  setRegisterSuccess(false)
 
   return (
     <Box style={loginStyles.loginBody}>
@@ -29,7 +35,7 @@ const LoginPage = ({
             value={username}
             autoComplete='off'
             onChange={e => setUsername(e.target.value)}
-            fullwidth="true"
+            fullwidth='true'
             required
             InputProps={{ style: { color: '#144981' } }}
             InputLabelProps={{ style: { color: '#144981' } }}
@@ -42,7 +48,7 @@ const LoginPage = ({
             value={password}
             autoComplete='off'
             onChange={e => setPassword(e.target.value)}
-            fullwidth="true"
+            fullwidth='true'
             required
             InputProps={{ style: { color: '#144981' } }}
             InputLabelProps={{ style: { color: '#144981' } }}
@@ -58,9 +64,7 @@ const LoginPage = ({
           </Button>
         </Box>
         <Box style={loginStyles.registerTextBox}>
-          <Typography style={{ color: '#144981' }}>
-            Not a Member?{' '}
-          </Typography>
+          <Typography style={{ color: '#144981' }}>Not a Member? </Typography>
           <Typography
             onClick={() => navigate('/registerPage')}
             style={{

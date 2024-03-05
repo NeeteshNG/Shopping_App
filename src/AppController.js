@@ -20,11 +20,13 @@ const useAppController = () => {
     email: '',
     password: '',
     name: '',
+    username: '',
     phone_number: '+91',
     address: ''
   })
   const [formData, setFormData] = useState(...initialFormData )
   const [errors, setErrors] = useState({})
+  const [registerSuccess, setRegisterSuccess] = useState(false)
 
   const [alert, setAlert] = useState({
     open: false,
@@ -584,13 +586,25 @@ const useAppController = () => {
         )}".`,
         type: 'success'
       })
+      setRegisterSuccess(true)
     } catch (error) {
       setFormData(...initialFormData)
-      setAlert({
-        open: true,
-        message: `Error: ${error.response.data}.`,
-        type: 'error'
-      })
+      console.error(error);
+      if (error.response && error.response.data) {
+        if (typeof error.response.data === 'string') {
+          setAlert({
+            open: true,
+            message: `Error: ${error.response.data}.`,
+            type: 'error'
+          })
+        } else {
+          setAlert({
+            open: true,
+            message: `Error: Multiple Errors Occur.`,
+            type: 'error'
+          })
+        }
+      }
     }
   }
 
@@ -636,7 +650,9 @@ const useAppController = () => {
     setQuantity,
     alert,
     setAlert,
-    errors
+    errors,
+    registerSuccess,
+    setRegisterSuccess
   }
 }
 
