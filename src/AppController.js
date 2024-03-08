@@ -24,7 +24,7 @@ const useAppController = () => {
     phone_number: '+91',
     address: ''
   })
-  const [formData, setFormData] = useState(...initialFormData )
+  const [formData, setFormData] = useState(...initialFormData)
   const [errors, setErrors] = useState({})
   const [registerSuccess, setRegisterSuccess] = useState(false)
 
@@ -32,6 +32,11 @@ const useAppController = () => {
     open: false,
     type: '',
     message: ''
+  })
+
+  const [otp, setOtp] = useState({
+    openModal: false,
+    otpValue: ''
   })
 
   useEffect(() => {
@@ -47,46 +52,49 @@ const useAppController = () => {
   const user = JSON.parse(localStorage.getItem('user'))
   const token = localStorage.getItem('token')
 
-  const fetchCartProducts = useCallback(async (products) => {
-    try {
-      if (!token || !user?.id) return
-      const response = await axios.get(
-        'http://127.0.0.1:8000/cartApi/cart-items/',
-        {
-          headers: {
-            Authorization: `Token ${token}`
+  const fetchCartProducts = useCallback(
+    async products => {
+      try {
+        if (!token || !user?.id) return
+        const response = await axios.get(
+          'http://127.0.0.1:8000/cartApi/cart-items/',
+          {
+            headers: {
+              Authorization: `Token ${token}`
+            }
           }
-        }
-      )
+        )
 
-      const userCartProductsInfo = response.data
+        const userCartProductsInfo = response.data
 
-      setUserCartInfo(response.data)
+        setUserCartInfo(response.data)
 
-      const authUserIdInfo = userCartProductsInfo.filter(
-        id_of => id_of.user === user?.id
-      )
+        const authUserIdInfo = userCartProductsInfo.filter(
+          id_of => id_of.user === user?.id
+        )
 
-      const filteredProducts = authUserIdInfo
-        .map(info => {
-          const product = products.find(item => item.id === info.product)
-          if (product) {
-            return { ...product, quantity: info.quantity }
-          }
-          return null
+        const filteredProducts = authUserIdInfo
+          .map(info => {
+            const product = products.find(item => item.id === info.product)
+            if (product) {
+              return { ...product, quantity: info.quantity }
+            }
+            return null
+          })
+          .filter(Boolean)
+
+        setUserCartProducts(filteredProducts)
+        setCartQuantity(filteredProducts.length)
+      } catch (error) {
+        setAlert({
+          open: true,
+          message: `Error: ${error?.message}. Kindly contact the developer`,
+          type: 'error'
         })
-        .filter(Boolean)
-
-      setUserCartProducts(filteredProducts)
-      setCartQuantity(filteredProducts.length)
-    } catch (error) {
-      setAlert({
-        open: true,
-        message: `Error: ${error?.message}. Kindly contact the developer`,
-        type: 'error'
-      })
-    }
-  }, [user?.id, token])
+      }
+    },
+    [user?.id, token]
+  )
 
   const fetchWishlistProducts = useCallback(
     async products => {
@@ -573,39 +581,82 @@ const useAppController = () => {
     e.preventDefault()
     const formDataEdit = formData
     formDataEdit.phone_number = preprocessPhoneNumber(formDataEdit.phone_number)
+    
     try {
       const response = await axios.post(
         'http://127.0.0.1:8000/api/register/',
         formDataEdit
       )
-      setFormData(...initialFormData)
-      setAlert({
-        open: true,
-        message: `Registration successful. Kindly Login to proceed "${capitalizeWords(
-          response.data.name
-        )}".`,
-        type: 'success'
-      })
-      setRegisterSuccess(true)
-    } catch (error) {
-      setFormData(...initialFormData)
-      console.error(error);
-      if (error.response && error.response.data) {
-        if (typeof error.response.data === 'string') {
-          setAlert({
-            open: true,
-            message: `Error: ${error.response.data}.`,
-            type: 'error'
-          })
-        } else {
-          setAlert({
-            open: true,
-            message: `Error: Multiple Errors Occur.`,
-            type: 'error'
-          })
-        }
+      
+      if (response.status === 200) {
+        setAlert({
+          open: true,
+          message: `OTP Sent.`,
+          type: 'success'
+        })
+        setOtp({
+          openModal: true
+        })
       }
+
+    } catch (error) {
+      console.error(error)
     }
+  }
+
+  const handleVerifyOtp = async () => {
+    const final_phone_number = preprocessPhoneNumber(formData.phone_number)
+
+    const data = {
+      otp: otp.otpValue,
+      email: formData.email,
+      name: formData.name,
+      username: formData.username,
+      password: formData.password,
+      phone_number: final_phone_number,
+      address: formData.address
+    }
+
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1:8000/api/verify_otp/',
+        JSON.stringify(data),
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      if (response.status === 201) {
+        setOtp({
+          openModal: false,
+          otpValue: ''
+        })
+        setAlert({
+          open: true,
+          message: `Registration Successfull.`,
+          type: 'success'
+        })
+        setFormData(...initialFormData)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleChangeOtp = value => {
+    setOtp({
+      openModal: true,
+      otpValue: value
+    })
+  }
+
+  const handleCloseOtpModal = value => {
+    setOtp({
+      openModal: false,
+      otpValue: ''
+    })
   }
 
   return {
@@ -652,7 +703,11 @@ const useAppController = () => {
     setAlert,
     errors,
     registerSuccess,
-    setRegisterSuccess
+    setRegisterSuccess,
+    otp,
+    handleVerifyOtp,
+    handleChangeOtp,
+    handleCloseOtpModal
   }
 }
 

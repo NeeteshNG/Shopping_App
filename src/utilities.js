@@ -12,3 +12,9 @@ export const preprocessPhoneNumber = (value) => {
   if (!value) return '';
   return value.replace(/\s+/g, '').replace('+', '');
 };
+
+export const validateChar = (text, index) => {
+  const isNumber = typeof text === 'number'
+  const isString = typeof text === 'string'
+  return (isNumber || (isString && text !== '')) && !isNaN(Number(text))
+}

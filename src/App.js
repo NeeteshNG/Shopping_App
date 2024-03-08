@@ -57,6 +57,10 @@ function App () {
     errors,
     registerSuccess,
     setRegisterSuccess,
+    otp,
+    handleVerifyOtp,
+    handleChangeOtp,
+    handleCloseOtpModal
   } = useAppController()
 
   return (
@@ -138,6 +142,10 @@ function App () {
                     handleSubmit={handleSubmitOfRegister}
                     errors={errors}
                     registerSuccess={registerSuccess}
+                    otp={otp}
+                    handleVerifyOtp={handleVerifyOtp}
+                    handleChangeOtp={handleChangeOtp}
+                    handleCloseOtpModal={handleCloseOtpModal}
                   />
                 }
                 authenticated={!loggedIn}

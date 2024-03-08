@@ -1,6 +1,8 @@
-import { Box, Typography, TextField, Button } from '@mui/material'
+import { Box, Typography, TextField, Button, Modal } from '@mui/material'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 import { MuiTelInput } from 'mui-tel-input'
 import { useNavigate } from 'react-router'
+import { validateChar } from '../../utilities'
 
 const RegisterForm = ({
   formData,
@@ -8,6 +10,10 @@ const RegisterForm = ({
   handleSubmit,
   errors,
   registerSuccess,
+  otp,
+  handleVerifyOtp,
+  handleChangeOtp,
+  handleCloseOtpModal
 }) => {
   const navigate = useNavigate()
 
@@ -155,6 +161,35 @@ const RegisterForm = ({
           >
             Login
           </Typography>
+          <Modal open={otp.openModal} onClose={handleCloseOtpModal}>
+            <Box sx={registerStyles.modalBox}>
+              <Typography style={registerStyles.modalHeadText}>
+                Enter OTP to Proceed
+              </Typography>
+              <MuiOtpInput
+                value={otp.otpValue}
+                length={6}
+                onChange={handleChangeOtp}
+                validateChar={validateChar}
+                TextFieldsProps={{
+                  disabled: false,
+                  size: 'small',
+                  placeholder: '-'
+                }}
+                sx={registerStyles.otpInputBox}
+              />
+              <Box style={registerStyles.submitButtonBox}>
+                <Button
+                  variant='contained'
+                  onClick={handleVerifyOtp}
+                  style={registerStyles.submitButton}
+                >
+                  Submit
+                </Button>
+              </Box>
+              <Typography style={registerStyles.modalResendText}>Resend</Typography>
+            </Box>
+          </Modal>
         </Box>
       </Box>
     </Box>
@@ -214,6 +249,41 @@ const registerStyles = {
     justifyContent: 'center',
     gap: '10px',
     color: '#144981'
+  },
+  modalBox: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    border: '4px solid #144981',
+    boxShadow: 50,
+    p: 4,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    borderRadius: '20px'
+  },
+  otpInputBox: {
+    border: '2px solid #144981',
+    padding: '20px',
+    borderRadius: '8px',
+    width: '70%'
+  },
+  modalHeadText: {
+    fontSize: '20px',
+    fontWeight: 'bold',
+    color: '#144981',
+    marginBottom: '20px'
+  },
+  modalResendText: {
+    fontSize: '15px',
+    color: '#144981',
+    marginBottom: '20px',
+    textDecoration: 'underline',
+    cursor: 'pointer',
   }
 }
 
