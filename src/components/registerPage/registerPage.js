@@ -13,13 +13,14 @@ const RegisterForm = ({
   otp,
   handleVerifyOtp,
   handleChangeOtp,
-  handleCloseOtpModal
+  handleCloseOtpModal,
+  alert
 }) => {
   const navigate = useNavigate()
 
   const handleSubmitButton = async e => {
     await handleSubmit(e)
-    if (registerSuccess) {
+    if (registerSuccess && alert.type === 'success') {
       navigate('/loginpage')
     }
   }
@@ -187,7 +188,9 @@ const RegisterForm = ({
                   Submit
                 </Button>
               </Box>
-              <Typography style={registerStyles.modalResendText}>Resend</Typography>
+              <Typography style={registerStyles.modalResendText}>
+                Resend
+              </Typography>
             </Box>
           </Modal>
         </Box>
@@ -202,7 +205,7 @@ const registerStyles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '120px',
-    marginBottom: '100px'
+    marginBottom: '70px'
   },
   formBox: {
     width: '70%',
@@ -283,7 +286,7 @@ const registerStyles = {
     color: '#144981',
     marginBottom: '20px',
     textDecoration: 'underline',
-    cursor: 'pointer',
+    cursor: 'pointer'
   }
 }
 

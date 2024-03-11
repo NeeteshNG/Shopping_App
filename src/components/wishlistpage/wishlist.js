@@ -65,7 +65,7 @@ const wishlistStyles = {
     borderRadius: '5px',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     margin: '100px 20px 40px 20px',
-    zIndex: '999'
+    height: '40vh',
   },
   title: {
     fontSize: '30px',

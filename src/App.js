@@ -146,6 +146,7 @@ function App () {
                     handleVerifyOtp={handleVerifyOtp}
                     handleChangeOtp={handleChangeOtp}
                     handleCloseOtpModal={handleCloseOtpModal}
+                    alert={alert}
                   />
                 }
                 authenticated={!loggedIn}

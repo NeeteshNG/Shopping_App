@@ -444,6 +444,7 @@ const useAppController = () => {
   }
 
   const handleLogin = async () => {
+    setRegisterSuccess(false)
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login/', {
         email: username,
@@ -581,13 +582,13 @@ const useAppController = () => {
     e.preventDefault()
     const formDataEdit = formData
     formDataEdit.phone_number = preprocessPhoneNumber(formDataEdit.phone_number)
-    
+
     try {
       const response = await axios.post(
         'http://127.0.0.1:8000/api/register/',
         formDataEdit
       )
-      
+
       if (response.status === 200) {
         setAlert({
           open: true,
@@ -598,7 +599,6 @@ const useAppController = () => {
           openModal: true
         })
       }
-
     } catch (error) {
       console.error(error)
     }

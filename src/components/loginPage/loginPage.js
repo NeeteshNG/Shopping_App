@@ -20,8 +20,6 @@ const LoginPage = ({
     }
   }
 
-  setRegisterSuccess(false)
-
   return (
     <Box style={loginStyles.loginBody}>
       <Box style={loginStyles.formBox}>
@@ -88,7 +86,7 @@ const loginStyles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '120px',
-    marginBottom: '100px'
+    marginBottom: '70px'
   },
   formBox: {
     width: '40%',

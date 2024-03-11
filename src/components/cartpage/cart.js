@@ -112,7 +112,8 @@ const cartStyles = {
     marginBottom: '30px',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: '48vh'
   },
   titleBox: {
     padding: '10px 0px'
